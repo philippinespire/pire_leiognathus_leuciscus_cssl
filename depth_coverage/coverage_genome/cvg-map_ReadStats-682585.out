@@ -1,0 +1,272 @@
+
+Thu May 19 16:09:45 EDT 2022
+
+BAMDIR=/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+OUTDIR=/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+BAMPATTERN=-RG.bam
+SPECIES=Lle
+
+Running samtools coverage and stats
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_001-LlA01001-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_002-LlA01002-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_003-LlA01003-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_004-LlA01004-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_005-LlA01005-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_006-LlA01006-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_007-LlA01007-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_008-LlA01008-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_009-LlA01009-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_010-LlA01010-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_011-LlA01011-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_012-LlA01012-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_013-LlA01013-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_014-LlA01014-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_015-LlA01015-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_016-LlA01016-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_017-LlA01017-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_018-LlA01018-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_019-LlA01019-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_020-LlA01020-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_021-LlA01021-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_022-LlA01022-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_023-LlA01023-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_024-LlA01024-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_025-LlA01025-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_026-LlA01026-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_027-LlA01027-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_028-LlA01028-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_029-LlA01029-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_030-LlA01030-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_031-LlA01031-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_032-LlA01032-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_001-LlC01001-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_002-LlC01002-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_003-LlC01003-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_004-LlC01004-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_005-LlC01005-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_006-LlC01006-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_007-LlC01007-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_008-LlC01008-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_009-LlC01009-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_010-LlC01010-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_011-LlC01011-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_012-LlC01012-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_013-LlC01013-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_014-LlC01014-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_015-LlC01015-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_016-LlC01016-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_017-LlC01017-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_018-LlC01018-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_019-LlC01019-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_020-LlC01020-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_021-LlC01021-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_022-LlC01022-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_023-LlC01023-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_024-LlC01024-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_025-LlC01025-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_026-LlC01026-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_027-LlC01027-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_028-LlC01028-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_029-LlC01029-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_030-LlC01030-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_031-LlC01031-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_032-LlC01032-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_033-LlC01033-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_034-LlC01034-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_035-LlC01035-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_036-LlC01036-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_037-LlC01037-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_038-LlC01038-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_039-LlC01039-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_040-LlC01040-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_041-LlC01041-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_042-LlC01042-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_043-LlC01043-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_044-LlC01044-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_045-LlC01045-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_046-LlC01046-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_047-LlC01047-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_048-LlC01048-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_049-LlC01049-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_050-LlC01050-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_051-LlC01051-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_052-LlC01052-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_053-LlC01053-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_054-LlC01054-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_055-LlC01055-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_056-LlC01056-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_057-LlC01057-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_058-LlC01058-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_059-LlC01059-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_060-LlC01060-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_061-LlC01061-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_062-LlC01062-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_063-LlC01063-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_064-LlC01064-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_065-LlC01065-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_066-LlC01066-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_067-LlC01067-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_068-LlC01068-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_069-LlC01069-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_070-LlC01070-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_071-LlC01071-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_072-LlC01072-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_073-LlC01073-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_074-LlC01074-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_075-LlC01075-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_076-LlC01076-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_077-LlC01077-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_078-LlC01078-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_079-LlC01079-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_080-LlC01080-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_081-LlC01081-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_082-LlC01082-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_083-LlC01083-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_084-LlC01084-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_085-LlC01085-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_086-LlC01086-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_087-LlC01087-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_088-LlC01088-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_089-LlC01089-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_090-LlC01090-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_091-LlC01091-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_092-LlC01092-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_093-LlC01093-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_094-LlC01094-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_095-LlC01095-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+/bin/bash: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_096-LlC01096-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.cvg: Permission denied
+Calculating summary stats
+/var/spool/slurmd/job682585/slurm_script: line 90: /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/out_Lle_ReadStats.tsv: Permission denied
+
+Summary Completed. Out file=/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/out_Lle_ReadStats.tsv
+sed: can't read /home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/out_Lle_ReadStats.tsv: No such file or directory
+
+Processed files
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_001-LlA01001-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_002-LlA01002-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_003-LlA01003-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_004-LlA01004-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_005-LlA01005-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_006-LlA01006-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_007-LlA01007-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_008-LlA01008-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_009-LlA01009-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_010-LlA01010-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_011-LlA01011-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_012-LlA01012-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_013-LlA01013-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_014-LlA01014-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_015-LlA01015-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_016-LlA01016-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_017-LlA01017-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_018-LlA01018-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_019-LlA01019-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_020-LlA01020-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_021-LlA01021-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_022-LlA01022-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_023-LlA01023-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_024-LlA01024-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_025-LlA01025-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_026-LlA01026-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_027-LlA01027-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_028-LlA01028-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_029-LlA01029-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_030-LlA01030-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_031-LlA01031-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-AHam_032-LlA01032-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_001-LlC01001-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_002-LlC01002-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_003-LlC01003-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_004-LlC01004-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_005-LlC01005-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_006-LlC01006-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_007-LlC01007-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_008-LlC01008-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_009-LlC01009-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_010-LlC01010-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_011-LlC01011-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_012-LlC01012-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_013-LlC01013-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_014-LlC01014-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_015-LlC01015-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_016-LlC01016-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_017-LlC01017-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_018-LlC01018-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_019-LlC01019-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_020-LlC01020-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_021-LlC01021-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_022-LlC01022-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_023-LlC01023-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_024-LlC01024-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_025-LlC01025-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_026-LlC01026-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_027-LlC01027-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_028-LlC01028-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_029-LlC01029-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_030-LlC01030-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_031-LlC01031-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_032-LlC01032-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_033-LlC01033-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_034-LlC01034-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_035-LlC01035-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_036-LlC01036-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_037-LlC01037-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_038-LlC01038-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_039-LlC01039-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_040-LlC01040-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_041-LlC01041-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_042-LlC01042-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_043-LlC01043-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_044-LlC01044-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_045-LlC01045-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_046-LlC01046-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_047-LlC01047-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_048-LlC01048-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_049-LlC01049-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_050-LlC01050-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_051-LlC01051-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_052-LlC01052-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_053-LlC01053-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_054-LlC01054-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_055-LlC01055-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_056-LlC01056-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_057-LlC01057-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_058-LlC01058-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_059-LlC01059-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_060-LlC01060-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_061-LlC01061-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_062-LlC01062-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_063-LlC01063-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_064-LlC01064-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_065-LlC01065-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_066-LlC01066-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_067-LlC01067-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_068-LlC01068-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_069-LlC01069-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_070-LlC01070-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_071-LlC01071-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_072-LlC01072-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_073-LlC01073-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_074-LlC01074-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_075-LlC01075-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_076-LlC01076-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_077-LlC01077-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_078-LlC01078-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_079-LlC01079-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_080-LlC01080-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_081-LlC01081-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_082-LlC01082-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_083-LlC01083-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_084-LlC01084-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_085-LlC01085-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_086-LlC01086-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_087-LlC01087-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_088-LlC01088-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_089-LlC01089-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_090-LlC01090-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_091-LlC01091-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_092-LlC01092-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_093-LlC01093-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_094-LlC01094-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_095-LlC01095-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
+/home/cbird/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/Lle-CNas_096-LlC01096-L1-fp1-clmp-fp2-fqscrn-repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noisolate-off-RG.bam
