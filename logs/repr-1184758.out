@@ -1,0 +1,1793 @@
+
+java -ea -Xmx160942m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_013.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_013.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	560887 reads 		63913751 bases.
+Result:                 	560887 reads (100.00%) 	63913751 bases (100.00%)
+Pairs:                  	544308 reads (97.04%) 	62058389 bases (97.10%)
+Singletons:             	16579 reads (2.96%) 	1855362 bases (2.90%)
+
+Time:                         	25.083 seconds.
+Reads Processed:        560k 	22.36k reads/sec
+Bases Processed:      63913k 	2.55m bases/sec
+java -ea -Xmx160942m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_016.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_016.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2067225 reads 		244911415 bases.
+Result:                 	2067225 reads (100.00%) 	244911415 bases (100.00%)
+Pairs:                  	1991438 reads (96.33%) 	236359662 bases (96.51%)
+Singletons:             	75787 reads (3.67%) 	8551753 bases (3.49%)
+
+Time:                         	59.637 seconds.
+Reads Processed:       2067k 	34.66k reads/sec
+Bases Processed:        244m 	4.11m bases/sec
+java -ea -Xmx115975m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_002.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_002.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3186648 reads 		424235419 bases.
+Result:                 	3186648 reads (100.00%) 	424235419 bases (100.00%)
+Pairs:                  	3099386 reads (97.26%) 	412735307 bases (97.29%)
+Singletons:             	87262 reads (2.74%) 	11500112 bases (2.71%)
+
+Time:                         	69.292 seconds.
+Reads Processed:       3186k 	45.99k reads/sec
+Bases Processed:        424m 	6.12m bases/sec
+java -ea -Xmx100946m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_007.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_007.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_007.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_007.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_007.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_007.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_007.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_007.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_007.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_007.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3491773 reads 		459809031 bases.
+Result:                 	3491773 reads (100.00%) 	459809031 bases (100.00%)
+Pairs:                  	3411328 reads (97.70%) 	449323339 bases (97.72%)
+Singletons:             	80445 reads (2.30%) 	10485692 bases (2.28%)
+
+Time:                         	76.436 seconds.
+Reads Processed:       3491k 	45.68k reads/sec
+Bases Processed:        459m 	6.02m bases/sec
+java -ea -Xmx106583m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_005.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_005.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2588401 reads 		346964392 bases.
+Result:                 	2588401 reads (100.00%) 	346964392 bases (100.00%)
+Pairs:                  	2521728 reads (97.42%) 	338069324 bases (97.44%)
+Singletons:             	66673 reads (2.58%) 	8895068 bases (2.56%)
+
+Time:                         	82.162 seconds.
+Reads Processed:       2588k 	31.50k reads/sec
+Bases Processed:        346m 	4.22m bases/sec
+java -ea -Xmx123500m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_028.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_028.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_028.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_028.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_028.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_028.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_028.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_028.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_028.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_028.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3456988 reads 		361369585 bases.
+Result:                 	3456988 reads (100.00%) 	361369585 bases (100.00%)
+Pairs:                  	3367740 reads (97.42%) 	352632782 bases (97.58%)
+Singletons:             	89248 reads (2.58%) 	8736803 bases (2.42%)
+
+Time:                         	84.873 seconds.
+Reads Processed:       3456k 	40.73k reads/sec
+Bases Processed:        361m 	4.26m bases/sec
+java -ea -Xmx130926m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_025.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_025.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_025.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_025.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_025.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_025.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_025.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_025.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_025.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_025.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4096659 reads 		437106883 bases.
+Result:                 	4096659 reads (100.00%) 	437106883 bases (100.00%)
+Pairs:                  	3962578 reads (96.73%) 	423811242 bases (96.96%)
+Singletons:             	134081 reads (3.27%) 	13295641 bases (3.04%)
+
+Time:                         	85.643 seconds.
+Reads Processed:       4096k 	47.83k reads/sec
+Bases Processed:        437m 	5.10m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_008.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_008.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3501660 reads 		355427677 bases.
+Result:                 	3501660 reads (100.00%) 	355427677 bases (100.00%)
+Pairs:                  	3406150 reads (97.27%) 	346170507 bases (97.40%)
+Singletons:             	95510 reads (2.73%) 	9257170 bases (2.60%)
+
+Time:                         	88.294 seconds.
+Reads Processed:       3501k 	39.66k reads/sec
+Bases Processed:        355m 	4.03m bases/sec
+java -ea -Xmx155110m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_020.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_020.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_020.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_020.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_020.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_020.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_020.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_020.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_020.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_020.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4499267 reads 		479293162 bases.
+Result:                 	4499267 reads (100.00%) 	479293162 bases (100.00%)
+Pairs:                  	4362226 reads (96.95%) 	465530413 bases (97.13%)
+Singletons:             	137041 reads (3.05%) 	13762749 bases (2.87%)
+
+Time:                         	99.799 seconds.
+Reads Processed:       4499k 	45.08k reads/sec
+Bases Processed:        479m 	4.80m bases/sec
+java -ea -Xmx114153m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_001.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_001.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_001.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_001.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_001.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_001.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_001.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_001.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_001.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_001.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4207095 reads 		561617049 bases.
+Result:                 	4207095 reads (100.00%) 	561617049 bases (100.00%)
+Pairs:                  	4097208 reads (97.39%) 	547209002 bases (97.43%)
+Singletons:             	109887 reads (2.61%) 	14408047 bases (2.57%)
+
+Time:                         	103.893 seconds.
+Reads Processed:       4207k 	40.49k reads/sec
+Bases Processed:        561m 	5.41m bases/sec
+java -ea -Xmx98995m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_008.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_008.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_008.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_008.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_008.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_008.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_008.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_008.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_008.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_008.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3920245 reads 		521221781 bases.
+Result:                 	3920245 reads (100.00%) 	521221781 bases (100.00%)
+Pairs:                  	3810520 reads (97.20%) 	506704752 bases (97.21%)
+Singletons:             	109725 reads (2.80%) 	14517029 bases (2.79%)
+
+Time:                         	109.580 seconds.
+Reads Processed:       3920k 	35.78k reads/sec
+Bases Processed:        521m 	4.76m bases/sec
+java -ea -Xmx130926m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_026.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_026.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_026.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_026.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_026.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_026.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_026.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_026.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_026.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_026.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4899657 reads 		514171735 bases.
+Result:                 	4899657 reads (100.00%) 	514171735 bases (100.00%)
+Pairs:                  	4778342 reads (97.52%) 	502147329 bases (97.66%)
+Singletons:             	121315 reads (2.48%) 	12024406 bases (2.34%)
+
+Time:                         	111.765 seconds.
+Reads Processed:       4899k 	43.84k reads/sec
+Bases Processed:        514m 	4.60m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_012.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_012.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_012.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_012.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_012.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_012.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_012.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_012.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_012.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_012.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5017174 reads 		580253497 bases.
+Result:                 	5017174 reads (100.00%) 	580253497 bases (100.00%)
+Pairs:                  	4824638 reads (96.16%) 	559524767 bases (96.43%)
+Singletons:             	192536 reads (3.84%) 	20728730 bases (3.57%)
+
+Time:                         	115.014 seconds.
+Reads Processed:       5017k 	43.62k reads/sec
+Bases Processed:        580m 	5.05m bases/sec
+java -ea -Xmx112166m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_003.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_003.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_003.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_003.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_003.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_003.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_003.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_003.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_003.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_003.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4039057 reads 		537917549 bases.
+Result:                 	4039057 reads (100.00%) 	537917549 bases (100.00%)
+Pairs:                  	3934880 reads (97.42%) 	524283686 bases (97.47%)
+Singletons:             	104177 reads (2.58%) 	13633863 bases (2.53%)
+
+Time:                         	118.233 seconds.
+Reads Processed:       4039k 	34.16k reads/sec
+Bases Processed:        537m 	4.55m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_011.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_011.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_011.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_011.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_011.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_011.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_011.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_011.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_011.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_011.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3789308 reads 		436347600 bases.
+Result:                 	3789308 reads (100.00%) 	436347600 bases (100.00%)
+Pairs:                  	3660368 reads (96.60%) 	422278907 bases (96.78%)
+Singletons:             	128940 reads (3.40%) 	14068693 bases (3.22%)
+
+Time:                         	118.453 seconds.
+Reads Processed:       3789k 	31.99k reads/sec
+Bases Processed:        436m 	3.68m bases/sec
+java -ea -Xmx127189m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_027.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_027.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_027.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_027.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_027.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_027.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_027.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_027.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_027.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_027.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5098477 reads 		519655529 bases.
+Result:                 	5098477 reads (100.00%) 	519655529 bases (100.00%)
+Pairs:                  	4973328 reads (97.55%) 	507606931 bases (97.68%)
+Singletons:             	125149 reads (2.45%) 	12048598 bases (2.32%)
+
+Time:                         	124.590 seconds.
+Reads Processed:       5098k 	40.92k reads/sec
+Bases Processed:        519m 	4.17m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_009.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_009.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_009.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_009.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_009.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_009.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_009.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_009.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_009.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_009.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6220222 reads 		660430616 bases.
+Result:                 	6220222 reads (100.00%) 	660430616 bases (100.00%)
+Pairs:                  	6035222 reads (97.03%) 	641642319 bases (97.16%)
+Singletons:             	185000 reads (2.97%) 	18788297 bases (2.84%)
+
+Time:                         	128.747 seconds.
+Reads Processed:       6220k 	48.31k reads/sec
+Bases Processed:        660m 	5.13m bases/sec
+java -ea -Xmx104743m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_004.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_004.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_004.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_004.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_004.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_004.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_004.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_004.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_004.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_004.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4723546 reads 		636813206 bases.
+Result:                 	4723546 reads (100.00%) 	636813206 bases (100.00%)
+Pairs:                  	4585046 reads (97.07%) 	618258062 bases (97.09%)
+Singletons:             	138500 reads (2.93%) 	18555144 bases (2.91%)
+
+Time:                         	128.720 seconds.
+Reads Processed:       4723k 	36.70k reads/sec
+Bases Processed:        636m 	4.95m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_007.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_007.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_007.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_007.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_007.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_007.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_007.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_007.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_007.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_007.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5583966 reads 		593284674 bases.
+Result:                 	5583966 reads (100.00%) 	593284674 bases (100.00%)
+Pairs:                  	5425744 reads (97.17%) 	577249648 bases (97.30%)
+Singletons:             	158222 reads (2.83%) 	16035026 bases (2.70%)
+
+Time:                         	130.924 seconds.
+Reads Processed:       5583k 	42.65k reads/sec
+Bases Processed:        593m 	4.53m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_001.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_001.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_001.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_001.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_001.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_001.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_001.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_001.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_001.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_001.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6432179 reads 		711314548 bases.
+Result:                 	6432179 reads (100.00%) 	711314548 bases (100.00%)
+Pairs:                  	6238664 reads (96.99%) 	691132908 bases (97.16%)
+Singletons:             	193515 reads (3.01%) 	20181640 bases (2.84%)
+
+Time:                         	135.219 seconds.
+Reads Processed:       6432k 	47.57k reads/sec
+Bases Processed:        711m 	5.26m bases/sec
+java -ea -Xmx132890m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_024.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_024.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_024.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_024.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_024.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_024.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_024.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_024.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_024.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_024.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5419537 reads 		620637550 bases.
+Result:                 	5419537 reads (100.00%) 	620637550 bases (100.00%)
+Pairs:                  	5215598 reads (96.24%) 	598721575 bases (96.47%)
+Singletons:             	203939 reads (3.76%) 	21915975 bases (3.53%)
+
+Time:                         	146.305 seconds.
+Reads Processed:       5419k 	37.04k reads/sec
+Bases Processed:        620m 	4.24m bases/sec
+java -ea -Xmx41776m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_009.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_009.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_009.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_009.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_009.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_009.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_009.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_009.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_009.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_009.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4696018 reads 		607915978 bases.
+Result:                 	4696018 reads (100.00%) 	607915978 bases (100.00%)
+Pairs:                  	4592566 reads (97.80%) 	594641575 bases (97.82%)
+Singletons:             	103452 reads (2.20%) 	13274403 bases (2.18%)
+
+Time:                         	114.847 seconds.
+Reads Processed:       4696k 	40.89k reads/sec
+Bases Processed:        607m 	5.29m bases/sec
+java -ea -Xmx39348m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_010.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_010.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_010.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_010.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_010.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_010.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_010.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_010.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_010.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_010.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3417389 reads 		451431663 bases.
+Result:                 	3417389 reads (100.00%) 	451431663 bases (100.00%)
+Pairs:                  	3327600 reads (97.37%) 	439703570 bases (97.40%)
+Singletons:             	89789 reads (2.63%) 	11728093 bases (2.60%)
+
+Time:                         	90.213 seconds.
+Reads Processed:       3417k 	37.88k reads/sec
+Bases Processed:        451m 	5.00m bases/sec
+java -ea -Xmx39433m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_011.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_011.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_011.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_011.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_011.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_011.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_011.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_011.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_011.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_011.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3230116 reads 		431429929 bases.
+Result:                 	3230116 reads (100.00%) 	431429929 bases (100.00%)
+Pairs:                  	3140572 reads (97.23%) 	419604286 bases (97.26%)
+Singletons:             	89544 reads (2.77%) 	11825643 bases (2.74%)
+
+Time:                         	82.239 seconds.
+Reads Processed:       3230k 	39.28k reads/sec
+Bases Processed:        431m 	5.25m bases/sec
+java -ea -Xmx123500m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_029.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_029.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_029.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_029.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_029.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_029.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_029.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_029.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_029.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_029.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6208913 reads 		674080218 bases.
+Result:                 	6208913 reads (100.00%) 	674080218 bases (100.00%)
+Pairs:                  	6018484 reads (96.93%) 	654663280 bases (97.12%)
+Singletons:             	190429 reads (3.07%) 	19416938 bases (2.88%)
+
+Time:                         	156.024 seconds.
+Reads Processed:       6208k 	39.79k reads/sec
+Bases Processed:        674m 	4.32m bases/sec
+java -ea -Xmx40844m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_013.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_013.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_013.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_013.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_013.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_013.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_013.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_013.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_013.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_013.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3198861 reads 		420435632 bases.
+Result:                 	3198861 reads (100.00%) 	420435632 bases (100.00%)
+Pairs:                  	3123986 reads (97.66%) 	410678574 bases (97.68%)
+Singletons:             	74875 reads (2.34%) 	9757058 bases (2.32%)
+
+Time:                         	74.230 seconds.
+Reads Processed:       3198k 	43.09k reads/sec
+Bases Processed:        420m 	5.66m bases/sec
+java -ea -Xmx119853m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_030.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_030.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_030.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_030.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_030.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_030.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_030.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_030.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_030.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_030.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6578461 reads 		698638239 bases.
+Result:                 	6578461 reads (100.00%) 	698638239 bases (100.00%)
+Pairs:                  	6355346 reads (96.61%) 	676466714 bases (96.83%)
+Singletons:             	223115 reads (3.39%) 	22171525 bases (3.17%)
+
+Time:                         	163.101 seconds.
+Reads Processed:       6578k 	40.33k reads/sec
+Bases Processed:        698m 	4.28m bases/sec
+java -ea -Xmx119786m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_032.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_032.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_032.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_032.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_032.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_032.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_032.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_032.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_032.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_032.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	7352641 reads 		753354776 bases.
+Result:                 	7352641 reads (100.00%) 	753354776 bases (100.00%)
+Pairs:                  	7126970 reads (96.93%) 	731599022 bases (97.11%)
+Singletons:             	225671 reads (3.07%) 	21755754 bases (2.89%)
+
+Time:                         	170.207 seconds.
+Reads Processed:       7352k 	43.20k reads/sec
+Bases Processed:        753m 	4.43m bases/sec
+java -ea -Xmx52666m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_026.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_026.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_026.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_026.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_026.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_026.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_026.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_026.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_026.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_026.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	1555992 reads 		204299785 bases.
+Result:                 	1555992 reads (100.00%) 	204299785 bases (100.00%)
+Pairs:                  	1514402 reads (97.33%) 	198882453 bases (97.35%)
+Singletons:             	41590 reads (2.67%) 	5417332 bases (2.65%)
+
+Time:                         	40.602 seconds.
+Reads Processed:       1555k 	38.32k reads/sec
+Bases Processed:        204m 	5.03m bases/sec
+java -ea -Xmx151441m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_019.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_019.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_019.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_019.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_019.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_019.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_019.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_019.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_019.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_019.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6818299 reads 		664925869 bases.
+Result:                 	6818299 reads (100.00%) 	664925869 bases (100.00%)
+Pairs:                  	6618196 reads (97.07%) 	646531552 bases (97.23%)
+Singletons:             	200103 reads (2.93%) 	18394317 bases (2.77%)
+
+Time:                         	171.082 seconds.
+Reads Processed:       6818k 	39.85k reads/sec
+Bases Processed:        664m 	3.89m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_002.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_002.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_002.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_002.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_002.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_002.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_002.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_002.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_002.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_002.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6284945 reads 		696948130 bases.
+Result:                 	6284945 reads (100.00%) 	696948130 bases (100.00%)
+Pairs:                  	6105346 reads (97.14%) 	678273369 bases (97.32%)
+Singletons:             	179599 reads (2.86%) 	18674761 bases (2.68%)
+
+Time:                         	172.100 seconds.
+Reads Processed:       6284k 	36.52k reads/sec
+Bases Processed:        696m 	4.05m bases/sec
+java -ea -Xmx136661m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_022.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_022.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_022.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_022.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_022.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_022.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_022.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_022.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_022.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_022.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6063323 reads 		659393557 bases.
+Result:                 	6063323 reads (100.00%) 	659393557 bases (100.00%)
+Pairs:                  	5872684 reads (96.86%) 	639535429 bases (96.99%)
+Singletons:             	190639 reads (3.14%) 	19858128 bases (3.01%)
+
+Time:                         	173.313 seconds.
+Reads Processed:       6063k 	34.98k reads/sec
+Bases Processed:        659m 	3.80m bases/sec
+java -ea -Xmx147681m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_021.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_021.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_021.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_021.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_021.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_021.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_021.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_021.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_021.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_021.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6822912 reads 		700490455 bases.
+Result:                 	6822912 reads (100.00%) 	700490455 bases (100.00%)
+Pairs:                  	6626884 reads (97.13%) 	681383781 bases (97.27%)
+Singletons:             	196028 reads (2.87%) 	19106674 bases (2.73%)
+
+Time:                         	175.510 seconds.
+Reads Processed:       6822k 	38.87k reads/sec
+Bases Processed:        700m 	3.99m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_005.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_005.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_005.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_005.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_005.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_005.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_005.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_005.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_005.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_005.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	7927277 reads 		844740991 bases.
+Result:                 	7927277 reads (100.00%) 	844740991 bases (100.00%)
+Pairs:                  	7679140 reads (96.87%) 	820097364 bases (97.08%)
+Singletons:             	248137 reads (3.13%) 	24643627 bases (2.92%)
+
+Time:                         	176.744 seconds.
+Reads Processed:       7927k 	44.85k reads/sec
+Bases Processed:        844m 	4.78m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_004.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_004.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_004.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_004.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_004.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_004.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_004.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_004.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_004.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_004.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8271822 reads 		882965272 bases.
+Result:                 	8271822 reads (100.00%) 	882965272 bases (100.00%)
+Pairs:                  	8009526 reads (96.83%) 	856862566 bases (97.04%)
+Singletons:             	262296 reads (3.17%) 	26102706 bases (2.96%)
+
+Time:                         	180.199 seconds.
+Reads Processed:       8271k 	45.90k reads/sec
+Bases Processed:        882m 	4.90m bases/sec
+java -ea -Xmx42573m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_015.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_015.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_015.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_015.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_015.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_015.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_015.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_015.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_015.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_015.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3774673 reads 		488734676 bases.
+Result:                 	3774673 reads (100.00%) 	488734676 bases (100.00%)
+Pairs:                  	3684940 reads (97.62%) 	477385622 bases (97.68%)
+Singletons:             	89733 reads (2.38%) 	11349054 bases (2.32%)
+
+Time:                         	95.037 seconds.
+Reads Processed:       3774k 	39.72k reads/sec
+Bases Processed:        488m 	5.14m bases/sec
+java -ea -Xmx43745m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_019.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_019.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_019.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_019.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_019.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_019.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_019.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_019.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_019.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_019.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2926574 reads 		388028656 bases.
+Result:                 	2926574 reads (100.00%) 	388028656 bases (100.00%)
+Pairs:                  	2853120 reads (97.49%) 	378373612 bases (97.51%)
+Singletons:             	73454 reads (2.51%) 	9655044 bases (2.49%)
+
+Time:                         	70.357 seconds.
+Reads Processed:       2926k 	41.60k reads/sec
+Bases Processed:        388m 	5.52m bases/sec
+java -ea -Xmx157126m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_018.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_018.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_018.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_018.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_018.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_018.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_018.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_018.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_018.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_018.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8088586 reads 		869083485 bases.
+Result:                 	8088586 reads (100.00%) 	869083485 bases (100.00%)
+Pairs:                  	7818618 reads (96.66%) 	841741995 bases (96.85%)
+Singletons:             	269968 reads (3.34%) 	27341490 bases (3.15%)
+
+Time:                         	185.262 seconds.
+Reads Processed:       8088k 	43.66k reads/sec
+Bases Processed:        869m 	4.69m bases/sec
+java -ea -Xmx136628m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_023.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_023.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_023.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_023.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_023.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_023.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_023.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_023.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_023.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_023.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	7066018 reads 		784360177 bases.
+Result:                 	7066018 reads (100.00%) 	784360177 bases (100.00%)
+Pairs:                  	6805964 reads (96.32%) 	757270944 bases (96.55%)
+Singletons:             	260054 reads (3.68%) 	27089233 bases (3.45%)
+
+Time:                         	185.736 seconds.
+Reads Processed:       7066k 	38.04k reads/sec
+Bases Processed:        784m 	4.22m bases/sec
+java -ea -Xmx160942m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_015.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_015.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_015.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_015.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_015.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_015.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_015.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_015.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_015.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_015.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8317270 reads 		867273233 bases.
+Result:                 	8317270 reads (100.00%) 	867273233 bases (100.00%)
+Pairs:                  	8046004 reads (96.74%) 	840689559 bases (96.93%)
+Singletons:             	271266 reads (3.26%) 	26583674 bases (3.07%)
+
+Time:                         	187.491 seconds.
+Reads Processed:       8317k 	44.36k reads/sec
+Bases Processed:        867m 	4.63m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_010.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_010.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_010.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_010.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_010.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_010.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_010.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_010.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_010.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_010.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8800732 reads 		942410980 bases.
+Result:                 	8800732 reads (100.00%) 	942410980 bases (100.00%)
+Pairs:                  	8504114 reads (96.63%) 	912174853 bases (96.79%)
+Singletons:             	296618 reads (3.37%) 	30236127 bases (3.21%)
+
+Time:                         	200.950 seconds.
+Reads Processed:       8800k 	43.80k reads/sec
+Bases Processed:        942m 	4.69m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_003.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_003.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_003.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_003.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_003.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_003.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_003.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_003.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_003.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_003.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8685110 reads 		936021975 bases.
+Result:                 	8685110 reads (100.00%) 	936021975 bases (100.00%)
+Pairs:                  	8437590 reads (97.15%) 	910662334 bases (97.29%)
+Singletons:             	247520 reads (2.85%) 	25359641 bases (2.71%)
+
+Time:                         	201.551 seconds.
+Reads Processed:       8685k 	43.09k reads/sec
+Bases Processed:        936m 	4.64m bases/sec
+java -ea -Xmx53556m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_031.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_031.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_031.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_031.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_031.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_031.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_031.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_031.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_031.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_031.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	1790846 reads 		236707794 bases.
+Result:                 	1790846 reads (100.00%) 	236707794 bases (100.00%)
+Pairs:                  	1741254 reads (97.23%) 	230207282 bases (97.25%)
+Singletons:             	49592 reads (2.77%) 	6500512 bases (2.75%)
+
+Time:                         	48.678 seconds.
+Reads Processed:       1790k 	36.79k reads/sec
+Bases Processed:        236m 	4.86m bases/sec
+java -ea -Xmx43340m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_018.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_018.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_018.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_018.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_018.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_018.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_018.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_018.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_018.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_018.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4144648 reads 		545112717 bases.
+Result:                 	4144648 reads (100.00%) 	545112717 bases (100.00%)
+Pairs:                  	4035506 reads (97.37%) 	530877340 bases (97.39%)
+Singletons:             	109142 reads (2.63%) 	14235377 bases (2.61%)
+
+Time:                         	100.729 seconds.
+Reads Processed:       4144k 	41.15k reads/sec
+Bases Processed:        545m 	5.41m bases/sec
+java -ea -Xmx119853m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_031.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_031.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_031.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_031.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_031.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_031.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_031.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_031.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_031.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_031.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8820881 reads 		963262333 bases.
+Result:                 	8820881 reads (100.00%) 	963262333 bases (100.00%)
+Pairs:                  	8461834 reads (95.93%) 	926744967 bases (96.21%)
+Singletons:             	359047 reads (4.07%) 	36517366 bases (3.79%)
+
+Time:                         	208.110 seconds.
+Reads Processed:       8820k 	42.39k reads/sec
+Bases Processed:        963m 	4.63m bases/sec
+java -ea -Xmx45156m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_020.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_020.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_020.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_020.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_020.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_020.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_020.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_020.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_020.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_020.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4080402 reads 		545538863 bases.
+Result:                 	4080402 reads (100.00%) 	545538863 bases (100.00%)
+Pairs:                  	3968090 reads (97.25%) 	530688028 bases (97.28%)
+Singletons:             	112312 reads (2.75%) 	14850835 bases (2.72%)
+
+Time:                         	98.621 seconds.
+Reads Processed:       4080k 	41.37k reads/sec
+Bases Processed:        545m 	5.53m bases/sec
+java -ea -Xmx160942m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_014.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_014.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_014.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_014.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_014.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_014.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_014.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_014.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_014.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_014.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8235589 reads 		885552427 bases.
+Result:                 	8235589 reads (100.00%) 	885552427 bases (100.00%)
+Pairs:                  	7964656 reads (96.71%) 	858212636 bases (96.91%)
+Singletons:             	270933 reads (3.29%) 	27339791 bases (3.09%)
+
+Time:                         	211.806 seconds.
+Reads Processed:       8235k 	38.88k reads/sec
+Bases Processed:        885m 	4.18m bases/sec
+java -ea -Xmx48161m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_024.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_024.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_024.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_024.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_024.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_024.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_024.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_024.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_024.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_024.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3587182 reads 		470523800 bases.
+Result:                 	3587182 reads (100.00%) 	470523800 bases (100.00%)
+Pairs:                  	3499402 reads (97.55%) 	459154827 bases (97.58%)
+Singletons:             	87780 reads (2.45%) 	11368973 bases (2.42%)
+
+Time:                         	87.335 seconds.
+Reads Processed:       3587k 	41.07k reads/sec
+Bases Processed:        470m 	5.39m bases/sec
+java -ea -Xmx53859m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_029.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_029.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_029.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_029.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_029.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_029.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_029.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_029.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_029.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_029.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2582435 reads 		341328548 bases.
+Result:                 	2582435 reads (100.00%) 	341328548 bases (100.00%)
+Pairs:                  	2513582 reads (97.33%) 	332303993 bases (97.36%)
+Singletons:             	68853 reads (2.67%) 	9024555 bases (2.64%)
+
+Time:                         	67.508 seconds.
+Reads Processed:       2582k 	38.25k reads/sec
+Bases Processed:        341m 	5.06m bases/sec
+java -ea -Xmx61593m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_043.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_043.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_043.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_043.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_043.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_043.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_043.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_043.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_043.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_043.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	1217643 reads 		158877509 bases.
+Result:                 	1217643 reads (100.00%) 	158877509 bases (100.00%)
+Pairs:                  	1187306 reads (97.51%) 	154925299 bases (97.51%)
+Singletons:             	30337 reads (2.49%) 	3952210 bases (2.49%)
+
+Time:                         	34.115 seconds.
+Reads Processed:       1217k 	35.69k reads/sec
+Bases Processed:        158m 	4.66m bases/sec
+java -ea -Xmx42045m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_016.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_016.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_016.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_016.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_016.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_016.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_016.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_016.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_016.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_016.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5198245 reads 		679703606 bases.
+Result:                 	5198245 reads (100.00%) 	679703606 bases (100.00%)
+Pairs:                  	5068980 reads (97.51%) 	662998780 bases (97.54%)
+Singletons:             	129265 reads (2.49%) 	16704826 bases (2.46%)
+
+Time:                         	126.996 seconds.
+Reads Processed:       5198k 	40.93k reads/sec
+Bases Processed:        679m 	5.35m bases/sec
+java -ea -Xmx39094m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_012.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_012.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_012.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_012.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_012.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_012.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_012.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_012.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_012.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_012.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5456234 reads 		736165497 bases.
+Result:                 	5456234 reads (100.00%) 	736165497 bases (100.00%)
+Pairs:                  	5309988 reads (97.32%) 	716625267 bases (97.35%)
+Singletons:             	146246 reads (2.68%) 	19540230 bases (2.65%)
+
+Time:                         	143.661 seconds.
+Reads Processed:       5456k 	37.98k reads/sec
+Bases Processed:        736m 	5.12m bases/sec
+java -ea -Xmx41585m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_014.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_014.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_014.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_014.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_014.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_014.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_014.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_014.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_014.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_014.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5560037 reads 		735591746 bases.
+Result:                 	5560037 reads (100.00%) 	735591746 bases (100.00%)
+Pairs:                  	5423386 reads (97.54%) 	717710412 bases (97.57%)
+Singletons:             	136651 reads (2.46%) 	17881334 bases (2.43%)
+
+Time:                         	136.348 seconds.
+Reads Processed:       5560k 	40.78k reads/sec
+Bases Processed:        735m 	5.39m bases/sec
+java -ea -Xmx161011m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_006.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_006.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_006.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_006.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_006.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_006.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_006.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_006.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_006.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_006.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9464405 reads 		976874509 bases.
+Result:                 	9464405 reads (100.00%) 	976874509 bases (100.00%)
+Pairs:                  	9157084 reads (96.75%) 	947005242 bases (96.94%)
+Singletons:             	307321 reads (3.25%) 	29869267 bases (3.06%)
+
+Time:                         	223.119 seconds.
+Reads Processed:       9464k 	42.42k reads/sec
+Bases Processed:        976m 	4.38m bases/sec
+java -ea -Xmx49377m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_022.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_022.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_022.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_022.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_022.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_022.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_022.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_022.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_022.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_022.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4048698 reads 		533899565 bases.
+Result:                 	4048698 reads (100.00%) 	533899565 bases (100.00%)
+Pairs:                  	3948586 reads (97.53%) 	520893531 bases (97.56%)
+Singletons:             	100112 reads (2.47%) 	13006034 bases (2.44%)
+
+Time:                         	103.854 seconds.
+Reads Processed:       4048k 	38.98k reads/sec
+Bases Processed:        533m 	5.14m bases/sec
+java -ea -Xmx54865m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_027.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_027.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_027.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_027.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_027.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_027.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_027.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_027.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_027.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_027.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3476000 reads 		462916736 bases.
+Result:                 	3476000 reads (100.00%) 	462916736 bases (100.00%)
+Pairs:                  	3379468 reads (97.22%) 	450080182 bases (97.23%)
+Singletons:             	96532 reads (2.78%) 	12836554 bases (2.77%)
+
+Time:                         	88.470 seconds.
+Reads Processed:       3476k 	39.29k reads/sec
+Bases Processed:        462m 	5.23m bases/sec
+java -ea -Xmx102812m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_006.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_006.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_006.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_006.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_006.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_006.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_006.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_006.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_006.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_006.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9637984 reads 		1251905601 bases.
+Result:                 	9637984 reads (100.00%) 	1251905601 bases (100.00%)
+Pairs:                  	9385878 reads (97.38%) 	1219390518 bases (97.40%)
+Singletons:             	252106 reads (2.62%) 	32515083 bases (2.60%)
+
+Time:                         	233.034 seconds.
+Reads Processed:       9637k 	41.36k reads/sec
+Bases Processed:       1251m 	5.37m bases/sec
+java -ea -Xmx52666m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_025.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_025.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_025.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_025.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_025.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_025.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_025.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_025.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_025.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_025.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4331570 reads 		575502101 bases.
+Result:                 	4331570 reads (100.00%) 	575502101 bases (100.00%)
+Pairs:                  	4216820 reads (97.35%) 	560372769 bases (97.37%)
+Singletons:             	114750 reads (2.65%) 	15129332 bases (2.63%)
+
+Time:                         	106.068 seconds.
+Reads Processed:       4331k 	40.84k reads/sec
+Bases Processed:        575m 	5.43m bases/sec
+java -ea -Xmx54865m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_028.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_028.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_028.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_028.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_028.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_028.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_028.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_028.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_028.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_028.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4218801 reads 		558935027 bases.
+Result:                 	4218801 reads (100.00%) 	558935027 bases (100.00%)
+Pairs:                  	4104422 reads (97.29%) 	543851122 bases (97.30%)
+Singletons:             	114379 reads (2.71%) 	15083905 bases (2.70%)
+
+Time:                         	106.171 seconds.
+Reads Processed:       4218k 	39.74k reads/sec
+Bases Processed:        558m 	5.26m bases/sec
+java -ea -Xmx157095m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_017.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_017.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_017.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_017.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_017.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_017.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-AHam_017.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_017.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-AHam_017.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-AHam_017.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9850669 reads 		1098771703 bases.
+Result:                 	9850669 reads (100.00%) 	1098771703 bases (100.00%)
+Pairs:                  	9488228 reads (96.32%) 	1061160465 bases (96.58%)
+Singletons:             	362441 reads (3.68%) 	37611238 bases (3.42%)
+
+Time:                         	248.992 seconds.
+Reads Processed:       9850k 	39.56k reads/sec
+Bases Processed:       1098m 	4.41m bases/sec
+java -ea -Xmx54567m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_034.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_034.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_034.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_034.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_034.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_034.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_034.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_034.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_034.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_034.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3419439 reads 		458760053 bases.
+Result:                 	3419439 reads (100.00%) 	458760053 bases (100.00%)
+Pairs:                  	3329152 reads (97.36%) 	446776816 bases (97.39%)
+Singletons:             	90287 reads (2.64%) 	11983237 bases (2.61%)
+
+Time:                         	90.864 seconds.
+Reads Processed:       3419k 	37.63k reads/sec
+Bases Processed:        458m 	5.05m bases/sec
+java -ea -Xmx53804m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_032.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_032.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_032.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_032.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_032.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_032.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_032.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_032.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_032.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_032.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3624372 reads 		478751864 bases.
+Result:                 	3624372 reads (100.00%) 	478751864 bases (100.00%)
+Pairs:                  	3531606 reads (97.44%) 	466606498 bases (97.46%)
+Singletons:             	92766 reads (2.56%) 	12145366 bases (2.54%)
+
+Time:                         	96.844 seconds.
+Reads Processed:       3624k 	37.42k reads/sec
+Bases Processed:        478m 	4.94m bases/sec
+java -ea -Xmx68865m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_052.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_052.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_052.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_052.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_052.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_052.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_052.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_052.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_052.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_052.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	1847950 reads 		243059050 bases.
+Result:                 	1847950 reads (100.00%) 	243059050 bases (100.00%)
+Pairs:                  	1799514 reads (97.38%) 	236737687 bases (97.40%)
+Singletons:             	48436 reads (2.62%) 	6321363 bases (2.60%)
+
+Time:                         	47.586 seconds.
+Reads Processed:       1847k 	38.83k reads/sec
+Bases Processed:        243m 	5.11m bases/sec
+java -ea -Xmx63501m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_047.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_047.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_047.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_047.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_047.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_047.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_047.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_047.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_047.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_047.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3114474 reads 		409861822 bases.
+Result:                 	3114474 reads (100.00%) 	409861822 bases (100.00%)
+Pairs:                  	3033138 reads (97.39%) 	399327250 bases (97.43%)
+Singletons:             	81336 reads (2.61%) 	10534572 bases (2.57%)
+
+Time:                         	82.543 seconds.
+Reads Processed:       3114k 	37.73k reads/sec
+Bases Processed:        409m 	4.97m bases/sec
+java -ea -Xmx58901m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_039.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_039.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_039.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_039.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_039.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_039.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_039.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_039.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_039.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_039.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3972845 reads 		538458984 bases.
+Result:                 	3972845 reads (100.00%) 	538458984 bases (100.00%)
+Pairs:                  	3852500 reads (96.97%) 	522358378 bases (97.01%)
+Singletons:             	120345 reads (3.03%) 	16100606 bases (2.99%)
+
+Time:                         	99.500 seconds.
+Reads Processed:       3972k 	39.93k reads/sec
+Bases Processed:        538m 	5.41m bases/sec
+java -ea -Xmx66330m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_049.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_049.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_049.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_049.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_049.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_049.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_049.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_049.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_049.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_049.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2838694 reads 		378971204 bases.
+Result:                 	2838694 reads (100.00%) 	378971204 bases (100.00%)
+Pairs:                  	2766038 reads (97.44%) 	369360221 bases (97.46%)
+Singletons:             	72656 reads (2.56%) 	9610983 bases (2.54%)
+
+Time:                         	70.695 seconds.
+Reads Processed:       2838k 	40.15k reads/sec
+Bases Processed:        378m 	5.36m bases/sec
+java -ea -Xmx53998m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_030.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_030.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_030.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_030.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_030.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_030.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_030.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_030.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_030.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_030.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4873813 reads 		648793908 bases.
+Result:                 	4873813 reads (100.00%) 	648793908 bases (100.00%)
+Pairs:                  	4749028 reads (97.44%) 	632334376 bases (97.46%)
+Singletons:             	124785 reads (2.56%) 	16459532 bases (2.54%)
+
+Time:                         	125.702 seconds.
+Reads Processed:       4873k 	38.77k reads/sec
+Bases Processed:        648m 	5.16m bases/sec
+java -ea -Xmx59359m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_036.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_036.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_036.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_036.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_036.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_036.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_036.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_036.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_036.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_036.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4428471 reads 		587105251 bases.
+Result:                 	4428471 reads (100.00%) 	587105251 bases (100.00%)
+Pairs:                  	4322222 reads (97.60%) 	573305558 bases (97.65%)
+Singletons:             	106249 reads (2.40%) 	13799693 bases (2.35%)
+
+Time:                         	104.760 seconds.
+Reads Processed:       4428k 	42.27k reads/sec
+Bases Processed:        587m 	5.60m bases/sec
+java -ea -Xmx70982m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_061.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_061.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_061.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_061.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_061.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_061.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_061.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_061.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_061.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_061.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2263296 reads 		301871411 bases.
+Result:                 	2263296 reads (100.00%) 	301871411 bases (100.00%)
+Pairs:                  	2205764 reads (97.46%) 	294200483 bases (97.46%)
+Singletons:             	57532 reads (2.54%) 	7670928 bases (2.54%)
+
+Time:                         	57.342 seconds.
+Reads Processed:       2263k 	39.47k reads/sec
+Bases Processed:        301m 	5.26m bases/sec
+java -ea -Xmx49377m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_023.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_023.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_023.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_023.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_023.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_023.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_023.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_023.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_023.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_023.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6419315 reads 		845230064 bases.
+Result:                 	6419315 reads (100.00%) 	845230064 bases (100.00%)
+Pairs:                  	6252214 reads (97.40%) 	823306561 bases (97.41%)
+Singletons:             	167101 reads (2.60%) 	21923503 bases (2.59%)
+
+Time:                         	166.065 seconds.
+Reads Processed:       6419k 	38.66k reads/sec
+Bases Processed:        845m 	5.09m bases/sec
+java -ea -Xmx62687m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_046.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_046.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_046.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_046.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_046.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_046.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_046.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_046.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_046.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_046.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3886783 reads 		520941837 bases.
+Result:                 	3886783 reads (100.00%) 	520941837 bases (100.00%)
+Pairs:                  	3779588 reads (97.24%) 	506639522 bases (97.25%)
+Singletons:             	107195 reads (2.76%) 	14302315 bases (2.75%)
+
+Time:                         	99.440 seconds.
+Reads Processed:       3886k 	39.09k reads/sec
+Bases Processed:        520m 	5.24m bases/sec
+java -ea -Xmx74732m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_063.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_063.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_063.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_063.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_063.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_063.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_063.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_063.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_063.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_063.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2351503 reads 		305392875 bases.
+Result:                 	2351503 reads (100.00%) 	305392875 bases (100.00%)
+Pairs:                  	2287834 reads (97.29%) 	297100596 bases (97.28%)
+Singletons:             	63669 reads (2.71%) 	8292279 bases (2.72%)
+
+Time:                         	62.827 seconds.
+Reads Processed:       2351k 	37.43k reads/sec
+Bases Processed:        305m 	4.86m bases/sec
+java -ea -Xmx63512m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_044.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_044.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_044.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_044.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_044.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_044.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_044.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_044.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_044.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_044.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4307478 reads 		562372735 bases.
+Result:                 	4307478 reads (100.00%) 	562372735 bases (100.00%)
+Pairs:                  	4200048 reads (97.51%) 	548583425 bases (97.55%)
+Singletons:             	107430 reads (2.49%) 	13789310 bases (2.45%)
+
+Time:                         	105.458 seconds.
+Reads Processed:       4307k 	40.85k reads/sec
+Bases Processed:        562m 	5.33m bases/sec
+java -ea -Xmx72500m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_066.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_066.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_066.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_066.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_066.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_066.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_066.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_066.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_066.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_066.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2023618 reads 		268635190 bases.
+Result:                 	2023618 reads (100.00%) 	268635190 bases (100.00%)
+Pairs:                  	1972282 reads (97.46%) 	261863003 bases (97.48%)
+Singletons:             	51336 reads (2.54%) 	6772187 bases (2.52%)
+
+Time:                         	51.646 seconds.
+Reads Processed:       2023k 	39.18k reads/sec
+Bases Processed:        268m 	5.20m bases/sec
+java -ea -Xmx72104m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_064.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_064.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_064.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_064.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_064.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_064.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_064.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_064.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_064.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_064.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2376673 reads 		315416288 bases.
+Result:                 	2376673 reads (100.00%) 	315416288 bases (100.00%)
+Pairs:                  	2313546 reads (97.34%) 	307069486 bases (97.35%)
+Singletons:             	63127 reads (2.66%) 	8346802 bases (2.65%)
+
+Time:                         	60.907 seconds.
+Reads Processed:       2376k 	39.02k reads/sec
+Bases Processed:        315m 	5.18m bases/sec
+java -ea -Xmx68960m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_051.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_051.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_051.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_051.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_051.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_051.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_051.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_051.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_051.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_051.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3459683 reads 		467529598 bases.
+Result:                 	3459683 reads (100.00%) 	467529598 bases (100.00%)
+Pairs:                  	3364574 reads (97.25%) 	454878571 bases (97.29%)
+Singletons:             	95109 reads (2.75%) 	12651027 bases (2.71%)
+
+Time:                         	87.737 seconds.
+Reads Processed:       3459k 	39.43k reads/sec
+Bases Processed:        467m 	5.33m bases/sec
+java -ea -Xmx65395m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_048.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_048.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_048.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_048.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_048.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_048.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_048.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_048.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_048.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_048.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4033684 reads 		531292099 bases.
+Result:                 	4033684 reads (100.00%) 	531292099 bases (100.00%)
+Pairs:                  	3933906 reads (97.53%) 	518327369 bases (97.56%)
+Singletons:             	99778 reads (2.47%) 	12964730 bases (2.44%)
+
+Time:                         	103.553 seconds.
+Reads Processed:       4033k 	38.95k reads/sec
+Bases Processed:        531m 	5.13m bases/sec
+java -ea -Xmx45576m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_021.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_021.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_021.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_021.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_021.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_021.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_021.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_021.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_021.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_021.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	7332394 reads 		969268012 bases.
+Result:                 	7332394 reads (100.00%) 	969268012 bases (100.00%)
+Pairs:                  	7143094 reads (97.42%) 	944466291 bases (97.44%)
+Singletons:             	189300 reads (2.58%) 	24801721 bases (2.56%)
+
+Time:                         	176.969 seconds.
+Reads Processed:       7332k 	41.43k reads/sec
+Bases Processed:        969m 	5.48m bases/sec
+java -ea -Xmx59359m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_037.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_037.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_037.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_037.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_037.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_037.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_037.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_037.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_037.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_037.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5102608 reads 		675670211 bases.
+Result:                 	5102608 reads (100.00%) 	675670211 bases (100.00%)
+Pairs:                  	4974742 reads (97.49%) 	658985407 bases (97.53%)
+Singletons:             	127866 reads (2.51%) 	16684804 bases (2.47%)
+
+Time:                         	121.940 seconds.
+Reads Processed:       5102k 	41.85k reads/sec
+Bases Processed:        675m 	5.54m bases/sec
+java -ea -Xmx73117m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_055.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_055.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_055.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_055.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_055.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_055.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_055.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_055.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_055.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_055.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3529322 reads 		464498203 bases.
+Result:                 	3529322 reads (100.00%) 	464498203 bases (100.00%)
+Pairs:                  	3436506 reads (97.37%) 	452372349 bases (97.39%)
+Singletons:             	92816 reads (2.63%) 	12125854 bases (2.61%)
+
+Time:                         	86.887 seconds.
+Reads Processed:       3529k 	40.62k reads/sec
+Bases Processed:        464m 	5.35m bases/sec
+java -ea -Xmx70943m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_060.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_060.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_060.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_060.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_060.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_060.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_060.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_060.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_060.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_060.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3157848 reads 		417899071 bases.
+Result:                 	3157848 reads (100.00%) 	417899071 bases (100.00%)
+Pairs:                  	3077908 reads (97.47%) 	407507181 bases (97.51%)
+Singletons:             	79940 reads (2.53%) 	10391890 bases (2.49%)
+
+Time:                         	77.032 seconds.
+Reads Processed:       3157k 	40.99k reads/sec
+Bases Processed:        417m 	5.43m bases/sec
+java -ea -Xmx68890m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_050.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_050.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_050.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_050.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_050.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_050.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_050.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_050.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_050.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_050.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3986920 reads 		527130970 bases.
+Result:                 	3986920 reads (100.00%) 	527130970 bases (100.00%)
+Pairs:                  	3879330 reads (97.30%) 	513052634 bases (97.33%)
+Singletons:             	107590 reads (2.70%) 	14078336 bases (2.67%)
+
+Time:                         	98.373 seconds.
+Reads Processed:       3986k 	40.53k reads/sec
+Bases Processed:        527m 	5.36m bases/sec
+java -ea -Xmx74620m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_062.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_062.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_062.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_062.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_062.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_062.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_062.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_062.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_062.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_062.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3145106 reads 		417036495 bases.
+Result:                 	3145106 reads (100.00%) 	417036495 bases (100.00%)
+Pairs:                  	3064442 reads (97.44%) 	406406860 bases (97.45%)
+Singletons:             	80664 reads (2.56%) 	10629635 bases (2.55%)
+
+Time:                         	78.235 seconds.
+Reads Processed:       3145k 	40.20k reads/sec
+Bases Processed:        417m 	5.33m bases/sec
+java -ea -Xmx59646m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_040.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_040.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_040.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_040.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_040.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_040.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_040.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_040.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_040.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_040.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5593164 reads 		710507620 bases.
+Result:                 	5593164 reads (100.00%) 	710507620 bases (100.00%)
+Pairs:                  	5468866 reads (97.78%) 	694969249 bases (97.81%)
+Singletons:             	124298 reads (2.22%) 	15538371 bases (2.19%)
+
+Time:                         	131.392 seconds.
+Reads Processed:       5593k 	42.57k reads/sec
+Bases Processed:        710m 	5.41m bases/sec
+java -ea -Xmx59873m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_041.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_041.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_041.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_041.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_041.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_041.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_041.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_041.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_041.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_041.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5546393 reads 		711794687 bases.
+Result:                 	5546393 reads (100.00%) 	711794687 bases (100.00%)
+Pairs:                  	5407138 reads (97.49%) 	694172304 bases (97.52%)
+Singletons:             	139255 reads (2.51%) 	17622383 bases (2.48%)
+
+Time:                         	132.687 seconds.
+Reads Processed:       5546k 	41.80k reads/sec
+Bases Processed:        711m 	5.36m bases/sec
+java -ea -Xmx70028m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_053.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_053.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_053.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_053.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_053.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_053.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_053.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_053.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_053.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_053.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4201238 reads 		557159250 bases.
+Result:                 	4201238 reads (100.00%) 	557159250 bases (100.00%)
+Pairs:                  	4100308 reads (97.60%) 	543977569 bases (97.63%)
+Singletons:             	100930 reads (2.40%) 	13181681 bases (2.37%)
+
+Time:                         	100.472 seconds.
+Reads Processed:       4201k 	41.82k reads/sec
+Bases Processed:        557m 	5.55m bases/sec
+java -ea -Xmx71390m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_058.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_058.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_058.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_058.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_058.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_058.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_058.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_058.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_058.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_058.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4185809 reads 		550544402 bases.
+Result:                 	4185809 reads (100.00%) 	550544402 bases (100.00%)
+Pairs:                  	4075414 reads (97.36%) 	536146929 bases (97.38%)
+Singletons:             	110395 reads (2.64%) 	14397473 bases (2.62%)
+
+Time:                         	100.921 seconds.
+Reads Processed:       4185k 	41.48k reads/sec
+Bases Processed:        550m 	5.46m bases/sec
+java -ea -Xmx42102m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_017.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_017.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_017.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_017.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_017.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_017.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_017.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_017.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_017.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_017.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9292436 reads 		1150887140 bases.
+Result:                 	9292436 reads (100.00%) 	1150887140 bases (100.00%)
+Pairs:                  	9072610 reads (97.63%) 	1124144435 bases (97.68%)
+Singletons:             	219826 reads (2.37%) 	26742705 bases (2.32%)
+
+Time:                         	222.923 seconds.
+Reads Processed:       9292k 	41.68k reads/sec
+Bases Processed:       1150m 	5.16m bases/sec
+java -ea -Xmx56595m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_035.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_035.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_035.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_035.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_035.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_035.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_035.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_035.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_035.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_035.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6063361 reads 		843889141 bases.
+Result:                 	6063361 reads (100.00%) 	843889141 bases (100.00%)
+Pairs:                  	5862374 reads (96.69%) 	816351422 bases (96.74%)
+Singletons:             	200987 reads (3.31%) 	27537719 bases (3.26%)
+
+Time:                         	163.412 seconds.
+Reads Processed:       6063k 	37.10k reads/sec
+Bases Processed:        843m 	5.16m bases/sec
+java -ea -Xmx71589m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_057.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_057.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_057.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_057.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_057.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_057.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_057.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_057.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_057.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_057.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4265412 reads 		559290320 bases.
+Result:                 	4265412 reads (100.00%) 	559290320 bases (100.00%)
+Pairs:                  	4163170 reads (97.60%) 	545981499 bases (97.62%)
+Singletons:             	102242 reads (2.40%) 	13308821 bases (2.38%)
+
+Time:                         	111.689 seconds.
+Reads Processed:       4265k 	38.19k reads/sec
+Bases Processed:        559m 	5.01m bases/sec
+java -ea -Xmx71703m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_069.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_069.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_069.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_069.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_069.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_069.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_069.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_069.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_069.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_069.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2922374 reads 		387192141 bases.
+Result:                 	2922374 reads (100.00%) 	387192141 bases (100.00%)
+Pairs:                  	2847088 reads (97.42%) 	377267628 bases (97.44%)
+Singletons:             	75286 reads (2.58%) 	9924513 bases (2.56%)
+
+Time:                         	78.295 seconds.
+Reads Processed:       2922k 	37.33k reads/sec
+Bases Processed:        387m 	4.95m bases/sec
+java -ea -Xmx71604m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_059.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_059.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_059.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_059.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_059.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_059.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_059.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_059.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_059.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_059.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4593891 reads 		614691293 bases.
+Result:                 	4593891 reads (100.00%) 	614691293 bases (100.00%)
+Pairs:                  	4476798 reads (97.45%) 	599193727 bases (97.48%)
+Singletons:             	117093 reads (2.55%) 	15497566 bases (2.52%)
+
+Time:                         	113.449 seconds.
+Reads Processed:       4593k 	40.49k reads/sec
+Bases Processed:        614m 	5.42m bases/sec
+java -ea -Xmx58183m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_038.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_038.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_038.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_038.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_038.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_038.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_038.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_038.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_038.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_038.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6965070 reads 		924487173 bases.
+Result:                 	6965070 reads (100.00%) 	924487173 bases (100.00%)
+Pairs:                  	6770294 reads (97.20%) 	898824769 bases (97.22%)
+Singletons:             	194776 reads (2.80%) 	25662404 bases (2.78%)
+
+Time:                         	167.529 seconds.
+Reads Processed:       6965k 	41.58k reads/sec
+Bases Processed:        924m 	5.52m bases/sec
+java -ea -Xmx70766m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_067.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_067.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_067.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_067.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_067.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_067.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_067.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_067.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_067.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_067.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3763470 reads 		491222505 bases.
+Result:                 	3763470 reads (100.00%) 	491222505 bases (100.00%)
+Pairs:                  	3671962 reads (97.57%) 	479377992 bases (97.59%)
+Singletons:             	91508 reads (2.43%) 	11844513 bases (2.41%)
+
+Time:                         	94.767 seconds.
+Reads Processed:       3763k 	39.71k reads/sec
+Bases Processed:        491m 	5.18m bases/sec
+java -ea -Xmx72445m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_065.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_065.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_065.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_065.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_065.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_065.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_065.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_065.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_065.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_065.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4361371 reads 		581877607 bases.
+Result:                 	4361371 reads (100.00%) 	581877607 bases (100.00%)
+Pairs:                  	4245360 reads (97.34%) 	566532374 bases (97.36%)
+Singletons:             	116011 reads (2.66%) 	15345233 bases (2.64%)
+
+Time:                         	107.767 seconds.
+Reads Processed:       4361k 	40.47k reads/sec
+Bases Processed:        581m 	5.40m bases/sec
+java -ea -Xmx72093m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_070.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_070.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_070.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_070.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_070.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_070.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_070.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_070.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_070.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_070.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3570151 reads 		471119159 bases.
+Result:                 	3570151 reads (100.00%) 	471119159 bases (100.00%)
+Pairs:                  	3476964 reads (97.39%) 	458887970 bases (97.40%)
+Singletons:             	93187 reads (2.61%) 	12231189 bases (2.60%)
+
+Time:                         	93.255 seconds.
+Reads Processed:       3570k 	38.28k reads/sec
+Bases Processed:        471m 	5.05m bases/sec
+java -ea -Xmx71491m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_071.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_071.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_071.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_071.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_071.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_071.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_071.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_071.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_071.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_071.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3704342 reads 		495542176 bases.
+Result:                 	3704342 reads (100.00%) 	495542176 bases (100.00%)
+Pairs:                  	3604478 reads (97.30%) 	482338277 bases (97.34%)
+Singletons:             	99864 reads (2.70%) 	13203899 bases (2.66%)
+
+Time:                         	92.066 seconds.
+Reads Processed:       3704k 	40.24k reads/sec
+Bases Processed:        495m 	5.38m bases/sec
+java -ea -Xmx70227m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_054.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_054.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_054.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_054.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_054.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_054.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_054.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_054.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_054.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_054.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6002744 reads 		779060389 bases.
+Result:                 	6002744 reads (100.00%) 	779060389 bases (100.00%)
+Pairs:                  	5840978 reads (97.31%) 	758334332 bases (97.34%)
+Singletons:             	161766 reads (2.69%) 	20726057 bases (2.66%)
+
+Time:                         	139.849 seconds.
+Reads Processed:       6002k 	42.92k reads/sec
+Bases Processed:        779m 	5.57m bases/sec
+java -ea -Xmx71448m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_077.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_077.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_077.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_077.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_077.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_077.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_077.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_077.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_077.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_077.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3247409 reads 		430291665 bases.
+Result:                 	3247409 reads (100.00%) 	430291665 bases (100.00%)
+Pairs:                  	3158154 reads (97.25%) 	418571665 bases (97.28%)
+Singletons:             	89255 reads (2.75%) 	11720000 bases (2.72%)
+
+Time:                         	77.336 seconds.
+Reads Processed:       3247k 	41.99k reads/sec
+Bases Processed:        430m 	5.56m bases/sec
+java -ea -Xmx63512m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_045.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_045.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_045.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_045.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_045.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_045.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_045.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_045.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_045.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_045.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	7386312 reads 		992857750 bases.
+Result:                 	7386312 reads (100.00%) 	992857750 bases (100.00%)
+Pairs:                  	7169556 reads (97.07%) 	963888966 bases (97.08%)
+Singletons:             	216756 reads (2.93%) 	28968784 bases (2.92%)
+
+Time:                         	182.179 seconds.
+Reads Processed:       7386k 	40.54k reads/sec
+Bases Processed:        992m 	5.45m bases/sec
+java -ea -Xmx72996m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_074.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_074.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_074.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_074.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_074.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_074.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_074.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_074.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_074.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_074.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3959324 reads 		522648112 bases.
+Result:                 	3959324 reads (100.00%) 	522648112 bases (100.00%)
+Pairs:                  	3856554 reads (97.40%) 	509248545 bases (97.44%)
+Singletons:             	102770 reads (2.60%) 	13399567 bases (2.56%)
+
+Time:                         	91.330 seconds.
+Reads Processed:       3959k 	43.35k reads/sec
+Bases Processed:        522m 	5.72m bases/sec
+java -ea -Xmx71298m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_072.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_072.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_072.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_072.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_072.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_072.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_072.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_072.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_072.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_072.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4181017 reads 		559075719 bases.
+Result:                 	4181017 reads (100.00%) 	559075719 bases (100.00%)
+Pairs:                  	4069510 reads (97.33%) 	544501112 bases (97.39%)
+Singletons:             	111507 reads (2.67%) 	14574607 bases (2.61%)
+
+Time:                         	95.884 seconds.
+Reads Processed:       4181k 	43.60k reads/sec
+Bases Processed:        559m 	5.83m bases/sec
+java -ea -Xmx61113m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_042.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_042.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_042.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_042.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_042.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_042.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_042.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_042.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_042.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_042.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8157101 reads 		1067994532 bases.
+Result:                 	8157101 reads (100.00%) 	1067994532 bases (100.00%)
+Pairs:                  	7939678 reads (97.33%) 	1039977066 bases (97.38%)
+Singletons:             	217423 reads (2.67%) 	28017466 bases (2.62%)
+
+Time:                         	189.670 seconds.
+Reads Processed:       8157k 	43.01k reads/sec
+Bases Processed:       1067m 	5.63m bases/sec
+java -ea -Xmx72996m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_073.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_073.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_073.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_073.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_073.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_073.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_073.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_073.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_073.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_073.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4160788 reads 		555781181 bases.
+Result:                 	4160788 reads (100.00%) 	555781181 bases (100.00%)
+Pairs:                  	4049452 reads (97.32%) 	541064524 bases (97.35%)
+Singletons:             	111336 reads (2.68%) 	14716657 bases (2.65%)
+
+Time:                         	94.841 seconds.
+Reads Processed:       4160k 	43.87k reads/sec
+Bases Processed:        555m 	5.86m bases/sec
+java -ea -Xmx74954m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_078.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_078.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_078.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_078.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_078.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_078.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_078.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_078.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_078.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_078.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3744492 reads 		490814672 bases.
+Result:                 	3744492 reads (100.00%) 	490814672 bases (100.00%)
+Pairs:                  	3656064 reads (97.64%) 	479393595 bases (97.67%)
+Singletons:             	88428 reads (2.36%) 	11421077 bases (2.33%)
+
+Time:                         	83.153 seconds.
+Reads Processed:       3744k 	45.03k reads/sec
+Bases Processed:        490m 	5.90m bases/sec
+java -ea -Xmx71448m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_093.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_093.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_093.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_093.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_093.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_093.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_093.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_093.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_093.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_093.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2808176 reads 		361180822 bases.
+Result:                 	2808176 reads (100.00%) 	361180822 bases (100.00%)
+Pairs:                  	2746230 reads (97.79%) 	353328933 bases (97.83%)
+Singletons:             	61946 reads (2.21%) 	7851889 bases (2.17%)
+
+Time:                         	60.406 seconds.
+Reads Processed:       2808k 	46.49k reads/sec
+Bases Processed:        361m 	5.98m bases/sec
+java -ea -Xmx73271m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_082.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_082.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_082.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_082.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_082.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_082.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_082.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_082.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_082.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_082.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3640691 reads 		481321677 bases.
+Result:                 	3640691 reads (100.00%) 	481321677 bases (100.00%)
+Pairs:                  	3543528 reads (97.33%) 	468617359 bases (97.36%)
+Singletons:             	97163 reads (2.67%) 	12704318 bases (2.64%)
+
+Time:                         	81.299 seconds.
+Reads Processed:       3640k 	44.78k reads/sec
+Bases Processed:        481m 	5.92m bases/sec
+java -ea -Xmx71382m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_075.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_075.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_075.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_075.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_075.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_075.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_075.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_075.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_075.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_075.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4088758 reads 		539870916 bases.
+Result:                 	4088758 reads (100.00%) 	539870916 bases (100.00%)
+Pairs:                  	3972926 reads (97.17%) 	524698260 bases (97.19%)
+Singletons:             	115832 reads (2.83%) 	15172656 bases (2.81%)
+
+Time:                         	95.373 seconds.
+Reads Processed:       4088k 	42.87k reads/sec
+Bases Processed:        539m 	5.66m bases/sec
+java -ea -Xmx73092m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_080.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_080.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_080.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_080.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_080.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_080.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_080.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_080.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_080.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_080.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3698095 reads 		496110274 bases.
+Result:                 	3698095 reads (100.00%) 	496110274 bases (100.00%)
+Pairs:                  	3598010 reads (97.29%) 	482828946 bases (97.32%)
+Singletons:             	100085 reads (2.71%) 	13281328 bases (2.68%)
+
+Time:                         	84.199 seconds.
+Reads Processed:       3698k 	43.92k reads/sec
+Bases Processed:        496m 	5.89m bases/sec
+java -ea -Xmx72010m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_086.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_086.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_086.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_086.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_086.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_086.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_086.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_086.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_086.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_086.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3516721 reads 		466849971 bases.
+Result:                 	3516721 reads (100.00%) 	466849971 bases (100.00%)
+Pairs:                  	3421772 reads (97.30%) 	454382225 bases (97.33%)
+Singletons:             	94949 reads (2.70%) 	12467746 bases (2.67%)
+
+Time:                         	79.209 seconds.
+Reads Processed:       3516k 	44.40k reads/sec
+Bases Processed:        466m 	5.89m bases/sec
+java -ea -Xmx72162m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_091.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_091.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_091.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_091.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_091.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_091.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_091.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_091.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_091.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_091.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3303168 reads 		442638139 bases.
+Result:                 	3303168 reads (100.00%) 	442638139 bases (100.00%)
+Pairs:                  	3218368 reads (97.43%) 	431344959 bases (97.45%)
+Singletons:             	84800 reads (2.57%) 	11293180 bases (2.55%)
+
+Time:                         	71.951 seconds.
+Reads Processed:       3303k 	45.91k reads/sec
+Bases Processed:        442m 	6.15m bases/sec
+java -ea -Xmx72508m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_087.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_087.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_087.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_087.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_087.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_087.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_087.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_087.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_087.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_087.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3728197 reads 		495989061 bases.
+Result:                 	3728197 reads (100.00%) 	495989061 bases (100.00%)
+Pairs:                  	3627034 reads (97.29%) 	482588852 bases (97.30%)
+Singletons:             	101163 reads (2.71%) 	13400209 bases (2.70%)
+
+Time:                         	81.385 seconds.
+Reads Processed:       3728k 	45.81k reads/sec
+Bases Processed:        495m 	6.09m bases/sec
+java -ea -Xmx70717m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_076.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_076.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_076.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_076.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_076.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_076.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_076.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_076.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_076.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_076.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4458483 reads 		592678369 bases.
+Result:                 	4458483 reads (100.00%) 	592678369 bases (100.00%)
+Pairs:                  	4340490 reads (97.35%) 	577167063 bases (97.38%)
+Singletons:             	117993 reads (2.65%) 	15511306 bases (2.62%)
+
+Time:                         	99.554 seconds.
+Reads Processed:       4458k 	44.78k reads/sec
+Bases Processed:        592m 	5.95m bases/sec
+java -ea -Xmx73976m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_089.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_089.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_089.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_089.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_089.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_089.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_089.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_089.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_089.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_089.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3629269 reads 		485819558 bases.
+Result:                 	3629269 reads (100.00%) 	485819558 bases (100.00%)
+Pairs:                  	3526838 reads (97.18%) 	472276326 bases (97.21%)
+Singletons:             	102431 reads (2.82%) 	13543232 bases (2.79%)
+
+Time:                         	76.825 seconds.
+Reads Processed:       3629k 	47.24k reads/sec
+Bases Processed:        485m 	6.32m bases/sec
+java -ea -Xmx72508m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_090.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_090.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_090.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_090.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_090.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_090.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_090.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_090.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_090.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_090.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3815123 reads 		512360268 bases.
+Result:                 	3815123 reads (100.00%) 	512360268 bases (100.00%)
+Pairs:                  	3709960 reads (97.24%) 	498382780 bases (97.27%)
+Singletons:             	105163 reads (2.76%) 	13977488 bases (2.73%)
+
+Time:                         	77.004 seconds.
+Reads Processed:       3815k 	49.54k reads/sec
+Bases Processed:        512m 	6.65m bases/sec
+java -ea -Xmx73858m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_088.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_088.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_088.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_088.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_088.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_088.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_088.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_088.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_088.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_088.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4165279 reads 		561565114 bases.
+Result:                 	4165279 reads (100.00%) 	561565114 bases (100.00%)
+Pairs:                  	4044196 reads (97.09%) 	545451701 bases (97.13%)
+Singletons:             	121083 reads (2.91%) 	16113413 bases (2.87%)
+
+Time:                         	81.216 seconds.
+Reads Processed:       4165k 	51.29k reads/sec
+Bases Processed:        561m 	6.91m bases/sec
+java -ea -Xmx71743m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_094.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_094.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_094.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_094.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_094.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_094.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_094.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_094.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_094.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_094.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3828219 reads 		509021821 bases.
+Result:                 	3828219 reads (100.00%) 	509021821 bases (100.00%)
+Pairs:                  	3724840 reads (97.30%) 	495348644 bases (97.31%)
+Singletons:             	103379 reads (2.70%) 	13673177 bases (2.69%)
+
+Time:                         	72.125 seconds.
+Reads Processed:       3828k 	53.08k reads/sec
+Bases Processed:        509m 	7.06m bases/sec
+java -ea -Xmx71773m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_085.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_085.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_085.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_085.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_085.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_085.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_085.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_085.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_085.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_085.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4552521 reads 		601488942 bases.
+Result:                 	4552521 reads (100.00%) 	601488942 bases (100.00%)
+Pairs:                  	4438154 reads (97.49%) 	586644551 bases (97.53%)
+Singletons:             	114367 reads (2.51%) 	14844391 bases (2.47%)
+
+Time:                         	90.324 seconds.
+Reads Processed:       4552k 	50.40k reads/sec
+Bases Processed:        601m 	6.66m bases/sec
+java -ea -Xmx72052m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_084.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_084.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_084.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_084.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_084.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_084.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_084.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_084.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_084.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_084.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	4969529 reads 		662952465 bases.
+Result:                 	4969529 reads (100.00%) 	662952465 bases (100.00%)
+Pairs:                  	4833192 reads (97.26%) 	644874159 bases (97.27%)
+Singletons:             	136337 reads (2.74%) 	18078306 bases (2.73%)
+
+Time:                         	95.461 seconds.
+Reads Processed:       4969k 	52.06k reads/sec
+Bases Processed:        662m 	6.94m bases/sec
+java -ea -Xmx74954m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_079.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_079.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_079.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_079.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_079.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_079.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_079.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_079.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_079.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_079.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5622672 reads 		746865757 bases.
+Result:                 	5622672 reads (100.00%) 	746865757 bases (100.00%)
+Pairs:                  	5469066 reads (97.27%) 	726566905 bases (97.28%)
+Singletons:             	153606 reads (2.73%) 	20298852 bases (2.72%)
+
+Time:                         	100.691 seconds.
+Reads Processed:       5622k 	55.84k reads/sec
+Bases Processed:        746m 	7.42m bases/sec
+java -ea -Xmx53903m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_033.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_033.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_033.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_033.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_033.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_033.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_033.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_033.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_033.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_033.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	10881822 reads 		1440855339 bases.
+Result:                 	10881822 reads (100.00%) 	1440855339 bases (100.00%)
+Pairs:                  	10598206 reads (97.39%) 	1403794697 bases (97.43%)
+Singletons:             	283616 reads (2.61%) 	37060642 bases (2.57%)
+
+Time:                         	230.527 seconds.
+Reads Processed:      10881k 	47.20k reads/sec
+Bases Processed:       1440m 	6.25m bases/sec
+java -ea -Xmx73339m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_081.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_081.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_081.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_081.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_081.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_081.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_081.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_081.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_081.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_081.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5558570 reads 		735785272 bases.
+Result:                 	5558570 reads (100.00%) 	735785272 bases (100.00%)
+Pairs:                  	5406586 reads (97.27%) 	715950461 bases (97.30%)
+Singletons:             	151984 reads (2.73%) 	19834811 bases (2.70%)
+
+Time:                         	99.028 seconds.
+Reads Processed:       5558k 	56.13k reads/sec
+Bases Processed:        735m 	7.43m bases/sec
+java -ea -Xmx72546m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_083.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_083.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_083.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_083.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_083.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_083.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_083.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_083.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_083.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_083.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	5362977 reads 		716307484 bases.
+Result:                 	5362977 reads (100.00%) 	716307484 bases (100.00%)
+Pairs:                  	5213796 reads (97.22%) 	696683930 bases (97.26%)
+Singletons:             	149181 reads (2.78%) 	19623554 bases (2.74%)
+
+Time:                         	97.650 seconds.
+Reads Processed:       5362k 	54.92k reads/sec
+Bases Processed:        716m 	7.34m bases/sec
+java -ea -Xmx71826m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_056.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_056.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_056.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_056.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_056.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_056.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_056.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_056.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_056.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_056.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9147622 reads 		1236097680 bases.
+Result:                 	9147622 reads (100.00%) 	1236097680 bases (100.00%)
+Pairs:                  	8869792 reads (96.96%) 	1198996884 bases (97.00%)
+Singletons:             	277830 reads (3.04%) 	37100796 bases (3.00%)
+
+Time:                         	174.866 seconds.
+Reads Processed:       9147k 	52.31k reads/sec
+Bases Processed:       1236m 	7.07m bases/sec
+java -ea -Xmx71005m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_096.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_096.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_096.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_096.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_096.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_096.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_096.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_096.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_096.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_096.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	6622565 reads 		863247434 bases.
+Result:                 	6622565 reads (100.00%) 	863247434 bases (100.00%)
+Pairs:                  	6459198 reads (97.53%) 	842243548 bases (97.57%)
+Singletons:             	163367 reads (2.47%) 	21003886 bases (2.43%)
+
+Time:                         	70.966 seconds.
+Reads Processed:       6622k 	93.32k reads/sec
+Bases Processed:        863m 	12.16m bases/sec
+java -ea -Xmx71291m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_068.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_068.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_068.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_068.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_068.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_068.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_068.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_068.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_068.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_068.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	11658176 reads 		1579631363 bases.
+Result:                 	11658176 reads (100.00%) 	1579631363 bases (100.00%)
+Pairs:                  	11324580 reads (97.14%) 	1534959411 bases (97.17%)
+Singletons:             	333596 reads (2.86%) 	44671952 bases (2.83%)
+
+Time:                         	150.942 seconds.
+Reads Processed:      11658k 	77.24k reads/sec
+Bases Processed:       1579m 	10.47m bases/sec
+java -ea -Xmx71349m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_092.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_092.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_092.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_092.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_092.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_092.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_092.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_092.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_092.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_092.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	9388772 reads 		1260672532 bases.
+Result:                 	9388772 reads (100.00%) 	1260672532 bases (100.00%)
+Pairs:                  	9136188 reads (97.31%) 	1227094897 bases (97.34%)
+Singletons:             	252584 reads (2.69%) 	33577635 bases (2.66%)
+
+Time:                         	93.982 seconds.
+Reads Processed:       9388k 	99.90k reads/sec
+Bases Processed:       1260m 	13.41m bases/sec
+java -ea -Xmx71547m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_095.clmp.fp2_r1.tagged_filter.fastq.gz in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_095.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_095.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_095.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_095.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_095.clmp.fp2_r1.tagged_filter.fastq.gz, in2=fq_fp1_clmp_fp2_fqscrn/Lle-CNas_095.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_095.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fqscrn_repaired/Lle-CNas_095.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fqscrn_repaired/orphans/Lle-CNas_095.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	8874616 reads 		1205403981 bases.
+Result:                 	8874616 reads (100.00%) 	1205403981 bases (100.00%)
+Pairs:                  	8614172 reads (97.07%) 	1170555829 bases (97.11%)
+Singletons:             	260444 reads (2.93%) 	34848152 bases (2.89%)
+
+Time:                         	82.842 seconds.
+Reads Processed:       8874k 	107.13k reads/sec
+Bases Processed:       1205m 	14.55m bases/sec

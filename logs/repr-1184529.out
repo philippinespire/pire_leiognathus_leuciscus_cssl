@@ -1,0 +1,72 @@
+
+java -ea -Xmx160665m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r1.tagged_filter.fastq.gz in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_013.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r1.tagged_filter.fastq.gz, in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_013.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_013.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_013.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	560887 reads 		63913751 bases.
+Result:                 	560887 reads (100.00%) 	63913751 bases (100.00%)
+Pairs:                  	544308 reads (97.04%) 	62058389 bases (97.10%)
+Singletons:             	16579 reads (2.96%) 	1855362 bases (2.90%)
+
+Time:                         	19.302 seconds.
+Reads Processed:        560k 	29.06k reads/sec
+Bases Processed:      63913k 	3.31m bases/sec
+java -ea -Xmx160631m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r1.tagged_filter.fastq.gz in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_016.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r1.tagged_filter.fastq.gz, in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_016.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_016.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_016.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2067225 reads 		244911415 bases.
+Result:                 	2067225 reads (100.00%) 	244911415 bases (100.00%)
+Pairs:                  	1991438 reads (96.33%) 	236359662 bases (96.51%)
+Singletons:             	75787 reads (3.67%) 	8551753 bases (3.49%)
+
+Time:                         	46.007 seconds.
+Reads Processed:       2067k 	44.93k reads/sec
+Bases Processed:        244m 	5.32m bases/sec
+java -ea -Xmx119503m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r1.tagged_filter.fastq.gz in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-CNas_002.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r1.tagged_filter.fastq.gz, in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_002.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_002.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-CNas_002.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3186648 reads 		424235419 bases.
+Result:                 	3186648 reads (100.00%) 	424235419 bases (100.00%)
+Pairs:                  	3099386 reads (97.26%) 	412735307 bases (97.29%)
+Singletons:             	87262 reads (2.74%) 	11500112 bases (2.71%)
+
+Time:                         	61.225 seconds.
+Reads Processed:       3186k 	52.05k reads/sec
+Bases Processed:        424m 	6.93m bases/sec
+java -ea -Xmx112030m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r1.tagged_filter.fastq.gz in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-CNas_005.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r1.tagged_filter.fastq.gz, in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-CNas_005.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-CNas_005.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-CNas_005.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	2588401 reads 		346964392 bases.
+Result:                 	2588401 reads (100.00%) 	346964392 bases (100.00%)
+Pairs:                  	2521728 reads (97.42%) 	338069324 bases (97.44%)
+Singletons:             	66673 reads (2.58%) 	8895068 bases (2.56%)
+
+Time:                         	73.953 seconds.
+Reads Processed:       2588k 	35.00k reads/sec
+Bases Processed:        346m 	4.69m bases/sec
+java -ea -Xmx160704m -cp /opt/conda/opt/bbmap-38.90-3/current/ jgi.SplitPairsAndSingles rp in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r1.tagged_filter.fastq.gz in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r2.tagged_filter.fastq.gz out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R1.fq.gz out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R2.fq.gz outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_008.clmp.fp2_repr.orph.fq repair
+Executing jgi.SplitPairsAndSingles [rp, in1=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r1.tagged_filter.fastq.gz, in2=/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/fq_fp1_clmp_fp2_fqscrn/Lle-AHam_008.clmp.fp2_r2.tagged_filter.fastq.gz, out1=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R1.fq.gz, out2=fq_fp1_clmp_fp2_fqscrn_repaired/Lle-AHam_008.clmp.fp2_repr.R2.fq.gz, outs=fq_fp1_clmp_fp2_fqscrn_repaired/orphans/Lle-AHam_008.clmp.fp2_repr.orph.fq, repair]
+
+Set INTERLEAVED to false
+Started output stream.
+
+Input:                  	3501660 reads 		355427677 bases.
+Result:                 	3501660 reads (100.00%) 	355427677 bases (100.00%)
+Pairs:                  	3406150 reads (97.27%) 	346170507 bases (97.40%)
+Singletons:             	95510 reads (2.73%) 	9257170 bases (2.60%)
+
+Time:                         	82.899 seconds.
+Reads Processed:       3501k 	42.24k reads/sec
+Bases Processed:        355m 	4.29m bases/sec
+slurmstepd: error: *** JOB 1184529 ON e3-w6420b-22 CANCELLED AT 2022-12-08T12:58:45 ***
