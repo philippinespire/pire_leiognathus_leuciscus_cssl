@@ -1,0 +1,11 @@
+2023-10-11 11:16:51,038	INFO	main: Started with the command: /opt/mapdamage2/bin/mapDamage -i Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG.bam -r reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta -l 150 --rescale --merge-reference-sequences
+2023-10-11 11:20:39,810	DEBUG	main: BAM read in 234.760140 seconds
+2023-10-11 11:20:51,387	INFO	mapdamage.rscript: Performing Bayesian estimates
+2023-10-11 11:20:51,388	DEBUG	mapdamage.rscript: Call: Rscript /opt/mapdamage2/lib/python3.7/site-packages/mapdamage/Rscripts/stats/runGeneral.R --args 30 10000 10 50000 0 0 1 1 0 0 1 12 results_Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG/ /opt/mapdamage2/lib/python3.7/site-packages/mapdamage/Rscripts/stats/ results_Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG/Stats_out 0 0 0 results_Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG/acgt_ratio.csv 0 0
+2023-10-11 11:34:46,083	DEBUG	mapdamage.rscript: Bayesian estimates completed in 834.695586 seconds
+2023-10-11 11:34:46,084	INFO	mapdamage.rescale: Rescaling BAM: 'Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG.bam' -> 'results_Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG/Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG.rescaled.bam'
+2023-10-11 11:34:46,723	WARNING	mapdamage.rescale: Warning! Assuming the pairs are non-overlapping, facing inwards and correctly paired.
+2023-10-11 11:38:43,469	WARNING	mapdamage.rescale: Number of non-rescaled reads due to improper pairing:  378719
+2023-10-11 11:38:43,561	DEBUG	mapdamage.rescale: Rescaling completed in 237.477251 seconds
+2023-10-11 11:38:43,577	INFO	main: Successful run
+2023-10-11 11:38:43,577	DEBUG	main: Run completed in 1318.526621 seconds

@@ -1,0 +1,3133 @@
+
+
+
+* dDocentHPC v4.6 Forked by cbird@tamucc.edu * 
+
+
+Running dDocentHPC mkBAM in OVERWRITE mode. \n          Sample names, file indexing, etc will be overwritten to clear errors...
+ 
+Mon Feb 13 15:00:50 EST 2023 Files output to:  /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM
+
+Mon Feb 13 15:00:50 EST 2023 Reading config file... 
+ 
+Settings for dDocentHPC
+#Made in notepad++, use for best viewing
+
+These default settings assume ddRAD, no overlapping 151 bp reads
+
+40              Number of Processors (Auto, 1, 2, 3, ..., n threads) cbirdq=40 normal=20
+230G    Maximum Memory (1G,2G,..., 256G)  G=gigabytes
+
+----------trimFQ: Settings for Trimming FASTQ Files---------------------------------------------------------------
+146             trimmomatic MINLEN (integer, mkREF only)                                                Drop the read if it is below a specified length. Set to the length of the Read1 reads.
+75              trimmomatic MINLEN (integer, mkBAM only)                                                Drop the read if it is below a specified length. Set to the minimum frag length you want mapped to the reference.
+20              trimmomatic LEADING:<quality> (integer, mkBAM only)                             Specifies the minimum quality required to keep a base.
+15              trimmomatic TRAILING:<quality> (integer, mkREF only)                    Specifies the minimum quality required to keep a base.
+20              trimmomatic TRAILING:<quality> (integer, mkBAM only)                    Specifies the minimum quality required to keep a base.
+TruSeq3-PE-2.fa trimmomatic ILLUMINACLIP:<fasta> (0, fasta file name)                   Specifies the trimmomatic adapter file to use. entering a 0 (zero) will turn off adapter trimming. Options are: TruSeq3-PE-2.fa, TruSeq3-PE.fa, TruSeq3-SE.fa, TruSeq2-PE.fa, TruSeq2-SE.fa, any other files included with trimmomatic.  Entering a custom path here will break the script. If you want a customized file, you have to put it where the default trimmomatic files are located on your computer.  If you have trouble finding this location, run dDocentHPC trimREF and it will be included in the output.
+2               trimmomatic ILLUMINACLIP:<seed mismatches> (integer)                    specifies the maximum mismatch count which will still allow a full match to be performed
+30              trimmomatic ILLUMINACLIP:<palindrome clip thresh> (integer)             specifies how accurate the match between the two 'adapter ligated' reads must be for PE palindrome read alignment
+10              trimmomatic ILLUMINACLIP:<simple clip thresh> (integer)                 specifies how accurate the match between any adapter etc. sequence must be against a read.
+20              trimmomatic SLIDINGWINDOW:<windowSize> (integer)                                specifies the number of bases to average across
+20              trimmomatic SLIDINGWINDOW:<windowQuality> (integer)                             specifies the average quality required.
+0               trimmomatic CROP:<bp to keep> (integer, mkBAM only)    Trim read sequences down to this length. Enter 0 for no cropping
+0               trimmomatic HEADCROP:<length> (integer, only Read1 for ezRAD)   The number of bases to remove from the start of the read. 0 for ddRAD, 5 for ezRAD
+no              FixStacks (yes,no)                                                                                      Demultiplexing with stacks introduces anomolies.  This removes them.
+------------------------------------------------------------------------------------------------------------------
+
+----------mkREF: Settings for de novo assembly of the reference genome--------------------------------------------
+PE              Type of reads for assembly (PE, SE, OL, RPE)                                    PE=ddRAD & ezRAD pairedend, non-overlapping reads; SE=singleend reads; OL=ddRAD & ezRAD overlapping reads, miseq; RPE=oregonRAD, restriction site + random shear
+0.9             cdhit Clustering_Similarity_Pct (0-1)                                                   Use cdhit to cluster and collapse uniq reads by similarity threshold
+ssl               Cutoff1 (integer)                                                                                         Use unique reads that have at least this much coverage for making the reference     genome
+Lle-C-3NR-R1R2ORPH-contam-noIsolate               Cutoff2 (integer)
+                Use unique reads that occur in at least this many individuals for making the reference genome
+0.05    rainbow merge -r <percentile> (decimal 0-1)                                             Percentile-based minimum number of seqs to assemble in a precluster
+0.95    rainbow merge -R <percentile> (decimal 0-1)                                             Percentile-based maximum number of seqs to assemble in a precluster
+------------------------------------------------------------------------------------------------------------------
+
+----------mkBAM: Settings for mapping the reads to the reference genome-------------------------------------------
+Make sure the cutoffs above match the reference*fasta!
+1               bwa mem -A Mapping_Match_Value (integer)
+4               bwa mem -B Mapping_MisMatch_Value (integer)
+6               bwa mem -O Mapping_GapOpen_Penalty (integer)
+30              bwa mem -T Mapping_Minimum_Alignment_Score (integer)                    Remove reads that have an alignment score less than this.
+5       bwa mem -L Mapping_Clipping_Penalty (integer,integer)
+------------------------------------------------------------------------------------------------------------------
+
+----------fltrBAM: Settings for filtering mapping alignments in the *bam files---------------
+20              samtools view -q        Mapping_Min_Quality (integer)                   Remove reads with mapping qual less than this value
+yes             samtools view -F 4      Remove_unmapped_reads? (yes,no)                 Since the reads aren't mapped, we generally don't need to filter them
+no              samtools view -F 8      Remove_read_pair_if_one_is_unmapped? (yes,no)   If either read in a pair does not map, then the other is also removed
+yes             samtools view -F 256    Remove_secondary_alignments? (yes,no)           Secondary alignments are reads that also map to other contigs in the reference genome
+no              samtools view -F 512    Remove_reads_not_passing_platform_vendor_filters (yes,no)               We generally don't see any of these
+no              samtools view -F 1024   Remove_PCR_or_optical_duplicates? (yes,no)      You probably don't want to set this to yes
+no              samtools view -F 2048   Remove_supplementary_alignments? (yes,no)       We generally don't see any of these
+no              samtools view -f 2      Keep_only_properly_aligned_read_pairs? (yes,no)                         Set to no if OL mode
+0               samtools view -F        Custom_samtools_view_F_bit_value? (integer)                             performed separately from the above, consult samtools man
+0               samtools view -f        Custom_samtools_view_f_bit_value? (integer)                             performed separately from the above, consult samtools man
+30                                      Remove_reads_with_excessive_soft_clipping? (no, integers by 10s)        minimum number of soft clipped bases in a read that is unacceptable
+80                                      Remove_reads_with_alignment_score_below (integer)               Should match bwa mem -T, which sometimes doesn't work
+no                                      Remove_reads_orphaned_by_filters? (yes,no)
+------------------------------------------------------------------------------------------------------------------
+
+----------mkVCF: Settings for variant calling/ genotyping---------------------------------------------------------
+no      freebayes -J --pooled-discrete (yes|no)                         If yes, a pool of individuals is assumed to be the statistical unit of observation.
+no      freebayes -A --cnv-map (filename.bed or no)                     If the pools have different numbers of individuals, then you should provide a copy number variation (cnv) *.bed file with the "ploidy" of each pool. the bed file should be in the working directory and formatted as follows: popmap_column_1 ploidy_of_pool.  If that doesn't work, try the basenames of the files in popmap column 1.
+2       freebayes -p --ploidy (integer)                                 Whether pooled or not, if no cnv-map file is provided, then what is the ploidy of the samples? for pools, this number should be the number of individuals * ploidy
+no      freebayes -r --region (filename.bed or no)                      Limit analysis to specified region.  Bed file format: <chrom>:<start_position>-<end_position>
+0       only genotype read 1 (integer)                                  Limit analysis to only Read 1 positions, integer is maximum Read1 bp position
+0       Minimum Mean Depth of Coverage Per Individual                   Limit analysis to contigs with at least the specified mean depth of coverage per individual
+0       freebayes -n --use-best-n-alleles (integer)                     reduce the number of alleles considered to n, zero means all, set to 2 or more if you run out of memory
+30      freebayes -m --min-mapping-quality (integer)
+20      freebayes -q --min-base-quality (integer)
+-1      freebayes -E --haplotype-length (-1, 3, or integer)             Set to -1 to avoid multi nucleotide polymorphisms and force calling MNPs as SNPs.  Can be set up to half the read length, or more.
+0       freebayes    --min-repeat-entropy (0, 1, or integer)            Set to 0 to avoid multi nucleotide polymorphisms and force calling MNPs as SNPs. To detect interrupted repeats, build across sequence until it has entropy > N bits per bp.
+10      freebayes    --min-coverage (integer)                           Require at least this coverage to process a site
+0.375   freebayes -F --min-alternate-fraction (decimal 0-1)             There must be at least 1 individual with this fraction of alt reads to evaluate the position. If your individuals are barcoded, then use 0.2. If your data is pooled, then set based upon ~ 1/(numIndivids * ploidy) and average depth of coverage
+2       freebayes -C --min-alternate-count (integer)                    Require at least this count of observations supporting an alternate allele within a single individual in order to evaluate the position.  default: 2
+10      freebayes -G --min-alternate-total (integer)                    Require at least this count of observations supporting an alternate allele within the total population in order to use the allele in analysis.  default: 1
+0.33    freebayes -z --read-max-mismatch-fraction (decimal 0-1)         Exclude reads with more than N [0,1] fraction of mismatches where each mismatch has base quality >= mismatch-base-quality-threshold default: 1.0
+20      freebayes -Q --mismatch-base-quality-threshold (integer)        Count mismatches toward --read-mismatch-limit if the base quality of the mismatch is >= Q.  default: 10
+50      freebayes -U --read-mismatch-limit (integer)                    Exclude reads with more than N mismatches where each mismatch has base quality >= mismatch-base-quality-threshold. default: ~unbounded
+20      freebayes ~3 ~~min-alternate-qsum (integer)                     This value is the mean base quality score for alternate reads and will be multiplied by -C to set -3. Description of -3: Require at least this count of observations supporting an alternate allele within a single individual in order to evaluate the position.  default: 2
+50      freebayes -$ --read-snp-limit (integer)                         Exclude reads with more than N base mismatches, ignoring gaps with quality >= mismatch-base-quality-threshold. default: ~unbounded
+20      freebayes -e --read-indel-limit (integer)                       Exclude reads with more than N separate gaps. default: ~unbounded
+no      freebayes -w --hwe-priors-off (no|yes)                          Disable estimation of the probability of the combination arising under HWE given the allele frequency as estimated by observation frequency.
+no      freebayes -V --binomial-obs-priors-off (no|yes)                 Disable incorporation of prior expectations about observations. Uses read placement probability, strand balance probability, and read position (5'-3') probability.
+no      freebayes -a --allele-balance-priors-off (no|yes)               Disable use of aggregate probability of observation balance between alleles as a component of the priors.
+no      freebayes    --no-partial-observations (no|yes)                 Exclude observations which do not fully span the dynamically-determined detection window.  (default, use all observations, dividing partial support across matching haplotypes when generating haplotypes.)
+no      freebayes    --report-monomorphic (no|yes)                      Report even loci which appear to be monomorphic, and report allconsidered alleles, even those which are not in called genotypes. Loci which do not have any potential alternates have '.' for ALT.
+
+------------------------------------------------------------------------------------------------------------------
+
+
+Email
+user@tamucc.edu
+
+Mon Feb 13 15:00:50 EST 2023 Reading in variables from config file...
+
+Mon Feb 13 15:00:51 EST 2023 Checking for all required dDocent software...
+
+ Running CheckDependencies Function...
+
+  The dependency trimmomatic is not installed or is not in your '$PATH'.
+
+  The dependency freebayes is installed!
+
+  The dependency mawk is installed!
+
+  The dependency bwa is installed!
+
+  The dependency samtools is installed!
+
+  The dependency vcftools is installed!
+
+  The dependency rainbow is installed!
+
+  The dependency gnuplot is installed!
+
+  The dependency gawk is installed!
+
+  The dependency seqtk is installed!
+
+  The dependency cd-hit-est is installed!
+
+  The dependency bamToBed is installed!
+
+  The dependency bedtools is installed!
+
+  The dependency coverageBed is installed!
+
+  The dependency parallel is installed!
+
+  The dependency vcfcombine is installed!
+
+  The dependency bamtools is installed!
+
+  The dependency pearRM is installed!
+
+ ERROR: Some software is not installed or not up to date but dDocentHPC
+				will continue to run with limited functionality.
+        Please install all required software for full functionality
+
+
+Mon Feb 13 15:00:51 EST 2023  Begin main ddocent function
+
+ The HPC version of dDocent will only digest files with particular extensions for particular tasks
+  untouched files for trimming must be *.F.fq.gz and *.R.fq.gz
+  files trimmed for assembly (mkREF) must be *r1.fq.gz *r2.fq.gz
+  files trimmed for mapping (mkBAM) must be *R1.fq.gz *R2.fq.gz
+
+  extensions selected: *.R1.fq.gz *.R2.fq.gz
+ 
+ The samples being processed are:
+  Lle-AHam_001.clmp.fp2_repr
+  Lle-AHam_002.clmp.fp2_repr
+  Lle-AHam_003.clmp.fp2_repr
+  Lle-AHam_004.clmp.fp2_repr
+  Lle-AHam_005.clmp.fp2_repr
+  Lle-AHam_006.clmp.fp2_repr
+  Lle-AHam_007.clmp.fp2_repr
+  Lle-AHam_008.clmp.fp2_repr
+  Lle-AHam_009.clmp.fp2_repr
+  Lle-AHam_010.clmp.fp2_repr
+  Lle-AHam_011.clmp.fp2_repr
+  Lle-AHam_012.clmp.fp2_repr
+  Lle-AHam_013.clmp.fp2_repr
+  Lle-AHam_014.clmp.fp2_repr
+  Lle-AHam_015.clmp.fp2_repr
+  Lle-AHam_016.clmp.fp2_repr
+  Lle-AHam_017.clmp.fp2_repr
+  Lle-AHam_018.clmp.fp2_repr
+  Lle-AHam_019.clmp.fp2_repr
+  Lle-AHam_020.clmp.fp2_repr
+  Lle-AHam_021.clmp.fp2_repr
+  Lle-AHam_022.clmp.fp2_repr
+  Lle-AHam_023.clmp.fp2_repr
+  Lle-AHam_024.clmp.fp2_repr
+  Lle-AHam_025.clmp.fp2_repr
+  Lle-AHam_026.clmp.fp2_repr
+  Lle-AHam_027.clmp.fp2_repr
+  Lle-AHam_028.clmp.fp2_repr
+  Lle-AHam_029.clmp.fp2_repr
+  Lle-AHam_030.clmp.fp2_repr
+  Lle-AHam_031.clmp.fp2_repr
+  Lle-AHam_032.clmp.fp2_repr
+  Lle-CNas_001.clmp.fp2_repr
+  Lle-CNas_002.clmp.fp2_repr
+  Lle-CNas_003.clmp.fp2_repr
+  Lle-CNas_004.clmp.fp2_repr
+  Lle-CNas_005.clmp.fp2_repr
+  Lle-CNas_006.clmp.fp2_repr
+  Lle-CNas_007.clmp.fp2_repr
+  Lle-CNas_008.clmp.fp2_repr
+  Lle-CNas_009.clmp.fp2_repr
+  Lle-CNas_010.clmp.fp2_repr
+  Lle-CNas_011.clmp.fp2_repr
+  Lle-CNas_012.clmp.fp2_repr
+  Lle-CNas_013.clmp.fp2_repr
+  Lle-CNas_014.clmp.fp2_repr
+  Lle-CNas_015.clmp.fp2_repr
+  Lle-CNas_016.clmp.fp2_repr
+  Lle-CNas_017.clmp.fp2_repr
+  Lle-CNas_018.clmp.fp2_repr
+  Lle-CNas_019.clmp.fp2_repr
+  Lle-CNas_020.clmp.fp2_repr
+  Lle-CNas_021.clmp.fp2_repr
+  Lle-CNas_022.clmp.fp2_repr
+  Lle-CNas_023.clmp.fp2_repr
+  Lle-CNas_024.clmp.fp2_repr
+  Lle-CNas_025.clmp.fp2_repr
+  Lle-CNas_026.clmp.fp2_repr
+  Lle-CNas_027.clmp.fp2_repr
+  Lle-CNas_028.clmp.fp2_repr
+  Lle-CNas_029.clmp.fp2_repr
+  Lle-CNas_030.clmp.fp2_repr
+  Lle-CNas_031.clmp.fp2_repr
+  Lle-CNas_032.clmp.fp2_repr
+  Lle-CNas_033.clmp.fp2_repr
+  Lle-CNas_034.clmp.fp2_repr
+  Lle-CNas_035.clmp.fp2_repr
+  Lle-CNas_036.clmp.fp2_repr
+  Lle-CNas_037.clmp.fp2_repr
+  Lle-CNas_038.clmp.fp2_repr
+  Lle-CNas_039.clmp.fp2_repr
+  Lle-CNas_040.clmp.fp2_repr
+  Lle-CNas_041.clmp.fp2_repr
+  Lle-CNas_042.clmp.fp2_repr
+  Lle-CNas_043.clmp.fp2_repr
+  Lle-CNas_044.clmp.fp2_repr
+  Lle-CNas_045.clmp.fp2_repr
+  Lle-CNas_046.clmp.fp2_repr
+  Lle-CNas_047.clmp.fp2_repr
+  Lle-CNas_048.clmp.fp2_repr
+  Lle-CNas_049.clmp.fp2_repr
+  Lle-CNas_050.clmp.fp2_repr
+  Lle-CNas_051.clmp.fp2_repr
+  Lle-CNas_052.clmp.fp2_repr
+  Lle-CNas_053.clmp.fp2_repr
+  Lle-CNas_054.clmp.fp2_repr
+  Lle-CNas_055.clmp.fp2_repr
+  Lle-CNas_056.clmp.fp2_repr
+  Lle-CNas_057.clmp.fp2_repr
+  Lle-CNas_058.clmp.fp2_repr
+  Lle-CNas_059.clmp.fp2_repr
+  Lle-CNas_060.clmp.fp2_repr
+  Lle-CNas_061.clmp.fp2_repr
+  Lle-CNas_062.clmp.fp2_repr
+  Lle-CNas_063.clmp.fp2_repr
+  Lle-CNas_064.clmp.fp2_repr
+  Lle-CNas_065.clmp.fp2_repr
+  Lle-CNas_066.clmp.fp2_repr
+  Lle-CNas_067.clmp.fp2_repr
+  Lle-CNas_068.clmp.fp2_repr
+  Lle-CNas_069.clmp.fp2_repr
+  Lle-CNas_070.clmp.fp2_repr
+  Lle-CNas_071.clmp.fp2_repr
+  Lle-CNas_072.clmp.fp2_repr
+  Lle-CNas_073.clmp.fp2_repr
+  Lle-CNas_074.clmp.fp2_repr
+  Lle-CNas_075.clmp.fp2_repr
+  Lle-CNas_076.clmp.fp2_repr
+  Lle-CNas_077.clmp.fp2_repr
+  Lle-CNas_078.clmp.fp2_repr
+  Lle-CNas_079.clmp.fp2_repr
+  Lle-CNas_080.clmp.fp2_repr
+  Lle-CNas_081.clmp.fp2_repr
+  Lle-CNas_082.clmp.fp2_repr
+  Lle-CNas_083.clmp.fp2_repr
+  Lle-CNas_084.clmp.fp2_repr
+  Lle-CNas_085.clmp.fp2_repr
+  Lle-CNas_086.clmp.fp2_repr
+  Lle-CNas_087.clmp.fp2_repr
+  Lle-CNas_088.clmp.fp2_repr
+  Lle-CNas_089.clmp.fp2_repr
+  Lle-CNas_090.clmp.fp2_repr
+  Lle-CNas_091.clmp.fp2_repr
+  Lle-CNas_092.clmp.fp2_repr
+  Lle-CNas_093.clmp.fp2_repr
+  Lle-CNas_094.clmp.fp2_repr
+  Lle-CNas_095.clmp.fp2_repr
+  Lle-CNas_096.clmp.fp2_repr
+
+ 
+Mon Feb 13 15:00:53 EST 2023  Checking files for mapping...
+ 
+Mon Feb 13 15:00:53 EST 2023   Reference genome found in working directory.
+ 
+Mon Feb 13 15:00:53 EST 2023   Indexing ref genome...
+ 
+Mon Feb 13 15:00:58 EST 2023   Indexing for bwa-mem2 because there are 141753568 bytes of RAM avail...
+
+Mon Feb 13 15:10:12 EST 2023  was ref assembled by dDocent? No. BWA will estimate insert length stats
+
+numPARALLEL=1
+memPerPARALLEL=138099620
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memPerThreadPerPARALLEL=3452490
+memSortPerThreadPerPARALLEL=3452490
+
+Mon Feb 13 15:10:12 EST 2023  Run bwa mem on dDocent files
+FILE=Lle-AHam_001.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:10:12 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_001.clmp.fp2_repr.R1.fq.gz Lle-AHam_001.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_001.clmp.fp2_reprtSM:Lle-AHam_001.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:11:26 EST 2023  run samtools index Lle-AHam_001.clmp.fp2_repr
+FILE=Lle-AHam_002.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:11:28 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_002.clmp.fp2_repr.R1.fq.gz Lle-AHam_002.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_002.clmp.fp2_reprtSM:Lle-AHam_002.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:12:42 EST 2023  run samtools index Lle-AHam_002.clmp.fp2_repr
+FILE=Lle-AHam_003.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:12:44 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_003.clmp.fp2_repr.R1.fq.gz Lle-AHam_003.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_003.clmp.fp2_reprtSM:Lle-AHam_003.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:14:20 EST 2023  run samtools index Lle-AHam_003.clmp.fp2_repr
+FILE=Lle-AHam_004.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:14:23 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_004.clmp.fp2_repr.R1.fq.gz Lle-AHam_004.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_004.clmp.fp2_reprtSM:Lle-AHam_004.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:15:51 EST 2023  run samtools index Lle-AHam_004.clmp.fp2_repr
+FILE=Lle-AHam_005.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:15:53 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_005.clmp.fp2_repr.R1.fq.gz Lle-AHam_005.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_005.clmp.fp2_reprtSM:Lle-AHam_005.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:17:09 EST 2023  run samtools index Lle-AHam_005.clmp.fp2_repr
+FILE=Lle-AHam_006.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:17:11 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_006.clmp.fp2_repr.R1.fq.gz Lle-AHam_006.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_006.clmp.fp2_reprtSM:Lle-AHam_006.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:18:37 EST 2023  run samtools index Lle-AHam_006.clmp.fp2_repr
+FILE=Lle-AHam_007.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:18:39 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_007.clmp.fp2_repr.R1.fq.gz Lle-AHam_007.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_007.clmp.fp2_reprtSM:Lle-AHam_007.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:19:40 EST 2023  run samtools index Lle-AHam_007.clmp.fp2_repr
+FILE=Lle-AHam_008.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:19:41 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_008.clmp.fp2_repr.R1.fq.gz Lle-AHam_008.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_008.clmp.fp2_reprtSM:Lle-AHam_008.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:20:27 EST 2023  run samtools index Lle-AHam_008.clmp.fp2_repr
+FILE=Lle-AHam_009.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:20:28 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_009.clmp.fp2_repr.R1.fq.gz Lle-AHam_009.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_009.clmp.fp2_reprtSM:Lle-AHam_009.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:21:33 EST 2023  run samtools index Lle-AHam_009.clmp.fp2_repr
+FILE=Lle-AHam_010.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:21:35 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_010.clmp.fp2_repr.R1.fq.gz Lle-AHam_010.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_010.clmp.fp2_reprtSM:Lle-AHam_010.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:22:58 EST 2023  run samtools index Lle-AHam_010.clmp.fp2_repr
+FILE=Lle-AHam_011.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:23:00 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_011.clmp.fp2_repr.R1.fq.gz Lle-AHam_011.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_011.clmp.fp2_reprtSM:Lle-AHam_011.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:23:56 EST 2023  run samtools index Lle-AHam_011.clmp.fp2_repr
+FILE=Lle-AHam_012.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:23:57 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_012.clmp.fp2_repr.R1.fq.gz Lle-AHam_012.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_012.clmp.fp2_reprtSM:Lle-AHam_012.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:25:02 EST 2023  run samtools index Lle-AHam_012.clmp.fp2_repr
+FILE=Lle-AHam_013.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:25:03 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_013.clmp.fp2_repr.R1.fq.gz Lle-AHam_013.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_013.clmp.fp2_reprtSM:Lle-AHam_013.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:25:17 EST 2023  run samtools index Lle-AHam_013.clmp.fp2_repr
+FILE=Lle-AHam_014.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:25:18 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_014.clmp.fp2_repr.R1.fq.gz Lle-AHam_014.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_014.clmp.fp2_reprtSM:Lle-AHam_014.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:26:44 EST 2023  run samtools index Lle-AHam_014.clmp.fp2_repr
+FILE=Lle-AHam_015.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:26:46 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_015.clmp.fp2_repr.R1.fq.gz Lle-AHam_015.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_015.clmp.fp2_reprtSM:Lle-AHam_015.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:28:13 EST 2023  run samtools index Lle-AHam_015.clmp.fp2_repr
+FILE=Lle-AHam_016.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:28:16 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_016.clmp.fp2_repr.R1.fq.gz Lle-AHam_016.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_016.clmp.fp2_reprtSM:Lle-AHam_016.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:28:50 EST 2023  run samtools index Lle-AHam_016.clmp.fp2_repr
+FILE=Lle-AHam_017.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:28:50 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_017.clmp.fp2_repr.R1.fq.gz Lle-AHam_017.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_017.clmp.fp2_reprtSM:Lle-AHam_017.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:30:31 EST 2023  run samtools index Lle-AHam_017.clmp.fp2_repr
+FILE=Lle-AHam_018.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:30:34 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_018.clmp.fp2_repr.R1.fq.gz Lle-AHam_018.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_018.clmp.fp2_reprtSM:Lle-AHam_018.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:32:04 EST 2023  run samtools index Lle-AHam_018.clmp.fp2_repr
+FILE=Lle-AHam_019.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:32:06 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_019.clmp.fp2_repr.R1.fq.gz Lle-AHam_019.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_019.clmp.fp2_reprtSM:Lle-AHam_019.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:33:14 EST 2023  run samtools index Lle-AHam_019.clmp.fp2_repr
+FILE=Lle-AHam_020.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:33:16 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_020.clmp.fp2_repr.R1.fq.gz Lle-AHam_020.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_020.clmp.fp2_reprtSM:Lle-AHam_020.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:34:10 EST 2023  run samtools index Lle-AHam_020.clmp.fp2_repr
+FILE=Lle-AHam_021.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:34:12 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_021.clmp.fp2_repr.R1.fq.gz Lle-AHam_021.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_021.clmp.fp2_reprtSM:Lle-AHam_021.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:35:16 EST 2023  run samtools index Lle-AHam_021.clmp.fp2_repr
+FILE=Lle-AHam_022.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:35:18 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_022.clmp.fp2_repr.R1.fq.gz Lle-AHam_022.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_022.clmp.fp2_reprtSM:Lle-AHam_022.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:36:23 EST 2023  run samtools index Lle-AHam_022.clmp.fp2_repr
+FILE=Lle-AHam_023.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:36:24 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_023.clmp.fp2_repr.R1.fq.gz Lle-AHam_023.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_023.clmp.fp2_reprtSM:Lle-AHam_023.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:37:43 EST 2023  run samtools index Lle-AHam_023.clmp.fp2_repr
+FILE=Lle-AHam_024.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:37:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_024.clmp.fp2_repr.R1.fq.gz Lle-AHam_024.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_024.clmp.fp2_reprtSM:Lle-AHam_024.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:38:54 EST 2023  run samtools index Lle-AHam_024.clmp.fp2_repr
+FILE=Lle-AHam_025.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:38:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_025.clmp.fp2_repr.R1.fq.gz Lle-AHam_025.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_025.clmp.fp2_reprtSM:Lle-AHam_025.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:39:51 EST 2023  run samtools index Lle-AHam_025.clmp.fp2_repr
+FILE=Lle-AHam_026.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:39:52 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_026.clmp.fp2_repr.R1.fq.gz Lle-AHam_026.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_026.clmp.fp2_reprtSM:Lle-AHam_026.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:40:54 EST 2023  run samtools index Lle-AHam_026.clmp.fp2_repr
+FILE=Lle-AHam_027.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:40:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_027.clmp.fp2_repr.R1.fq.gz Lle-AHam_027.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_027.clmp.fp2_reprtSM:Lle-AHam_027.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:41:57 EST 2023  run samtools index Lle-AHam_027.clmp.fp2_repr
+FILE=Lle-AHam_028.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:41:59 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_028.clmp.fp2_repr.R1.fq.gz Lle-AHam_028.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_028.clmp.fp2_reprtSM:Lle-AHam_028.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:42:50 EST 2023  run samtools index Lle-AHam_028.clmp.fp2_repr
+FILE=Lle-AHam_029.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:42:51 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_029.clmp.fp2_repr.R1.fq.gz Lle-AHam_029.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_029.clmp.fp2_reprtSM:Lle-AHam_029.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:44:02 EST 2023  run samtools index Lle-AHam_029.clmp.fp2_repr
+FILE=Lle-AHam_030.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:44:04 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_030.clmp.fp2_repr.R1.fq.gz Lle-AHam_030.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_030.clmp.fp2_reprtSM:Lle-AHam_030.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:45:18 EST 2023  run samtools index Lle-AHam_030.clmp.fp2_repr
+FILE=Lle-AHam_031.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:45:20 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_031.clmp.fp2_repr.R1.fq.gz Lle-AHam_031.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_031.clmp.fp2_reprtSM:Lle-AHam_031.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:46:45 EST 2023  run samtools index Lle-AHam_031.clmp.fp2_repr
+FILE=Lle-AHam_032.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:46:47 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-AHam_032.clmp.fp2_repr.R1.fq.gz Lle-AHam_032.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-AHam_032.clmp.fp2_reprtSM:Lle-AHam_032.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-AHam_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-AHam_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-AHam_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:48:00 EST 2023  run samtools index Lle-AHam_032.clmp.fp2_repr
+FILE=Lle-CNas_001.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:48:02 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_001.clmp.fp2_repr.R1.fq.gz Lle-CNas_001.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_001.clmp.fp2_reprtSM:Lle-CNas_001.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_001.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:48:54 EST 2023  run samtools index Lle-CNas_001.clmp.fp2_repr
+FILE=Lle-CNas_002.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:48:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_002.clmp.fp2_repr.R1.fq.gz Lle-CNas_002.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_002.clmp.fp2_reprtSM:Lle-CNas_002.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_002.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:49:42 EST 2023  run samtools index Lle-CNas_002.clmp.fp2_repr
+FILE=Lle-CNas_003.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:49:43 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_003.clmp.fp2_repr.R1.fq.gz Lle-CNas_003.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_003.clmp.fp2_reprtSM:Lle-CNas_003.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_003.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:50:34 EST 2023  run samtools index Lle-CNas_003.clmp.fp2_repr
+FILE=Lle-CNas_004.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:50:36 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_004.clmp.fp2_repr.R1.fq.gz Lle-CNas_004.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_004.clmp.fp2_reprtSM:Lle-CNas_004.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_004.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:51:32 EST 2023  run samtools index Lle-CNas_004.clmp.fp2_repr
+FILE=Lle-CNas_005.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:51:34 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_005.clmp.fp2_repr.R1.fq.gz Lle-CNas_005.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_005.clmp.fp2_reprtSM:Lle-CNas_005.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_005.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:52:11 EST 2023  run samtools index Lle-CNas_005.clmp.fp2_repr
+FILE=Lle-CNas_006.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:52:11 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_006.clmp.fp2_repr.R1.fq.gz Lle-CNas_006.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_006.clmp.fp2_reprtSM:Lle-CNas_006.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_006.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:53:46 EST 2023  run samtools index Lle-CNas_006.clmp.fp2_repr
+FILE=Lle-CNas_007.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:53:48 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_007.clmp.fp2_repr.R1.fq.gz Lle-CNas_007.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_007.clmp.fp2_reprtSM:Lle-CNas_007.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_007.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:54:37 EST 2023  run samtools index Lle-CNas_007.clmp.fp2_repr
+FILE=Lle-CNas_008.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:54:38 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_008.clmp.fp2_repr.R1.fq.gz Lle-CNas_008.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_008.clmp.fp2_reprtSM:Lle-CNas_008.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_008.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:55:28 EST 2023  run samtools index Lle-CNas_008.clmp.fp2_repr
+FILE=Lle-CNas_009.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:55:30 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_009.clmp.fp2_repr.R1.fq.gz Lle-CNas_009.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_009.clmp.fp2_reprtSM:Lle-CNas_009.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_009.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:56:23 EST 2023  run samtools index Lle-CNas_009.clmp.fp2_repr
+FILE=Lle-CNas_010.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:56:24 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_010.clmp.fp2_repr.R1.fq.gz Lle-CNas_010.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_010.clmp.fp2_reprtSM:Lle-CNas_010.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_010.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:57:13 EST 2023  run samtools index Lle-CNas_010.clmp.fp2_repr
+FILE=Lle-CNas_011.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:57:14 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_011.clmp.fp2_repr.R1.fq.gz Lle-CNas_011.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_011.clmp.fp2_reprtSM:Lle-CNas_011.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_011.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:58:01 EST 2023  run samtools index Lle-CNas_011.clmp.fp2_repr
+FILE=Lle-CNas_012.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:58:02 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_012.clmp.fp2_repr.R1.fq.gz Lle-CNas_012.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_012.clmp.fp2_reprtSM:Lle-CNas_012.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_012.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:59:04 EST 2023  run samtools index Lle-CNas_012.clmp.fp2_repr
+FILE=Lle-CNas_013.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:59:05 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_013.clmp.fp2_repr.R1.fq.gz Lle-CNas_013.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_013.clmp.fp2_reprtSM:Lle-CNas_013.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_013.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 15:59:52 EST 2023  run samtools index Lle-CNas_013.clmp.fp2_repr
+FILE=Lle-CNas_014.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 15:59:52 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_014.clmp.fp2_repr.R1.fq.gz Lle-CNas_014.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_014.clmp.fp2_reprtSM:Lle-CNas_014.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_014.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:00:54 EST 2023  run samtools index Lle-CNas_014.clmp.fp2_repr
+FILE=Lle-CNas_015.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:00:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_015.clmp.fp2_repr.R1.fq.gz Lle-CNas_015.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_015.clmp.fp2_reprtSM:Lle-CNas_015.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_015.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:01:46 EST 2023  run samtools index Lle-CNas_015.clmp.fp2_repr
+FILE=Lle-CNas_016.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:01:47 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_016.clmp.fp2_repr.R1.fq.gz Lle-CNas_016.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_016.clmp.fp2_reprtSM:Lle-CNas_016.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_016.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:02:44 EST 2023  run samtools index Lle-CNas_016.clmp.fp2_repr
+FILE=Lle-CNas_017.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:02:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_017.clmp.fp2_repr.R1.fq.gz Lle-CNas_017.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_017.clmp.fp2_reprtSM:Lle-CNas_017.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_017.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:04:13 EST 2023  run samtools index Lle-CNas_017.clmp.fp2_repr
+FILE=Lle-CNas_018.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:04:15 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_018.clmp.fp2_repr.R1.fq.gz Lle-CNas_018.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_018.clmp.fp2_reprtSM:Lle-CNas_018.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_018.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:05:07 EST 2023  run samtools index Lle-CNas_018.clmp.fp2_repr
+FILE=Lle-CNas_019.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:05:08 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_019.clmp.fp2_repr.R1.fq.gz Lle-CNas_019.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_019.clmp.fp2_reprtSM:Lle-CNas_019.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_019.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:05:53 EST 2023  run samtools index Lle-CNas_019.clmp.fp2_repr
+FILE=Lle-CNas_020.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:05:54 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_020.clmp.fp2_repr.R1.fq.gz Lle-CNas_020.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_020.clmp.fp2_reprtSM:Lle-CNas_020.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_020.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:06:46 EST 2023  run samtools index Lle-CNas_020.clmp.fp2_repr
+FILE=Lle-CNas_021.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:06:47 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_021.clmp.fp2_repr.R1.fq.gz Lle-CNas_021.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_021.clmp.fp2_reprtSM:Lle-CNas_021.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_021.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:08:02 EST 2023  run samtools index Lle-CNas_021.clmp.fp2_repr
+FILE=Lle-CNas_022.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:08:04 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_022.clmp.fp2_repr.R1.fq.gz Lle-CNas_022.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_022.clmp.fp2_reprtSM:Lle-CNas_022.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_022.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:08:55 EST 2023  run samtools index Lle-CNas_022.clmp.fp2_repr
+FILE=Lle-CNas_023.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:08:56 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_023.clmp.fp2_repr.R1.fq.gz Lle-CNas_023.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_023.clmp.fp2_reprtSM:Lle-CNas_023.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_023.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:10:03 EST 2023  run samtools index Lle-CNas_023.clmp.fp2_repr
+FILE=Lle-CNas_024.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:10:05 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_024.clmp.fp2_repr.R1.fq.gz Lle-CNas_024.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_024.clmp.fp2_reprtSM:Lle-CNas_024.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_024.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:10:54 EST 2023  run samtools index Lle-CNas_024.clmp.fp2_repr
+FILE=Lle-CNas_025.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:10:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_025.clmp.fp2_repr.R1.fq.gz Lle-CNas_025.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_025.clmp.fp2_reprtSM:Lle-CNas_025.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_025.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:11:48 EST 2023  run samtools index Lle-CNas_025.clmp.fp2_repr
+FILE=Lle-CNas_026.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:11:49 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_026.clmp.fp2_repr.R1.fq.gz Lle-CNas_026.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_026.clmp.fp2_reprtSM:Lle-CNas_026.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_026.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:12:14 EST 2023  run samtools index Lle-CNas_026.clmp.fp2_repr
+FILE=Lle-CNas_027.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:12:14 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_027.clmp.fp2_repr.R1.fq.gz Lle-CNas_027.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_027.clmp.fp2_reprtSM:Lle-CNas_027.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_027.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:13:03 EST 2023  run samtools index Lle-CNas_027.clmp.fp2_repr
+FILE=Lle-CNas_028.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:13:04 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_028.clmp.fp2_repr.R1.fq.gz Lle-CNas_028.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_028.clmp.fp2_reprtSM:Lle-CNas_028.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_028.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:13:57 EST 2023  run samtools index Lle-CNas_028.clmp.fp2_repr
+FILE=Lle-CNas_029.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:13:58 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_029.clmp.fp2_repr.R1.fq.gz Lle-CNas_029.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_029.clmp.fp2_reprtSM:Lle-CNas_029.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_029.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:14:35 EST 2023  run samtools index Lle-CNas_029.clmp.fp2_repr
+FILE=Lle-CNas_030.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:14:36 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_030.clmp.fp2_repr.R1.fq.gz Lle-CNas_030.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_030.clmp.fp2_reprtSM:Lle-CNas_030.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:15:32 EST 2023  run samtools index Lle-CNas_030.clmp.fp2_repr
+FILE=Lle-CNas_031.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:15:33 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_031.clmp.fp2_repr.R1.fq.gz Lle-CNas_031.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_031.clmp.fp2_reprtSM:Lle-CNas_031.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_031.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:16:02 EST 2023  run samtools index Lle-CNas_031.clmp.fp2_repr
+FILE=Lle-CNas_032.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:16:03 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_032.clmp.fp2_repr.R1.fq.gz Lle-CNas_032.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_032.clmp.fp2_reprtSM:Lle-CNas_032.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_032.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:16:52 EST 2023  run samtools index Lle-CNas_032.clmp.fp2_repr
+FILE=Lle-CNas_033.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:16:53 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_033.clmp.fp2_repr.R1.fq.gz Lle-CNas_033.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_033.clmp.fp2_reprtSM:Lle-CNas_033.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_033.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_033.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_033.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:18:34 EST 2023  run samtools index Lle-CNas_033.clmp.fp2_repr
+FILE=Lle-CNas_034.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:18:37 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_034.clmp.fp2_repr.R1.fq.gz Lle-CNas_034.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_034.clmp.fp2_reprtSM:Lle-CNas_034.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_034.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_034.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_034.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:19:25 EST 2023  run samtools index Lle-CNas_034.clmp.fp2_repr
+FILE=Lle-CNas_035.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:19:26 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_035.clmp.fp2_repr.R1.fq.gz Lle-CNas_035.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_035.clmp.fp2_reprtSM:Lle-CNas_035.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_035.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_035.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_035.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:20:34 EST 2023  run samtools index Lle-CNas_035.clmp.fp2_repr
+FILE=Lle-CNas_036.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:20:36 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_036.clmp.fp2_repr.R1.fq.gz Lle-CNas_036.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_036.clmp.fp2_reprtSM:Lle-CNas_036.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_036.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_036.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_036.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:21:30 EST 2023  run samtools index Lle-CNas_036.clmp.fp2_repr
+FILE=Lle-CNas_037.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:21:31 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_037.clmp.fp2_repr.R1.fq.gz Lle-CNas_037.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_037.clmp.fp2_reprtSM:Lle-CNas_037.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_037.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_037.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_037.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:22:30 EST 2023  run samtools index Lle-CNas_037.clmp.fp2_repr
+FILE=Lle-CNas_038.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:22:31 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_038.clmp.fp2_repr.R1.fq.gz Lle-CNas_038.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_038.clmp.fp2_reprtSM:Lle-CNas_038.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_038.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_038.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_038.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:23:44 EST 2023  run samtools index Lle-CNas_038.clmp.fp2_repr
+FILE=Lle-CNas_039.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:23:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_039.clmp.fp2_repr.R1.fq.gz Lle-CNas_039.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_039.clmp.fp2_reprtSM:Lle-CNas_039.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_039.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_039.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_039.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:24:36 EST 2023  run samtools index Lle-CNas_039.clmp.fp2_repr
+FILE=Lle-CNas_040.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:24:37 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_040.clmp.fp2_repr.R1.fq.gz Lle-CNas_040.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_040.clmp.fp2_reprtSM:Lle-CNas_040.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_040.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_040.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_040.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:25:38 EST 2023  run samtools index Lle-CNas_040.clmp.fp2_repr
+FILE=Lle-CNas_041.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:25:39 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_041.clmp.fp2_repr.R1.fq.gz Lle-CNas_041.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_041.clmp.fp2_reprtSM:Lle-CNas_041.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_041.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_041.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_041.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:26:38 EST 2023  run samtools index Lle-CNas_041.clmp.fp2_repr
+FILE=Lle-CNas_042.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:26:39 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_042.clmp.fp2_repr.R1.fq.gz Lle-CNas_042.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_042.clmp.fp2_reprtSM:Lle-CNas_042.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_042.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_042.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_042.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:27:59 EST 2023  run samtools index Lle-CNas_042.clmp.fp2_repr
+FILE=Lle-CNas_043.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:28:01 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_043.clmp.fp2_repr.R1.fq.gz Lle-CNas_043.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_043.clmp.fp2_reprtSM:Lle-CNas_043.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_043.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_043.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_043.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:28:25 EST 2023  run samtools index Lle-CNas_043.clmp.fp2_repr
+FILE=Lle-CNas_044.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:28:26 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_044.clmp.fp2_repr.R1.fq.gz Lle-CNas_044.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_044.clmp.fp2_reprtSM:Lle-CNas_044.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_044.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_044.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_044.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:29:19 EST 2023  run samtools index Lle-CNas_044.clmp.fp2_repr
+FILE=Lle-CNas_045.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:29:20 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_045.clmp.fp2_repr.R1.fq.gz Lle-CNas_045.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_045.clmp.fp2_reprtSM:Lle-CNas_045.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_045.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_045.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_045.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:30:33 EST 2023  run samtools index Lle-CNas_045.clmp.fp2_repr
+FILE=Lle-CNas_046.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:30:35 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_046.clmp.fp2_repr.R1.fq.gz Lle-CNas_046.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_046.clmp.fp2_reprtSM:Lle-CNas_046.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_046.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_046.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_046.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:31:25 EST 2023  run samtools index Lle-CNas_046.clmp.fp2_repr
+FILE=Lle-CNas_047.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:31:26 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_047.clmp.fp2_repr.R1.fq.gz Lle-CNas_047.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_047.clmp.fp2_reprtSM:Lle-CNas_047.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_047.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_047.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_047.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:32:13 EST 2023  run samtools index Lle-CNas_047.clmp.fp2_repr
+FILE=Lle-CNas_048.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:32:14 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_048.clmp.fp2_repr.R1.fq.gz Lle-CNas_048.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_048.clmp.fp2_reprtSM:Lle-CNas_048.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_048.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_048.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_048.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:33:05 EST 2023  run samtools index Lle-CNas_048.clmp.fp2_repr
+FILE=Lle-CNas_049.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:33:06 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_049.clmp.fp2_repr.R1.fq.gz Lle-CNas_049.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_049.clmp.fp2_reprtSM:Lle-CNas_049.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_049.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_049.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_049.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:33:51 EST 2023  run samtools index Lle-CNas_049.clmp.fp2_repr
+FILE=Lle-CNas_050.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:33:51 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_050.clmp.fp2_repr.R1.fq.gz Lle-CNas_050.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_050.clmp.fp2_reprtSM:Lle-CNas_050.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_050.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_050.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_050.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:34:41 EST 2023  run samtools index Lle-CNas_050.clmp.fp2_repr
+FILE=Lle-CNas_051.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:34:42 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_051.clmp.fp2_repr.R1.fq.gz Lle-CNas_051.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_051.clmp.fp2_reprtSM:Lle-CNas_051.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_051.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_051.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_051.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:35:30 EST 2023  run samtools index Lle-CNas_051.clmp.fp2_repr
+FILE=Lle-CNas_052.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:35:31 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_052.clmp.fp2_repr.R1.fq.gz Lle-CNas_052.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_052.clmp.fp2_reprtSM:Lle-CNas_052.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_052.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_052.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_052.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:35:59 EST 2023  run samtools index Lle-CNas_052.clmp.fp2_repr
+FILE=Lle-CNas_053.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:36:00 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_053.clmp.fp2_repr.R1.fq.gz Lle-CNas_053.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_053.clmp.fp2_reprtSM:Lle-CNas_053.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_053.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_053.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_053.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:36:50 EST 2023  run samtools index Lle-CNas_053.clmp.fp2_repr
+FILE=Lle-CNas_054.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:36:52 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_054.clmp.fp2_repr.R1.fq.gz Lle-CNas_054.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_054.clmp.fp2_reprtSM:Lle-CNas_054.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_054.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_054.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_054.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:37:54 EST 2023  run samtools index Lle-CNas_054.clmp.fp2_repr
+FILE=Lle-CNas_055.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:37:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_055.clmp.fp2_repr.R1.fq.gz Lle-CNas_055.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_055.clmp.fp2_reprtSM:Lle-CNas_055.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_055.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_055.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_055.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:38:44 EST 2023  run samtools index Lle-CNas_055.clmp.fp2_repr
+FILE=Lle-CNas_056.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:38:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_056.clmp.fp2_repr.R1.fq.gz Lle-CNas_056.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_056.clmp.fp2_reprtSM:Lle-CNas_056.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_056.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_056.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_056.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:40:15 EST 2023  run samtools index Lle-CNas_056.clmp.fp2_repr
+FILE=Lle-CNas_057.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:40:18 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_057.clmp.fp2_repr.R1.fq.gz Lle-CNas_057.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_057.clmp.fp2_reprtSM:Lle-CNas_057.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_057.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_057.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_057.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:41:10 EST 2023  run samtools index Lle-CNas_057.clmp.fp2_repr
+FILE=Lle-CNas_058.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:41:11 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_058.clmp.fp2_repr.R1.fq.gz Lle-CNas_058.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_058.clmp.fp2_reprtSM:Lle-CNas_058.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_058.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_058.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_058.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:42:03 EST 2023  run samtools index Lle-CNas_058.clmp.fp2_repr
+FILE=Lle-CNas_059.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:42:04 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_059.clmp.fp2_repr.R1.fq.gz Lle-CNas_059.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_059.clmp.fp2_reprtSM:Lle-CNas_059.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_059.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_059.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_059.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:42:57 EST 2023  run samtools index Lle-CNas_059.clmp.fp2_repr
+FILE=Lle-CNas_060.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:42:58 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_060.clmp.fp2_repr.R1.fq.gz Lle-CNas_060.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_060.clmp.fp2_reprtSM:Lle-CNas_060.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_060.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_060.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_060.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:43:45 EST 2023  run samtools index Lle-CNas_060.clmp.fp2_repr
+FILE=Lle-CNas_061.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:43:46 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_061.clmp.fp2_repr.R1.fq.gz Lle-CNas_061.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_061.clmp.fp2_reprtSM:Lle-CNas_061.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_061.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_061.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_061.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:44:18 EST 2023  run samtools index Lle-CNas_061.clmp.fp2_repr
+FILE=Lle-CNas_062.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:44:19 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_062.clmp.fp2_repr.R1.fq.gz Lle-CNas_062.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_062.clmp.fp2_reprtSM:Lle-CNas_062.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_062.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_062.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_062.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:45:05 EST 2023  run samtools index Lle-CNas_062.clmp.fp2_repr
+FILE=Lle-CNas_063.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:45:06 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_063.clmp.fp2_repr.R1.fq.gz Lle-CNas_063.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_063.clmp.fp2_reprtSM:Lle-CNas_063.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_063.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:45:45 EST 2023  run samtools index Lle-CNas_063.clmp.fp2_repr
+FILE=Lle-CNas_064.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:45:46 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_064.clmp.fp2_repr.R1.fq.gz Lle-CNas_064.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_064.clmp.fp2_reprtSM:Lle-CNas_064.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_064.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_064.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_064.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:46:20 EST 2023  run samtools index Lle-CNas_064.clmp.fp2_repr
+FILE=Lle-CNas_065.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:46:21 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_065.clmp.fp2_repr.R1.fq.gz Lle-CNas_065.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_065.clmp.fp2_reprtSM:Lle-CNas_065.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_065.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_065.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_065.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:47:14 EST 2023  run samtools index Lle-CNas_065.clmp.fp2_repr
+FILE=Lle-CNas_066.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:47:15 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_066.clmp.fp2_repr.R1.fq.gz Lle-CNas_066.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_066.clmp.fp2_reprtSM:Lle-CNas_066.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_066.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_066.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_066.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:47:45 EST 2023  run samtools index Lle-CNas_066.clmp.fp2_repr
+FILE=Lle-CNas_067.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:47:46 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_067.clmp.fp2_repr.R1.fq.gz Lle-CNas_067.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_067.clmp.fp2_reprtSM:Lle-CNas_067.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_067.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_067.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_067.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:48:36 EST 2023  run samtools index Lle-CNas_067.clmp.fp2_repr
+FILE=Lle-CNas_068.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:48:37 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_068.clmp.fp2_repr.R1.fq.gz Lle-CNas_068.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_068.clmp.fp2_reprtSM:Lle-CNas_068.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_068.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_068.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_068.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:50:27 EST 2023  run samtools index Lle-CNas_068.clmp.fp2_repr
+FILE=Lle-CNas_069.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:50:30 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_069.clmp.fp2_repr.R1.fq.gz Lle-CNas_069.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_069.clmp.fp2_reprtSM:Lle-CNas_069.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_069.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_069.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_069.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:51:16 EST 2023  run samtools index Lle-CNas_069.clmp.fp2_repr
+FILE=Lle-CNas_070.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:51:17 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_070.clmp.fp2_repr.R1.fq.gz Lle-CNas_070.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_070.clmp.fp2_reprtSM:Lle-CNas_070.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_070.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_070.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_070.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:52:05 EST 2023  run samtools index Lle-CNas_070.clmp.fp2_repr
+FILE=Lle-CNas_071.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:52:06 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_071.clmp.fp2_repr.R1.fq.gz Lle-CNas_071.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_071.clmp.fp2_reprtSM:Lle-CNas_071.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_071.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_071.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_071.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:52:54 EST 2023  run samtools index Lle-CNas_071.clmp.fp2_repr
+FILE=Lle-CNas_072.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:52:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_072.clmp.fp2_repr.R1.fq.gz Lle-CNas_072.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_072.clmp.fp2_reprtSM:Lle-CNas_072.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_072.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_072.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_072.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:53:47 EST 2023  run samtools index Lle-CNas_072.clmp.fp2_repr
+FILE=Lle-CNas_073.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:53:49 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_073.clmp.fp2_repr.R1.fq.gz Lle-CNas_073.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_073.clmp.fp2_reprtSM:Lle-CNas_073.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_073.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_073.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_073.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:54:40 EST 2023  run samtools index Lle-CNas_073.clmp.fp2_repr
+FILE=Lle-CNas_074.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:54:41 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_074.clmp.fp2_repr.R1.fq.gz Lle-CNas_074.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_074.clmp.fp2_reprtSM:Lle-CNas_074.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_074.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_074.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_074.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:55:31 EST 2023  run samtools index Lle-CNas_074.clmp.fp2_repr
+FILE=Lle-CNas_075.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:55:32 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_075.clmp.fp2_repr.R1.fq.gz Lle-CNas_075.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_075.clmp.fp2_reprtSM:Lle-CNas_075.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_075.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_075.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_075.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:56:24 EST 2023  run samtools index Lle-CNas_075.clmp.fp2_repr
+FILE=Lle-CNas_076.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:56:25 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_076.clmp.fp2_repr.R1.fq.gz Lle-CNas_076.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_076.clmp.fp2_reprtSM:Lle-CNas_076.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_076.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_076.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_076.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:57:18 EST 2023  run samtools index Lle-CNas_076.clmp.fp2_repr
+FILE=Lle-CNas_077.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:57:19 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_077.clmp.fp2_repr.R1.fq.gz Lle-CNas_077.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_077.clmp.fp2_reprtSM:Lle-CNas_077.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_077.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_077.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_077.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:58:06 EST 2023  run samtools index Lle-CNas_077.clmp.fp2_repr
+FILE=Lle-CNas_078.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:58:07 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_078.clmp.fp2_repr.R1.fq.gz Lle-CNas_078.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_078.clmp.fp2_reprtSM:Lle-CNas_078.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_078.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_078.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_078.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:58:57 EST 2023  run samtools index Lle-CNas_078.clmp.fp2_repr
+FILE=Lle-CNas_079.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 16:58:58 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_079.clmp.fp2_repr.R1.fq.gz Lle-CNas_079.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_079.clmp.fp2_reprtSM:Lle-CNas_079.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_079.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_079.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_079.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 16:59:59 EST 2023  run samtools index Lle-CNas_079.clmp.fp2_repr
+FILE=Lle-CNas_080.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:00:01 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_080.clmp.fp2_repr.R1.fq.gz Lle-CNas_080.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_080.clmp.fp2_reprtSM:Lle-CNas_080.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_080.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_080.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_080.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:00:51 EST 2023  run samtools index Lle-CNas_080.clmp.fp2_repr
+FILE=Lle-CNas_081.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:00:52 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_081.clmp.fp2_repr.R1.fq.gz Lle-CNas_081.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_081.clmp.fp2_reprtSM:Lle-CNas_081.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_081.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_081.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_081.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:01:53 EST 2023  run samtools index Lle-CNas_081.clmp.fp2_repr
+FILE=Lle-CNas_082.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:01:54 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_082.clmp.fp2_repr.R1.fq.gz Lle-CNas_082.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_082.clmp.fp2_reprtSM:Lle-CNas_082.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_082.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_082.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_082.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:02:43 EST 2023  run samtools index Lle-CNas_082.clmp.fp2_repr
+FILE=Lle-CNas_083.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:02:43 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_083.clmp.fp2_repr.R1.fq.gz Lle-CNas_083.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_083.clmp.fp2_reprtSM:Lle-CNas_083.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_083.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_083.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_083.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:03:43 EST 2023  run samtools index Lle-CNas_083.clmp.fp2_repr
+FILE=Lle-CNas_084.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:03:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_084.clmp.fp2_repr.R1.fq.gz Lle-CNas_084.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_084.clmp.fp2_reprtSM:Lle-CNas_084.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_084.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_084.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_084.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:04:43 EST 2023  run samtools index Lle-CNas_084.clmp.fp2_repr
+FILE=Lle-CNas_085.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:04:44 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_085.clmp.fp2_repr.R1.fq.gz Lle-CNas_085.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_085.clmp.fp2_reprtSM:Lle-CNas_085.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_085.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_085.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_085.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:05:39 EST 2023  run samtools index Lle-CNas_085.clmp.fp2_repr
+FILE=Lle-CNas_086.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:05:40 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_086.clmp.fp2_repr.R1.fq.gz Lle-CNas_086.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_086.clmp.fp2_reprtSM:Lle-CNas_086.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_086.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_086.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_086.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:06:29 EST 2023  run samtools index Lle-CNas_086.clmp.fp2_repr
+FILE=Lle-CNas_087.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:06:30 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_087.clmp.fp2_repr.R1.fq.gz Lle-CNas_087.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_087.clmp.fp2_reprtSM:Lle-CNas_087.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_087.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_087.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_087.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:07:21 EST 2023  run samtools index Lle-CNas_087.clmp.fp2_repr
+FILE=Lle-CNas_088.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:07:22 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_088.clmp.fp2_repr.R1.fq.gz Lle-CNas_088.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_088.clmp.fp2_reprtSM:Lle-CNas_088.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_088.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_088.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_088.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:08:13 EST 2023  run samtools index Lle-CNas_088.clmp.fp2_repr
+FILE=Lle-CNas_089.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:08:14 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_089.clmp.fp2_repr.R1.fq.gz Lle-CNas_089.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_089.clmp.fp2_reprtSM:Lle-CNas_089.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_089.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_089.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_089.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:09:04 EST 2023  run samtools index Lle-CNas_089.clmp.fp2_repr
+FILE=Lle-CNas_090.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:09:05 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_090.clmp.fp2_repr.R1.fq.gz Lle-CNas_090.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_090.clmp.fp2_reprtSM:Lle-CNas_090.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_090.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_090.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_090.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:09:55 EST 2023  run samtools index Lle-CNas_090.clmp.fp2_repr
+FILE=Lle-CNas_091.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:09:56 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_091.clmp.fp2_repr.R1.fq.gz Lle-CNas_091.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_091.clmp.fp2_reprtSM:Lle-CNas_091.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_091.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_091.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_091.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:10:44 EST 2023  run samtools index Lle-CNas_091.clmp.fp2_repr
+FILE=Lle-CNas_092.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:10:45 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_092.clmp.fp2_repr.R1.fq.gz Lle-CNas_092.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_092.clmp.fp2_reprtSM:Lle-CNas_092.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_092.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_092.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_092.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:12:18 EST 2023  run samtools index Lle-CNas_092.clmp.fp2_repr
+FILE=Lle-CNas_093.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:12:20 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_093.clmp.fp2_repr.R1.fq.gz Lle-CNas_093.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_093.clmp.fp2_reprtSM:Lle-CNas_093.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_093.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_093.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_093.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:13:03 EST 2023  run samtools index Lle-CNas_093.clmp.fp2_repr
+FILE=Lle-CNas_094.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:13:04 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_094.clmp.fp2_repr.R1.fq.gz Lle-CNas_094.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_094.clmp.fp2_reprtSM:Lle-CNas_094.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_094.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_094.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_094.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:13:54 EST 2023  run samtools index Lle-CNas_094.clmp.fp2_repr
+FILE=Lle-CNas_095.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:13:55 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_095.clmp.fp2_repr.R1.fq.gz Lle-CNas_095.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_095.clmp.fp2_reprtSM:Lle-CNas_095.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_095.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_095.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_095.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:15:24 EST 2023  run samtools index Lle-CNas_095.clmp.fp2_repr
+FILE=Lle-CNas_096.clmp.fp2_repr
+CUTOFFS=ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate
+MAPPING_CLIPPING_PENALTY=5
+MAPPING_MIN_ALIGNMENT_SCORE=30
+optA=1
+optB=4
+optO=6
+freeMEM=138099620
+memSortPerPARALLEL=138099600
+threadsPerPARALLEL=40
+threadsSortPerPARALLEL=40
+memSortPerThreadPerPARALLEL=3452490
+ATYPE=PE
+INSERT_MEAN=
+INSERT_SD=
+INSERT_MAX=
+INSERT_MIN=
+
+Mon Feb 13 17:15:26 EST 2023  Running bwa-mem2 (RAM: <38G, Free Memory: 138099620)
+      bwa-meme mem reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta Lle-CNas_096.clmp.fp2_repr.R1.fq.gz Lle-CNas_096.clmp.fp2_repr.R2.fq.gz -L 5 -t  -a -M -T 30 -A 1 -B 4 -O 6 -R @RGtID:Lle-CNas_096.clmp.fp2_reprtSM:Lle-CNas_096.clmp.fp2_reprtPL:Illumina 2> bwa.Lle-CNas_096.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log | mbuffer -m 138099600 | samtools sort -m  --output-fmt bam,level=1 -@ 40 > Lle-CNas_096.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RAW.bam 2>samtools.sort.bam.Lle-CNas_096.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.log
+
+Mon Feb 13 17:16:36 EST 2023  run samtools index Lle-CNas_096.clmp.fp2_repr
+
+Mon Feb 13 17:16:37 EST 2023 mkBAM completed!
+
+Compress large filesMon Feb 13 17:16:39 EST 2023

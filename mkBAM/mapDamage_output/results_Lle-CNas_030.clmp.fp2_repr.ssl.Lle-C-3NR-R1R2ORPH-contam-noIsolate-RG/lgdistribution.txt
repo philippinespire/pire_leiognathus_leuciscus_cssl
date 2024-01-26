@@ -1,0 +1,4 @@
+# table produced by mapDamage version 2.2.1
+# using mapped file Lle-CNas_030.clmp.fp2_repr.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RG.bam and reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta as reference file
+# Std: strand of reads
+Std	Length	Occurences 

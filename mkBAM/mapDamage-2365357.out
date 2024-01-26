@@ -1,0 +1,49 @@
+Parallel module is no longer necessary, please feel free to not load it,
+parallel
+command will still be available to you.
+
+FILES=cat*RG.bam
+REF=reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta
+Starting grid search, starting from random values
+Adjusting the proposal variance iteration  1  
+Adjusting the proposal variance iteration  2  
+Adjusting the proposal variance iteration  3  
+Adjusting the proposal variance iteration  4  
+Adjusting the proposal variance iteration  5  
+Adjusting the proposal variance iteration  6  
+Adjusting the proposal variance iteration  7  
+Adjusting the proposal variance iteration  8  
+Adjusting the proposal variance iteration  9  
+Adjusting the proposal variance iteration  10  
+Done burning, starting the iterations
+Done with the iterations, finishing up
+Writing and plotting to files
+	Reading from 'cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG.bam'
+	Writing results to 'results_cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG/'
+pdf results_cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG/Fragmisincorporation_plot.pdf generated
+	The expected substition frequencies before and after scaling using the scaled qualities as probalities:
+	CT	0.0057202413073915125		0.0054490337279257854
+	TC	0.0044050393419262064		0.0044050393419262064
+	GA	0.00577328411861675		0.005578030541662761
+	AG	0.004541481384522289		0.004541481384522289
+	Quality metrics before and after scaling
+	CT-Q0 	43846505		43846505
+	CT-Q10 	43846505		39835813
+	CT-Q20 	42252666		38354848
+	CT-Q30 	39820978		36114249
+	CT-Q40 	0		0
+	GA-Q0 	44270474		44270474
+	GA-Q10 	44270474		40819408
+	GA-Q20 	42766677		39387558
+	GA-Q30 	40208985		36977997
+	GA-Q40 	0		0
+Started with the command: /opt/mapdamage2/bin/mapDamage -i cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG.bam -r reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta -l 150 --rescale --merge-reference-sequences
+No length distributions are available, plotting length distribution only works for single-end reads
+Performing Bayesian estimates
+Warning messages:
+1: package ‘inline’ was built under R version 4.0.2 
+2: package ‘gam’ was built under R version 4.0.2 
+Rescaling BAM: 'cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG.bam' -> 'results_cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG/cat.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-RRG.rescaled.bam'
+Warning! Assuming the pairs are non-overlapping, facing inwards and correctly paired.
+Number of non-rescaled reads due to improper pairing:  313011000
+Successful run
