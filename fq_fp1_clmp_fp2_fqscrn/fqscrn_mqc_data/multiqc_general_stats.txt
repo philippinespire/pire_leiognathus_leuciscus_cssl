@@ -1,0 +1,5 @@
+Sample	Snippy_mqc-generalstats-snippy-VariantTotal
+mqc-1183707	0
+multiqc	0
+multiqc_general_stats	0
+multiqc_sources	0
