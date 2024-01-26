@@ -1,0 +1,73 @@
+
+The following have been reloaded with a version change:
+  1) ddocent/2.9.4 => ddocent/2.7.8
+
+
+
+fltrVCF.bash v4.4 -- a script to filter vcf files repeatably
+
+Dependencies required for fltrVCF to be fully functional:
+	R
+		tidyverse
+		gridExtra
+	vcftools
+	vcflib
+	samtools
+	perl
+	mawk
+	parallel
+	rad_haplotyper.pl https://github.com/cbirdlab/rad_haplotyper.git
+	filter_hwe_by_pop_HPC
+
+Wed Nov 15 14:30:57 EST 2023 Reading options from command line:
+
+	Settings File:            config.fltr.ind.cssl.HWE
+
+Wed Nov 15 14:30:57 EST 2023 Reading options from config file and setting defaults
+	SETTINGS are being loaded from file: 'config.fltr.ind.cssl.HWE'
+	Filters are set to '18 17'
+	CutoffCode is set to '.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled'
+	BAM_PATH is set to '../mkBAM'
+	SCRIPT_PATH is set to '../../scripts/fltrVCF/scripts'
+	VCF_FILE is set to 'Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.18.vcf'
+	Bed file is set to '../mkBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-resscaled.bed'
+	Reference genome is set to '../mkBAM/reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.fasta'
+	PopMap is set to 'popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.HWEsplit'
+	HWE_SCRIPT is set to '../../scripts/fltrVCF/filter_hwe_by_pop_HPC.pl'
+	RADHAP_SCRIPT is set to '../../scripts/rad_haplotyper/rad_haplotyper.pl'
+	Output file prefix is set to 'Lle.A'
+	The number of threads is set to '40'
+	-P not set by user. Only filters that natively support parallelization will be run in parallel.
+	Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.18.vcf will be used for serial processing.
+
+Wed Nov 15 14:30:57 EST 2023 Getting universal chromosome/contig prefix ...
+          Querying Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.18.vcf ...
+          Prefix: NODE
+          It is assumed that all values in the CHROM column of vcf begin with NODE
+          If this is not the case, then fltrVCF will not work properly.
+          The prefix is used to count SNPs/variants, contigs, etc and is used in some filters.
+
+Wed Nov 15 14:30:57 EST 2023  reading variables into MAIN
+
+Wed Nov 15 14:30:57 EST 2023 ---------------------------FILTER18: Remove sites not in HWE p<X) -----------------------------
+Processing population: Lle-AHam-A (19 inds)
+Processing population: Lle-AHam-B (13 inds)
+Processing population: Lle-CNas-A (1 inds)
+Processing population: Lle-CNas-B (95 inds)
+Outputting results of HWE test for filtered loci to 'filtered.hwe'
+Kept 81179 of a possible 81564 loci (filtered 385 loci)
+
+	Sites remaining:	81179
+	Contigs remaining:	9162
+	Sites remaining:	81179
+	Contigs remaining:	8111
+
+Wed Nov 15 14:32:07 EST 2023 ---------------------------FILTER17: Remove sites with data missing for too many individuals|libraries in a population -----------------------------
+     Using PopMap File: popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.HWEsplit
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr18.1.HWE.recode.vcf --exclude-positions Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.2.badloci --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.2.recode.vcf 2> /dev/null
+	Sites remaining:	53625
+	Contigs remaining:	6041
+
+
+Wed Nov 15 14:34:49 EST 2023  --------------------------- Filtering complete! ---------------------------
+

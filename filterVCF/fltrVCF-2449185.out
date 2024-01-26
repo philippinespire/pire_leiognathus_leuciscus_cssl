@@ -1,0 +1,749 @@
+
+
+fltrVCF.bash v4.4 -- a script to filter vcf files repeatably
+
+Dependencies required for fltrVCF to be fully functional:
+	R
+		tidyverse
+		gridExtra
+	vcftools
+	vcflib
+	samtools
+	perl
+	mawk
+	parallel
+	rad_haplotyper.pl https://github.com/cbirdlab/rad_haplotyper.git
+	filter_hwe_by_pop_HPC
+
+Tue Oct 24 13:30:30 EDT 2023 Reading options from command line:
+
+	Settings File:            config.fltr.ind.cssl
+
+Tue Oct 24 13:30:30 EDT 2023 Reading options from config file and setting defaults
+	SETTINGS are being loaded from file: 'config.fltr.ind.cssl'
+	Filters are set to '01 02 03 04 14 07 05 16 15 06 11 09 10 04 13 05 16 07'
+	CutoffCode is set to '.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled'
+	BAM_PATH is set to '../mkBAM'
+	SCRIPT_PATH is set to '../../scripts/fltrVCF/scripts'
+	VCF_FILE is set to '../mkBAM/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf.gz'
+	Bed file is set to '../mkBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-resscaled.bed'
+	Reference genome is set to '../mkBAM/reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.fasta'
+	PopMap is set to '../mkBAM/popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled'
+	HWE_SCRIPT is set to '../../scripts/fltrVCF/filter_hwe_by_pop_HPC.pl'
+	RADHAP_SCRIPT is set to '../../scripts/rad_haplotyper/rad_haplotyper.pl'
+	Output file prefix is set to 'Lle.A'
+	The number of threads is set to '40'
+	-P not set by user. Only filters that natively support parallelization will be run in parallel.
+	Changing -v to existing file ../mkBAM/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf for serial processing.  If you didn't want this to happen, turn on -P or change -v
+
+Tue Oct 24 13:30:31 EDT 2023 Getting universal chromosome/contig prefix ...
+          Querying ../mkBAM/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf ...
+          Prefix: NODE
+          It is assumed that all values in the CHROM column of vcf begin with NODE
+          If this is not the case, then fltrVCF will not work properly.
+          The prefix is used to count SNPs/variants, contigs, etc and is used in some filters.
+
+Tue Oct 24 13:30:31 EDT 2023  reading variables into MAIN
+
+Tue Oct 24 13:30:31 EDT 2023 ---------------------------FILTER01: Remove sites with Y < alleles < X -----------------------------
+     vcftools --vcf ../mkBAM/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf --min-alleles 2 --max-alleles 2 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr01.1.recode.vcf 2> /dev/null
+	Sites remaining:	7119339
+	Contigs remaining:	96959
+
+
+Tue Oct 24 13:45:09 EDT 2023 ---------------------------FILTER02: Remove Sites with Indels -----------------------------
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr01.1.recode.vcf --remove-indels --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr02.2.recode.vcf 2> /dev/null
+	Sites remaining:	6493432
+	Contigs remaining:	96176
+
+
+Tue Oct 24 13:53:21 EDT 2023 ---------------------------FILTER03: Remove Sites with QUAL < minQ -----------------------------
+                                                                                                                        
+                                                Histogram of QUAL before FILTER03                                       
+                                                                                                                        
+     160000 +-------------------------------------------------------------------------------------------------------+   
+            |                    +                    +                   +                    +                    |   
+            |                                    ******         'QUALbefore' using (bin($1,binwidth)):(1.0) ******* |   
+     140000 |-+                                  *  * ***                                                         +-|   
+            |                                  ***  * * *****                                                       |   
+            |                                  * *  * * * * *****                                                   |   
+     120000 |-+                              *** *  * * * * * * *****                                             +-|   
+            |                                * * *  * * * * * * * * ***                                             |   
+            |                              *** * *  * * * * * * * * * *****                                         |   
+     100000 |-+                            * * * *  * * * * * * * * * * * ********                                +-|   
+            |                              * * * *  * * * * * * * * * * * * *  * ***                                |   
+      80000 |-+                          *** * * *  * * * * * * * * * * * * *  * * ***                            +-|   
+            |                            * * * * *  * * * * * * * * * * * * *  * * * *****                          |   
+            |                          *** * * * *  * * * * * * * * * * * * *  * * * * * *******                    |   
+      60000 |-+                        * * * * * *  * * * * * * * * * * * * *  * * * * * * * * *******            +-|   
+            |                        *** * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * **********     |   
+            |                        * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * ******|   
+      40000 |-+                    *** * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * *-|   
+            |**                  *** * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * * |   
+            | *                *** * * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * * |   
+      20000 |-*            ***** * * * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * *-|   
+            | *   ********** * * * * * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * * |   
+            | ***** * * *  * * * * * * * * * * * *  * * * * * * * * * * * * *  * * * * * * * * * * * *  * * * * * * |   
+          0 +-------------------------------------------------------------------------------------------------------+   
+            0                   100                  200                 300                  400                  500  
+                                     QUAL ~ Phred-Scaled Probality of Zero Alternate Alleles                            
+                                                                                                                        
+                                                                                                                        
+                                               Scatter plot of QUAL per site.                                           
+                                                                                                                        
+     500 +----------------------------------------------------------------------------------------------------------+   
+         |              +               +           ***+              +              +               +              |   
+         |                                            ***                                      'QUALbefore'    *    |   
+         |                                              ***                                                         |   
+         |                                                ***                                                       |   
+     400 |-+                                                ***                                                   +-|   
+         |                                                    ****                                                  |   
+         |                                                       ***                                                |   
+         |                                                         ****                                             |   
+     300 |-+                                                          *****                                       +-|   
+         |                                                                ****                                      |   
+         |                                                                   *****                                  |   
+         |                                                                       *****                              |   
+         |                                                                           ******                         |   
+     200 |-+                                                                              ******                  +-|   
+         |                                                                                     *****                |   
+         |                                                                                         ****             |   
+         |                                                                                            ***           |   
+     100 |-+                                                                                            ***       +-|   
+         |                                                                                                *         |   
+         |                                                                                                **        |   
+         |                                                                                                 *        |   
+         |              +               +              +              +              +               +     **       |   
+       0 +----------------------------------------------------------------------------------------------------------+   
+         0            1e+06           2e+06          3e+06          4e+06          5e+06           6e+06          7e+06 
+                                                            Site                                                        
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr02.2.recode.vcf --minQ 100 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr03.3.recode.vcf 2> /dev/null
+	Sites remaining:	6312306
+	Contigs remaining:	96079
+
+
+Tue Oct 24 14:03:55 EDT 2023 ---------------------------FILTER04: Remove Sites With Mean Depth of Coverage < min-meanDP -----------------------------
+                                                                                                                        
+                                        Histogram of mean depth per site before FILTER04                                
+                                                                                                                        
+       4e+06 +------------------------------------------------------------------------------------------------------+   
+             |                    +                   +                    +                   +                    |   
+             |                                         'sitedepthmeanbefore' using (bin($1,binwidth)):(1.0) ******* |   
+     3.5e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+       3e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+     2.5e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+       2e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+     1.5e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+       1e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+      500000 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                    +                   +                    +                   +                    |   
+           0 +------------------------------------------------------------------------------------------------------+   
+             0                   500                 1000                 1500                2000                 2500 
+                                                           Mean Depth                                                   
+                                                                                                                        
+                                                                                                                        
+                                     Scatter plot of mean depth per site before FILTER04.                               
+                                                                                                                        
+     2500 +---------------------------------------------------------------------------------------------------------+   
+          |              +              +              +               +              +              +              |   
+          |                                                                           'sitedepthmeanbefore'    *    |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     2000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     1500 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     1000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+      500 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |*                                                                                                        |   
+          |**            +              +              +               +              +              +              |   
+        0 +---------------------------------------------------------------------------------------------------------+   
+          0            1e+06          2e+06          3e+06           4e+06          5e+06          6e+06          7e+06 
+                                                             Site                                                       
+                                                                                                                        
+                                                                                                                        
+                             Scatter plot of depth variance vs mean depth per site before FILTER04.                     
+                                                                                                                        
+       3e+06 +------------------------------------------------------------------------------------------------------+   
+             |                    +                   +                    +                   +                    |   
+             |                                                                        'meandepthVSvariance'    *    |   
+             |                                    *                                                                 |   
+     2.5e+06 |-+                                                                                                  +-|   
+             |            *                                                                                       * |   
+             |                                                       *                                           *  |   
+             |                                                                                                    * |   
+       2e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+     1.5e+06 |-+                                                *                                                 +-|   
+             |                                                 *      *                                             |   
+             |                                          *                          *  *             *               |   
+             |                    **                  *             *                            *                  |   
+       1e+06 |-+                 **                  *   **            **     *                                   +-|   
+             |                 *          *            ** **       *  ******                                        |   
+             |                                *              *     ** *   *                                         |   
+             |              *              * ** ****   *   * ****                                                   |   
+      500000 |-+          *         *   ***** **  * ***** *** **                                                  +-|   
+             |         ****       **************** ***** *  * **     *                                              |   
+             |       **   *********************** * ***** ** *                                                      |   
+             |  **********************************   *+                    +                   +                    |   
+           0 +------------------------------------------------------------------------------------------------------+   
+             0                   500                 1000                 1500                2000                 2500 
+                                                           Mean Depth                                                   
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr03.3.recode.vcf --min-meanDP 5 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr04.4.recode.vcf 2> /dev/null
+	Sites remaining:	552144
+	Contigs remaining:	22421
+
+
+Tue Oct 24 14:11:15 EDT 2023 ---------------------------FILTER14: If individual's genotype has DP < X, convert to missing data -----------------------------
+                                                                                                                        
+                                           Histogram of genotype depth before FILTER14                                  
+                                                                                                                        
+       2e+07 +------------------------------------------------------------------------------------------------------+   
+             |*****               +                   +                    +                   +                    |   
+     1.8e+07 |-+  *                                    'genotypedepthbefore' using (bin($1,binwidth)):(1.0) *******-|   
+             |    *                                                                                                 |   
+             |    *                                                                                                 |   
+     1.6e+07 |-+  *                                                                                               +-|   
+             |    *                                                                                                 |   
+     1.4e+07 |-+  *                                                                                               +-|   
+             |    *                                                                                                 |   
+     1.2e+07 |-+  *                                                                                               +-|   
+             |    ******                                                                                            |   
+       1e+07 |-+  *    *                                                                                          +-|   
+             |    *    *                                                                                            |   
+             |    *    *                                                                                            |   
+       8e+06 |-+  *    *                                                                                          +-|   
+             |    *    ******                                                                                       |   
+       6e+06 |-+  *    *    *                                                                                     +-|   
+             |    *    *    *                                                                                       |   
+       4e+06 |-+  *    *    *******                                                                               +-|   
+             |    *    *    *     ******                                                                            |   
+             |    *    *    *     *    ******                                                                       |   
+       2e+06 |-+  *    *    *     *    *    ****************                                                      +-|   
+             |    *    *    *     *    *    *    *    *    *********************************************************|   
+           0 +------------------------------------------------------------------------------------------------------+   
+             0                    20                  40                   60                  80                  100  
+                                                              Depth                                                     
+                                                                                                                        
+                                                                                                                        
+                                    Scatter plot of mean depth per site before FILTER14.                                
+                                                                                                                        
+     100 +----------------------------------------------------------------------------------------------------------+   
+         |            **            +            +            +             +            +             +            |   
+         |             *                                                              'genotypedepthbefore'    *    |   
+         |             **                                                                                           |   
+         |              **                                                                                          |   
+      80 |-+             *                                                                                        +-|   
+         |               **                                                                                         |   
+         |                **                                                                                        |   
+         |                 **                                                                                       |   
+      60 |-+                **                                                                                    +-|   
+         |                   **                                                                                     |   
+         |                    **                                                                                    |   
+ Depth   |                     ***                                                                                  |   
+         |                       **                                                                                 |   
+      40 |-+                      ***                                                                             +-|   
+         |                          ***                                                                             |   
+         |                            ***                                                                           |   
+         |                              ****                                                                        |   
+      20 |-+                               *****                                                                  +-|   
+         |                                     ******                                                               |   
+         |                                          *********                                                       |   
+         |                                                  ************                                            |   
+         |            +             +            +            +        ***************   +             +            |   
+       0 +----------------------------------------------------------------------------------------------------------+   
+         0          1e+07         2e+07        3e+07        4e+07         5e+07        6e+07         7e+07        8e+07 
+                                                          Genotype                                                      
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr04.4.recode.vcf --minDP 5 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr14.5.recode.vcf 2> /dev/null | vcffixup -
+	Sites remaining:	552144
+	Contigs remaining:	22421
+
+
+Tue Oct 24 14:24:38 EDT 2023 ---------------------------FILTER07: Remove sites with Alternate Allele Count <=X -----------------------------
+     vcffixup Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr14.5.recode.vcf | vcffilter -s -f "AC > 0 & AN - AC > 0"  > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.6.vcf
+	Sites remaining:	550754
+	Contigs remaining:	22415
+
+Tue Oct 24 14:26:06 EDT 2023 ---------------------------FILTER05: Remove sites called in <X proportion of individuals -----------------------------
+                                                                                                                        
+                                    Histogram of the proportion of genotypes that are missing                           
+                                                                                                                        
+     160000 +-------------------------------------------------------------------------------------------------------+   
+            |                    +                    +                   +                    +                    |   
+            |*****                                         'sitemissingness' using (bin($1,binwidth)):(1.0) ******* |   
+     140000 |-+  *                                                                                                +-|   
+            |    *                                                                                                  |   
+            |    *                                                                                                  |   
+     120000 |-+  *                                                                                                +-|   
+            |    *                                                                                                  |   
+            |    *                                                                                                  |   
+     100000 |-+  *                                                                                                +-|   
+            |    *                                                                                                  |   
+      80000 |-+  *                                                                                                +-|   
+            |    *                                                                                                  |   
+            |    *                                                                                                  |   
+      60000 |-+  *                                                                                                +-|   
+            |    *                                                                                                  |   
+            |    *                                                                                                  |   
+      40000 |-+  *                                                                                                +-|   
+            |    ******          ***********    *******    ***********                                              |   
+            |    *    ************    *    ******     ******    *    ************                                   |   
+      20000 |-+  *    *     *    *    *    *    *     *    *    *    *    *     *                                 +-|   
+            |    *    *     *    *    *    *    *     *    *    *    *    *     ******                              |   
+            |    *    *     *    *    *    *    *     *    *    *    *    *     *    ******    +                    |   
+          0 +-------------------------------------------------------------------------------------------------------+   
+            0                   0.2                  0.4                 0.6                  0.8                   1   
+                                                       Proportion Missing                                               
+                                                                                                                        
+                                                                                                                        
+                                Scatter plot of the proportion of genotypes that are missing.                           
+                                                                                                                        
+       1 +----------------------------------------------------------------------------------------------------------+   
+         |                 +                 +                 +                +                 +                 |   
+     0.9 |-+                                                                              'sitemissingness'    *  +-|   
+         |                                                                                                          |   
+         |                                                                                                          |   
+     0.8 |-+                                                                                                      +-|   
+         |*                                                                                                         |   
+     0.7 |***                                                                                                     +-|   
+         |  *****                                                                                                   |   
+     0.6 |-+    ****                                                                                              +-|   
+         |         ******                                                                                           |   
+     0.5 |-+            *******                                                                                   +-|   
+         |                    ******                                                                                |   
+         |                         ******                                                                           |   
+     0.4 |-+                            *****                                                                     +-|   
+         |                                  ******                                                                  |   
+     0.3 |-+                                     *****                                                            +-|   
+         |                                           ********                                                       |   
+     0.2 |-+                                                ******                                                +-|   
+         |                                                       ******                                             |   
+         |                                                            ******                                        |   
+     0.1 |-+                                                               *****                                  +-|   
+         |                 +                 +                 +               ***********        +                 |   
+       0 +----------------------------------------------------------------------------------------------------------+   
+         0               100000            200000            300000           400000            500000            600000
+                                                            Site                                                        
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.6.vcf --max-missing 0.55 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr05.7.recode.vcf 2> /dev/null
+	Sites remaining:	400932
+	Contigs remaining:	15408
+
+
+Tue Oct 24 14:27:39 EDT 2023 ---------------------------FILTER16: Remove Individuals|Libraries with Too Much Missing Data-----------------------------
+                                                                                                                        
+             Histogram of % missing data per individual|library before filter. Bars to the left are desireable.         
+                                                                                                                        
+     12 +-----------------------------------------------------------------------------------------------------------+   
+        |         **          +                    +                     +                    +                     |   
+        |         **                                          'totalmissing' using (bin($1,binwidth)):(1.0) ******* |   
+        |         **                                                                                                |   
+     10 |-+       **                                                                                              +-|   
+        |         **                                                                                                |   
+        |        ****                                                                                               |   
+        |        ****                                                                                               |   
+      8 |-+      ****                                                                                             +-|   
+        |        ****                                                                                               |   
+        |        *****                                                                                              |   
+      6 |**     *******          **                                                                               +-|   
+        |**     *******          **                                                                                 |   
+        |**     *********        ** **                                                                              |   
+        |**     *********        ** **                                                                              |   
+      4 |** *************     ** ** **                                                                            +-|   
+        |** *** *********     ** ** **                                                                              |   
+        |****** **********    ** *****                                                                              |   
+        |****** **********    ** *****                                                                              |   
+      2 |****** **************** ********  ** ******                                                              +-|   
+        |****** *********** * ** ********  ** *    *                                                                |   
+        |****** *********** * *****************    *****************************************                        |   
+        |****** *********** * ************ ****    *  *               *  +            * *  *  +                     |   
+      0 +-----------------------------------------------------------------------------------------------------------+   
+        0                    0.2                  0.4                   0.6                  0.8                    1   
+                                                     % missing genotypes                                                
+                                                                                                                        
+                                                                                                                        
+                                   Scatter plot of % missing data per individual|library.                               
+                                                                                                                        
+       1 +----------------------------------------------------------------------------------------------------------+   
+         |                +               +                +               +                +                +      |   
+         |                                                                                      'imiss.dat'    *    |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+     0.8 |*+                                                                                                      +-|   
+         | *                                                                                                        |   
+         | *                                                                                                        |   
+         |                                                                                                          |   
+     0.6 |-+                                                                                                      +-|   
+         |                                                                                                          |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+         |  **                                                                                                      |   
+     0.4 |-+                                                                                                      +-|   
+         |    ***                                                                                                   |   
+         |       *****                                                                                              |   
+         |            ************                                                                                  |   
+     0.2 |-+                      ***********                                                                     +-|   
+         |                                   ******                                                                 |   
+         |                                        ******************                                                |   
+         |                                                          *******************************                 |   
+         |                +               +                +               +                +      ***********      |   
+       0 +----------------------------------------------------------------------------------------------------------+   
+         0                20              40               60              80              100              120         
+                                                         Individual                                                     
+                                                                                                                        
+ 3 individuals|libraries with too much missing data:
+INDV
+Lle-AHam_008.clmp.fp2_repr
+Lle-AHam_013.clmp.fp2_repr
+Lle-CNas_063.clmp.fp2_repr
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr05.7.recode.vcf --remove Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.8.lowDP-2.indv --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.8.recode.vcf 2> /dev/null | vcffixup -
+	Sites remaining:	400932
+	Contigs remaining:	15408
+
+
+ Individuals|Libraries Remaining Per Sample
+     30 Lle-AHam
+     95 Lle-CNas
+
+Tue Oct 24 14:29:27 EDT 2023 ---------------------------FILTER15: Remove sites with maf > minor allele frequency > max-maf -----------------------------
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.8.recode.vcf --maf 0 --max-maf 1 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr15.9.recode.vcf 2> /dev/null
+	Sites remaining:	400932
+	Contigs remaining:	15408
+
+
+Tue Oct 24 14:30:43 EDT 2023 ---------------------------FILTER06: Remove sites with Average Allele Balance deviating too far from 0.5 while keeping those with AB=0  -----------------------------
+/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/fltrVCF.bash: line 555: vcf-query: command not found
+         line 0: warning: Skipping data file with no valid points
+
+gnuplot> plot 'siteAB.dat' using (bin($1,binwidth)):(1.0) smooth freq with boxes
+                                                                                ^
+         line 0: all points y value undefined!
+
+         line 0: warning: Skipping data file with no valid points
+
+gnuplot> plot 'siteAB.dat' pt "*" 
+                                  ^
+         line 0: x range is invalid
+
+     vcffixup Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr15.9.recode.vcf | vcffilter -s -f "AB > 0.375 & AB < 0.625 | AB = 0"  > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr06.10.vcf
+	Sites remaining:	219208
+	Contigs remaining:	13273
+
+Tue Oct 24 14:31:33 EDT 2023 ---------------------------FILTER11: Remove sites with Quality/DP ratio < X -----------------------------
+     vcffilter -s -f "QUAL / DP > 0.2" Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr06.10.vcf > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr11.11.vcf
+	Sites remaining:	134359
+	Contigs remaining:	12588
+
+Tue Oct 24 14:31:57 EDT 2023 ---------------------------FILTER09: Remove sites with low/high ratio of mean mapping quality of alt to ref -----------------------------
+     vcffilter -s -f "MQM / MQMR > 0.75 & MQM / MQMR < 1.33333" Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr11.11.vcf > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr09.12.vcf
+	Sites remaining:	134130
+	Contigs remaining:	12569
+
+Tue Oct 24 14:32:19 EDT 2023 ---------------------------FILTER10: Remove sites with one allele only supported by reads not properly paired -----------------------------
+     vcffilter -s -f "PAIRED > 0.05 & PAIREDR > 0.05 & PAIREDR / PAIRED < 1.75 & PAIREDR / PAIRED > 0.25 | PAIRED < 0.05 & PAIREDR < 0.05" Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr09.12.vcf > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr10.13.vcf
+	Sites remaining:	134014
+	Contigs remaining:	12565
+
+Tue Oct 24 14:32:41 EDT 2023 ---------------------------FILTER04: Remove Sites With Mean Depth of Coverage < min-meanDP -----------------------------
+                                                                                                                        
+                                       Histogram of mean depth per site before FILTER04                                 
+                                                                                                                        
+     7000 +---------------------------------------------------------------------------------------------------------+   
+          |                 +                +                 +                 +                +                 |   
+          |                                            'sitedepthmeanbefore' using (bin($1,binwidth)):(1.0) ******* |   
+     6000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     5000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |*                                                                                                        |   
+     4000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     3000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     2000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     1000 |*+                                                                                                     +-|   
+          |**                                                                                                       |   
+          |******           +                +                 +                 +                +                 |   
+        0 +---------------------------------------------------------------------------------------------------------+   
+          0                500              1000              1500              2000             2500              3000 
+                                                          Mean Depth                                                    
+                                                                                                                        
+                                                                                                                        
+                                     Scatter plot of mean depth per site before FILTER04.                               
+                                                                                                                        
+     3000 +---------------------------------------------------------------------------------------------------------+   
+          |              +              +              +               +              +              +              |   
+          |                                                                           'sitedepthmeanbefore'    *    |   
+          |                                                                                                         |   
+     2500 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     2000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     1500 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+     1000 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+          |                                                                                                         |   
+      500 |-+                                                                                                     +-|   
+          |**                                                                                                       |   
+          | *******                                                                                                 |   
+          |       ***********************              +               +              +              +              |   
+        0 +---------------------------------------------------------------------------------------------------------+   
+          0            20000          40000          60000           80000          100000         120000         140000
+                                                             Site                                                       
+                                                                                                                        
+                                                                                                                        
+                             Scatter plot of depth variance vs mean depth per site before FILTER04.                     
+                                                                                                                        
+     2.5e+06 +------------------------------------------------------------------------------------------------------+   
+             |                +                +                 +                +                +                |   
+             |                                                                        'meandepthVSv*riance'    *    |   
+             |                                                                                                      |   
+             |                                                                                                      |   
+       2e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                                                                                      |   
+             |                                                                                                      |   
+     1.5e+06 |-+                                                                                                  +-|   
+             |                                                                                                      |   
+             |                                   *                                                                  |   
+             |                 *                *           *                                                       |   
+             |                                                                                                      |   
+       1e+06 |-+                                                                                                  +-|   
+             |                                                *                                                     |   
+             |                                   *           *   *                                                  |   
+             |                         **  *                                                                        |   
+      500000 |-+        *                *   ***  *  *                                                            +-|   
+             |         *           * ***** * * **       *                                                           |   
+             |                **  ** * ****       *          *                                                      |   
+             |          ** ****************     *                                                                   |   
+             |   *************************     +                 +                +                +                |   
+           0 +------------------------------------------------------------------------------------------------------+   
+             0               500              1000              1500             2000             2500             3000 
+                                                           Mean Depth                                                   
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr10.13.vcf --min-meanDP 15 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr04.14.recode.vcf 2> /dev/null
+	Sites remaining:	85436
+	Contigs remaining:	8346
+
+
+Tue Oct 24 14:33:04 EDT 2023 ---------------------------FILTER13: Remove sites with mean DP greater than X  -----------------------------
+                                                                                                                        
+                                        Histogram of mean depth per site before filter                                  
+                                                                                                                        
+     3500 +---------------------------------------------------------------------------------------------------------+   
+          |                 +                +                 +                 +                +                 |   
+          |                                         'meandepthpersitebefore' using (bin($1,binwidth)):(1.0) ******* |   
+     3000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     2500 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     2000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     1500 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+     1000 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+          |*                                                                                                        |   
+          |**                                                                                                       |   
+      500 |**                                                                                                     +-|   
+          |*****                                                                                                    |   
+          |*********        +                +                 +                 +                +                 |   
+        0 +---------------------------------------------------------------------------------------------------------+   
+          0                500              1000              1500              2000             2500              3000 
+                                                          Mean Depth                                                    
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr04.14.recode.vcf --max-meanDP 400 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr13.15.recode.vcf 2> /dev/null
+	Sites remaining:	84632
+	Contigs remaining:	8337
+
+
+Tue Oct 24 14:33:23 EDT 2023 ---------------------------FILTER05: Remove sites called in <X proportion of individuals -----------------------------
+                                                                                                                        
+                                   Histogram of the proportion of genotypes that are missing                            
+                                                                                                                        
+     60000 +--------------------------------------------------------------------------------------------------------+   
+           |                    +                    +                    +                    +                    |   
+           |                                               'sitemissingness' using (bin($1,binwidth)):(1.0) ******* |   
+           |*****                                                                                                   |   
+     50000 |-+  *                                                                                                 +-|   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+     40000 |-+  *                                                                                                 +-|   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+     30000 |-+  *                                                                                                 +-|   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+     20000 |-+  *                                                                                                 +-|   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+           |    *                                                                                                   |   
+     10000 |-+  *               ******                                                                            +-|   
+           |    *******         *    *                                                                              |   
+           |    *     ***********    *                                                                              |   
+           |    *     *    *    *    *******         +                    +                    +                    |   
+         0 +--------------------------------------------------------------------------------------------------------+   
+           0                   0.2                  0.4                  0.6                  0.8                   1   
+                                                      Proportion Missing                                                
+                                                                                                                        
+                                                                                                                        
+                                 Scatter plot of the proportion of genotypes that are missing.                          
+                                                                                                                        
+      0.5 +---------------------------------------------------------------------------------------------------------+   
+          |           +           +          +           +           +           +          +           +           |   
+     0.45 |-+                                                                             'sitemissingness'    *  +-|   
+          |                                                                                                         |   
+          |                                                                                                         |   
+      0.4 |-+                                                                                                     +-|   
+          |                                                                                                         |   
+     0.35 |*+                                                                                                     +-|   
+          |*                                                                                                        |   
+      0.3 |*+                                                                                                     +-|   
+          |**                                                                                                       |   
+     0.25 |-**                                                                                                    +-|   
+          |  *******                                                                                                |   
+          |        *****                                                                                            |   
+      0.2 |-+          ****                                                                                       +-|   
+          |               ****                                                                                      |   
+     0.15 |-+                ****                                                                                 +-|   
+          |                     *****                                                                               |   
+      0.1 |-+                       ***                                                                           +-|   
+          |                           *****                                                                         |   
+          |                               ******                                                                    |   
+     0.05 |-+                                  *****                                                              +-|   
+          |           +           +          +     *********         +           +          +           +           |   
+        0 +---------------------------------------------------------------------------------------------------------+   
+          0         10000       20000      30000       40000       50000       60000      70000       80000       90000 
+                                                             Site                                                       
+                                                                                                                        
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr13.15.recode.vcf --max-missing 0.6 --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr05.16.recode.vcf 2> /dev/null
+	Sites remaining:	84479
+	Contigs remaining:	8301
+
+
+Tue Oct 24 14:33:41 EDT 2023 ---------------------------FILTER16: Remove Individuals|Libraries with Too Much Missing Data-----------------------------
+                                                                                                                        
+             Histogram of % missing data per individual|library before filter. Bars to the left are desireable.         
+                                                                                                                        
+     40 +-----------------------------------------------------------------------------------------------------------+   
+        |**                   +                    +                     +                    +                     |   
+        |**                                                   'totalmissing' using (bin($1,binwidth)):(1.0) ******* |   
+     35 |**                                                                                                       +-|   
+        |**                                                                                                         |   
+        |**                                                                                                         |   
+     30 |**                                                                                                       +-|   
+        |**                                                                                                         |   
+        |**                                                                                                         |   
+     25 |**                                                                                                       +-|   
+        |**                                                                                                         |   
+     20 |***                                                                                                      +-|   
+        |***                                                                                                        |   
+        |***                                                                                                        |   
+     15 |***                                                                                                      +-|   
+        |***                                                                                                        |   
+        |***                                                                                                        |   
+     10 |***                                                                                                      +-|   
+        |***                                                                                                        |   
+        |***                                                                                                        |   
+      5 |****             ****                                                                                    +-|   
+        |********         ** * *******                                                                              |   
+        |****** ************ ******  ***           +                     +                    +                     |   
+      0 +-----------------------------------------------------------------------------------------------------------+   
+        0                    0.2                  0.4                   0.6                  0.8                    1   
+                                                     % missing genotypes                                                
+                                                                                                                        
+                                                                                                                        
+                                   Scatter plot of % missing data per individual|library.                               
+                                                                                                                        
+       1 +----------------------------------------------------------------------------------------------------------+   
+         |                +                +                +                +                +                +    |   
+         |                                                                                      'imiss.dat'    *    |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+     0.8 |-+                                                                                                      +-|   
+         |                                                                                                          |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+     0.6 |-+                                                                                                      +-|   
+         |                                                                                                          |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+         |                                                                                                          |   
+     0.4 |-+                                                                                                      +-|   
+         |                                                                                                          |   
+         |*                                                                                                         |   
+         | **                                                                                                       |   
+     0.2 |-+ *********                                                                                            +-|   
+         |            ************                                                                                  |   
+         |                        ***                                                                               |   
+         |                           ***                                                                            |   
+         |                +             ********************+                +                +                +    |   
+       0 +----------------------------------------------------------------------------------------------------------+   
+         0                20               40               60               80              100              120       
+                                                         Individual                                                     
+                                                                                                                        
+ 0 individuals|libraries with too much missing data:
+INDV
+     vcftools --vcf Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr05.16.recode.vcf --remove Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.17.lowDP-2.indv --recode --recode-INFO-all --out Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.17.recode.vcf 2> /dev/null | vcffixup -
+	Sites remaining:	84479
+	Contigs remaining:	8301
+
+
+ Individuals|Libraries Remaining Per Sample
+     30 Lle-AHam
+     95 Lle-CNas
+
+Tue Oct 24 14:34:11 EDT 2023 ---------------------------FILTER07: Remove sites with Alternate Allele Count <=X -----------------------------
+     vcffixup Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr16.17.recode.vcf | vcffilter -s -f "AC > 0 & AN - AC > 0"  > Lle.A.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr07.18.vcf
+	Sites remaining:	81564
+	Contigs remaining:	8219
+
+Tue Oct 24 14:34:31 EDT 2023  --------------------------- Filtering complete! ---------------------------
+
