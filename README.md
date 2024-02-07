@@ -643,82 +643,117 @@ sbatch ../../../dDocentHPC/dDocentHPC.sbatch mkVCF config.6.cssl.rescale.monomor
 
 ## 18. Filter VCF with monomorphic loci
 
-Will filter for monomorphic & polymorphic loci separately, then merge the VCFs together for one "all sites" VCF. Again, probably best to do this in scratch.
+*Everything from this step down was run in `/archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl`.*
 
 Set-up filtering for monomorphic sites only.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
-cp ../../scripts/config.fltr.ind.cssl.mono .
+cp /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/config.fltr.ind.cssl.mono .
 ```
 
-Update the `config.fltr.ind.cssl.mono` file with file paths and file extensions based on your species. The VCF path should point to the "all sites" VCF file you just made. **The settings for filters 04, 14, 05, 16, 13 & 17 should match the settings used when filtering the original VCF file.**
+Updated the `config.fltr.ind.cssl.mono` file with file paths and file extensions based on your species. The VCF path should point to the "all sites" VCF file you just made. **The settings for filters 04, 14, 05, 16, 13 & 17 should match the settings used when filtering the original VCF file.**
 
 ```
 fltrVCF Settings, run fltrVCF -h for description of settings
         # Paths assume you are in `filterVCF dir` when running fltrVCF, change as necessary
-        fltrVCF -f 01 02 04 14 05 16 04 13 05 16 17                  # order to run filters in
-        fltrVCF -c ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate                               # cutoffs, ie ref description
-        fltrVCF -b /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic                                                                  # path to *.bam files
-        fltrVCF -R /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/scripts                                                                                  # path to fltrVCF R scripts
-        fltrVCF -d /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.bed                           # bed file used in genotyping
-        fltrVCF -v /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.vcf         # vcf file to filter
-        fltrVCF -g /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM/reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta                      # reference genome
-        fltrVCF -p /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM/popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate                               # popmap file
-        fltrVCF -w /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/filter_hwe_by_pop_HPC.pl                                                                 # path to HWE filter script
-        fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl                                                                 # path to rad_haplotyper script
-        fltrVCF -o Lle.mono                                                                                                                                                       # prefix on output files, use to track settings
-        fltrVCF -t 40                                                                                                                                                             # number of threads [1]
+        fltrVCF -f 01 02 04 14 05 16 04 13 05 16 17                                                                  # order to run filters in
+        fltrVCF -c ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled                                                  # cutoffs, ie ref description
+        fltrVCF -b ../mapDamageBAM                                                                                   # path to *.bam files
+        fltrVCF -R /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/scripts                     # path to fltrVCF R scripts
+        fltrVCF -d ../mapDamageBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.bed                       # bed file used in genotyping
+        fltrVCF -v TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf                                 # vcf file to filter
+        fltrVCF -g reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.fasta                                  # reference genome
+        fltrVCF -p ../filterVCF/popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.HWEsplit                     # popmap file
+        fltrVCF -w /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/filter_hwe_by_pop_HPC.pl    # path to HWE filter script
+        fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl    # path to rad_haplotyper script
+        fltrVCF -o lle.mono                                                                                          # prefix on output files, use to track settings
+        fltrVCF -t 40                                                                                                # number of threads [1]
+```
+
+```
+        01 vcftools --min-alleles       1               #Remove sites with less alleles [2]
+        01 vcftools --max-alleles       1               #Remove sites with more alleles [2]
+        02 vcftools --remove-indels                     #Remove sites with indels.  Not adjustable
+        04 vcftools --min-meanDP        5:15            #Remove sites with lower mean depth [15]
+        05 vcftools --max-missing       0.55:0.6        #Remove sites with at least 1 - value missing data (1 = no missing data) [0.5]
+        13 vcftools --max-meanDP        400             #Remove sites with higher mean depth [250]
+        14 vcftools --minDP             5               #Code genotypes with lesser depth of coverage as NA [5]
+        16 vcftools --missing-indv      0.6:0.5         #Remove individuals with more missing data. [0.5]
+        17 vcftools --missing-sites     0.5             #Remove sites with more data missing in a pop sample. [0.5]
 ```
 
 Ran [`fltrVCF.sbatch`](https://github.com/philippinespire/pire_cssl_data_processing/blob/main/scripts/fltrVCF.sbatch) for monomorphic sites.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
 #before running, make sure the config file is updated with file paths and file extensions based on your species
 #VCF file should be the VCF file made after the "make monomorphic VCF" step
 #settings for filters 04, 14, 05, 16, 13 & 17 should match the settings used when filtering the original VCF file (step 10)
-sbatch ../../scripts/fltrVCF.sbatch config.fltr.ind.cssl.mono
+sbatch /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF.sbatch config.fltr.ind.cssl.mono
 ```
 
 Set-up filtering for polymorphic sites only.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
 mkdir polymorphic_filter
 cd polymorphic_filter
 
-cp ../../../scripts/config.fltr.ind.cssl.poly .
+cp /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/config.fltr.ind.cssl.poly .
 ```
 
-Update the `config.fltr.ind.cssl.poly` file with file paths and file extensions based on your species. The VCF path should point to the "all sites" VCF file you just made AND the HWEsplit popmap you made if you had any cryptic population structure. **The settings for all your filters should match the settings used when filtering the original VCF file.**
+Updated the `config.fltr.ind.cssl.poly` file with file paths and file extensions based on your species. The VCF path should point to the "all sites" VCF file you just made AND the HWEsplit popmap you made if you had any cryptic population structure. **The settings for all your filters should match the settings used when filtering the original VCF file.**
 
 ```
 fltrVCF Settings, run fltrVCF -h for description of settings
         # Paths assume you are in `filterVCF dir` when running fltrVCF, change as necessary
-        fltrVCF -f 01 02 03 04 14 07 05 16 15 06 11 09 10 04 13 05 16 07 18 17                                                                                                # order to run filters in
-        fltrVCF -c ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate                                                                                                                    # cutoffs, ie ref description
-        fltrVCF -b /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic                                                              # path to *.bam files
-        fltrVCF -R /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/scripts                                                                              # path to fltrVCF R scripts
-        fltrVCF -d /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.bed                       # bed file used in genotyping
-        fltrVCF -v /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.vcf     # vcf file to filter
-        fltrVCF -g /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkBAM/reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.fasta                  # reference genome
-        fltrVCF -p /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/filterVCF/popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.HWEsplit              # popmap file
-        fltrVCF -w /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/filter_hwe_by_pop_HPC.pl                                                             # path to HWE filter script
-        fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl                                                             # path to rad_haplotyper script
-        fltrVCF -o Lle.poly                                                                                                                                                   # prefix on output files, use to track settings
-        fltrVCF -t 40                                                                                                                                                         # number of threads [1]
+        fltrVCF -f 01 02 03 04 14 07 05 16 15 06 11 09 10 04 13 05 16 07 18 17                                       # order to run filters in
+        fltrVCF -c ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled                                                  # cutoffs, ie ref description
+        fltrVCF -b ../../mapDamageBAM                                                                                # path to *.bam files
+        fltrVCF -R /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/scripts                     # path to fltrVCF R scripts
+        fltrVCF -d ../../mapDamageBAM/mapped.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.bed                    # bed file used in genotyping
+        fltrVCF -v ../TotalRawSNPs.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.vcf                              # vcf file to filter
+        fltrVCF -g ../reference.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.fasta                               # reference genome
+        fltrVCF -p ../../filterVCF/popmap.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.HWEsplit                  # popmap file
+        fltrVCF -w /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF/filter_hwe_by_pop_HPC.pl    # path to HWE filter script
+        fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl    # path to rad_haplotyper script
+        fltrVCF -o lle.poly                                                                                          # prefix on output files, use to track settings
+        fltrVCF -t 40                                                                                                # number of threads [1]
 ```
+
+```
+        01 vcftools --min-alleles       2               #Remove sites with less alleles [2]
+        01 vcftools --max-alleles       2               #Remove sites with more alleles [2]
+        02 vcftools --remove-indels                     #Remove sites with indels.  Not adjustable
+        03 vcftools --minQ              100             #Remove sites with lower QUAL [20]
+        04 vcftools --min-meanDP        5:15            #Remove sites with lower mean depth [15]
+        05 vcftools --max-missing       0.55:0.6        #Remove sites with at least 1 - value missing data (1 = no missing data) [0.5]
+        06 vcffilter AB min             0.375           #Remove sites with equal or lower allele balance [0.2]
+        06 vcffilter AB max             0.625           #Remove sites with equal or lower allele balance [0.8]
+        06 vcffilter AB nohet           0               #Keep sites with AB=0. Not adjustable
+        07 vcffilter AC min             0               #Remove sites with equal or lower MINOR allele count [3]
+        09 vcffilter MQM/MQMR min       0.25            #Remove sites where the difference in the ratio of mean mapping quality between REF and ALT alleles is greater than this proportion from 1. Ex: 0 means the mapping quality must be equal between REF and ALTERNATE. Smaller numbers are more stringent. Keep sites where the following is true: 1-X < MQM/MQMR < 1/(1-X) [0.1]
+        10 vcffilter PAIRED                             #Remove sites where one of the alleles is only supported by reads that are not properly paired (see SAM format specification). Not adjustable
+        11 vcffilter QUAL/DP min        0.2             #Remove sites where the ratio of QUAL to DP is deemed to be too low. [0.25]
+        13 vcftools --max-meanDP        400             #Remove sites with higher mean depth [250]
+        14 vcftools --minDP             5               #Code genotypes with lesser depth of coverage as NA [5]
+        15 vcftools --maf               0               #Remove sites with lesser minor allele frequency.  Adjust based upon sample size. [0.005]
+        15 vcftools --max-maf           1               #Remove sites with greater minor allele frequency.  Adjust based upon sample size. [0.995]
+        16 vcftools --missing-indv      0.6:0.5         #Remove individuals with more missing data. [0.5]
+        17 vcftools --missing-sites     0.5             #Remove sites with more data missing in a pop sample. [0.5]
+        18 filter_hwe_by_pop_HPC        0.001           #Remove sites with <p in test for HWE by pop sample. Adjust based upon sample size [0.001]
+  ```
 
 Ran [`fltrVCF.sbatch`](https://github.com/philippinespire/pire_cssl_data_processing/blob/main/scripts/fltrVCF.sbatch) for polymorphic sites.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/polymorphic_filter
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic/polymorphic_filter
 
-sbatch ../../../scripts/fltrVCF.sbatch config.fltr.ind.cssl.poly 
+sbatch /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF.sbatch config.fltr.ind.cssl.poly 
 ```
 
 ---
