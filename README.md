@@ -305,15 +305,6 @@ Lle-C-3NR-R1R2ORPH-contam-noIsolate    Cutoff2 (integer)                        
 0.05                                   rainbow merge -r <percentile> (decimal 0-1)          Percentile-based minimum number of seqs to assemble in a precluster
 0.95                                   rainbow merge -R <percentile> (decimal 0-1)          Percentile-based maximum number of seqs to assemble in a precluster
 ------------------------------------------------------------------------------------------------------------------
-
-----------mkBAM: Settings for mapping the reads to the reference genome-------------------------------------------
-Make sure the cutoffs above match the reference*fasta!
-1               bwa mem -A Mapping_Match_Value (integer)
-4               bwa mem -B Mapping_MisMatch_Value (integer)
-6               bwa mem -O Mapping_GapOpen_Penalty (integer)
-30              bwa mem -T Mapping_Minimum_Alignment_Score (integer)                    Remove reads that have an alignment score less than this.
-5               bwa mem -L Mapping_Clipping_Penalty (integer,integer)
-------------------------------------------------------------------------------------------------------------------
 ```
 
 ---
@@ -453,6 +444,25 @@ fltrVCF Settings, run fltrVCF -h for description of settings
         fltrVCF -r ../../scripts/rad_haplotyper/rad_haplotyper.pl                                          # path to rad_haplotyper script
         fltrVCF -o Lle.A                                                                                   # prefix on output files, use to track settings
         fltrVCF -t 40                                                                                      # number of threads [1]
+
+        01 vcftools --min-alleles       2               #Remove sites with less alleles [2]
+        01 vcftools --max-alleles       2               #Remove sites with more alleles [2]
+        02 vcftools --remove-indels                     #Remove sites with indels.  Not adjustable
+        03 vcftools --minQ              100             #Remove sites with lower QUAL [20]
+        04 vcftools --min-meanDP        5:15            #Remove sites with lower mean depth [15]
+        05 vcftools --max-missing       0.55:0.6        #Remove sites with at least 1 - value missing data (1 = no missing data) [0.5]
+        06 vcffilter AB min             0.375           #Remove sites with equal or lower allele balance [0.2]
+        06 vcffilter AB max             0.625           #Remove sites with equal or lower allele balance [0.8]
+        06 vcffilter AB nohet           0               #Keep sites with AB=0. Not adjustable
+        07 vcffilter AC min             0               #Remove sites with equal or lower MINOR allele count [3]
+        09 vcffilter MQM/MQMR min       0.25            #Remove sites where the difference in the ratio of mean mapping quality between REF and ALT alleles is greater than this proportion from 1. Ex: 0 means the mapping quality must be equal between REF and ALTERNATE. Smaller numbers are more stringent. Keep sites where the following is true: 1-X < MQM/MQMR < 1/(1-X) [0.1]
+        10 vcffilter PAIRED                             #Remove sites where one of the alleles is only supported by reads that are not properly paired (see SAM format specification). Not adjustable
+        11 vcffilter QUAL/DP min        0.2             #Remove sites where the ratio of QUAL to DP is deemed to be too low. [0.25]
+        13 vcftools --max-meanDP        400             #Remove sites with higher mean depth [250]
+        14 vcftools --minDP             5               #Code genotypes with lesser depth of coverage as NA [5]
+        15 vcftools --maf               0               #Remove sites with lesser minor allele frequency.  Adjust based upon sample size. [0.005]
+        15 vcftools --max-maf           1               #Remove sites with greater minor allele frequency.  Adjust based upon sample size. [0.995]
+        16 vcftools --missing-indv      0.6:0.5         #Remove individuals with more missing data. [0.5]
 ```
 
 Did not adjust the filter settings (left them as the default).
@@ -597,6 +607,9 @@ fltrVCF Settings, run fltrVCF -h for description of settings
         fltrVCF -r ../../scripts/rad_haplotyper/rad_haplotyper.pl                                          # path to rad_haplotyper script
         fltrVCF -o Lle.A                                                                                   # prefix on output files, use to track settings
         fltrVCF -t 40                                                                                      # number of threads [1]
+
+        17 vcftools --missing-sites     0.5             #Remove sites with more data missing in a pop sample. [0.5]
+        18 filter_hwe_by_pop_HPC        0.001           #Remove sites with <p in test for HWE by pop sample. Adjust based upon sample size [0.001]
 ```
 
 Did not change the filter settings.
@@ -670,9 +683,7 @@ fltrVCF Settings, run fltrVCF -h for description of settings
         fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl    # path to rad_haplotyper script
         fltrVCF -o lle.mono                                                                                          # prefix on output files, use to track settings
         fltrVCF -t 40                                                                                                # number of threads [1]
-```
 
-```
         01 vcftools --min-alleles       1               #Remove sites with less alleles [2]
         01 vcftools --max-alleles       1               #Remove sites with more alleles [2]
         02 vcftools --remove-indels                     #Remove sites with indels.  Not adjustable
@@ -723,9 +734,7 @@ fltrVCF Settings, run fltrVCF -h for description of settings
         fltrVCF -r /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/rad_haplotyper/rad_haplotyper.pl    # path to rad_haplotyper script
         fltrVCF -o lle.poly                                                                                          # prefix on output files, use to track settings
         fltrVCF -t 40                                                                                                # number of threads [1]
-```
 
-```
         01 vcftools --min-alleles       2               #Remove sites with less alleles [2]
         01 vcftools --max-alleles       2               #Remove sites with more alleles [2]
         02 vcftools --remove-indels                     #Remove sites with indels.  Not adjustable
@@ -758,83 +767,88 @@ sbatch /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/scripts/fltrVCF.sba
 
 ---
 
-## Step 15. Merge monomorphic & polymorphic VCF files
+## 19. Merge monomorphic & polymorphic VCF files
 
-Check monomorphic & polymorphic VCF files to make sure that filtering removed the same individuals. If not, remove necessary individuals from files.
+Checked the *filtered* monomorphic & polymorphic VCF files to make sure that filtering removed the same individuals.
+* **mono.VCF filtering removed:** AHam_008, AHam_013, CNas_063
+* **poly.VCF filtering removed:** AHam_008, AHam_013, CNas_063
+
+Same individuals removed from both, so okay to go ahead.
 
 Created `indv_missing.txt` in `mkVCF_monomorphic` directory. This is a list of all the individuals removed from either  file (total of XX for *spp*). Used this list to make sure number of individuals matched in both filtered VCFs.
-
-```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
-mv polymorphic_filter/Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.vcf . 
-
-module load vcftools
-
-#remove missing individuals in mono
-vcftools --vcf Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.vcf --remove indv_missing.txt --recode --recode-INFO-all --out  Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.vcf #remove missing indiv
-mv Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.vcf.recode.vcf Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.vcf #rename
-
-#remove missing individuals in poly
-vcftools --vcf Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.vcf --remove indv_missing.txt --recode --recode-INFO-all --out Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.vcf
-mv Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.vcf.recode.vcf Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.vcf
-
-```
 
 Sorted each VCF file.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
-module load vcftools
+module load container_env bcftools
+bash
 
-#sort monomorphic (nomissing VCF)
-vcf-sort Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.vcf > Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.sorted.vcf
+#sort monomorphic
+crun vcf-sort lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.vcf > lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.recode.sorted.vcf
 
-#sort polymorphic (nomissing VCF)
-vcf-sort Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.vcf > Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.sorted.vcf
+#sort polymorphic
+cd polymorphic_filter
+
+crun vcf-sort lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.20.recode.vcf > lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.20.recode.sorted.vcf
+
+exit
 ```
 
 Zipped each VCF file.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
-module load samtools/1.9
+module load container_env samtools
+bash
 
 #zip monomorphic
-bgzip -c Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.sorted.vcf > Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.sorted.vcf.gz
+crun bgzip -c lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.recode.sorted.vcf > lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.recode.sorted.vcf.gz
 
 #zip polymorphic
-bgzip -c Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.sorted.vcf > Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.sorted.vcf.gz
+cd polymorphic_filter
+
+crun bgzip -c lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.20.recode.sorted.vcf > lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.20.recode.sorted.vcf.gz
+
+exit
 ```
 
 Indexed each VCF file.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
-module load samtools/1.9
+module load container_env samtools
+bash
 
 #index monomorphic
-tabix Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.sorted.vcf.gz
+crun tabix lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.recode.sorted.vcf.gz
 
 #index polymorphic
-tabix Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.sorted.vcf.gz
+cd polymorphic_filter
+crun tabix lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.sorted.vcf.gz
 ```
 
 Merged files.
 
 ```sh
-cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/mkVCF_monomorphic/mkVCF_monomorphic
+cd /archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl/mkVCF_monomorphic
 
+module unload samtools
 module load container_env bcftools
-module load samtools/1.9
-
 bash
-export SINGULARITY_BIND=/home/e1garcia
 
-crun bcftools concat --allow-overlaps Lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.11.recode.nomissing.sorted.vcf.gz Lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate.Fltr17.20.recode.nomissing.sorted.vcf.gz -O z -o Lle.all.recode.nomissing.sorted.vcf.gz
-tabix Lle.all.recode.nomissing.sorted.vcf.gz #index all sites VCF for downstream analyses
+mv ppolymorphic_filter *Fltr17.20*sorted.vcf.gz* .
+
+crun bcftools concat --allow-overlaps lle.mono.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.11.recode.sorted.vcf.gz lle.poly.ssl.Lle-C-3NR-R1R2ORPH-contam-noIsolate-rescaled.Fltr17.20.recode.sorted.vcf.gz -O z -o lle.all.recode.sorted.vcf.gz
+
+exit
+
+module load samtools
+bash 
+crun tabix lle.all.recode.sorted.vcf.gz #index all sites VCF for downstream analyses
 
 exit
 ```
