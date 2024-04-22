@@ -3,6 +3,8 @@
 Log to track progress through capture bioinformatics pipeline for the Albatross and Contemporary *Leiognathus leuciscus* samples from Hamilo Cove.
   * **NOTE:** *Leiognathus leuciscus* & *Equulites leuciscus* are the same species. Furthermore, subsequent species identification work has revealed that many of these individuals are actually *Equulites laterofenestra* and NOT *Leiognathus leuciscus*.
 
+***Note:** All scripts, code, data now live in the following directory on Wahab:* `/archive/carpenterlab/pire/pire_leiognathus_leuciscus_cssl`
+
 ---
 
 ## 0. Rename files for dDocent HPC
@@ -271,7 +273,7 @@ cd /home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/m
 cp ../../scripts/dDocentHPC/configs/config.6.cssl .
 ```
 
-Found the best genome by running `wrangleData.R`, sorted tibble by busco single copy complete, quast n50, and filtered by species in Rstudio. The best genome to map to for *Leiognathus leuciscus* is: `<scaffolds.fasta>` in `</home/e1garcia/shotgun_PIRE/lle_spades/scaffolds.faasta`. Copied this to `mkBAM`. 
+Found the best genome by running `wrangleData.R`, sorted tibble by busco single copy complete, quast n50, and filtered by species in Rstudio. The best genome to map to for *Leiognathus leuciscus* is: `scaffolds.fasta` in `</home/e1garcia/shotgun_PIRE/lle_spades/scaffolds.faasta`. Copied this to `mkBAM`. 
   * The best genome had to to first be extracted from `out_Lle-C_3NR_R1R2ORPH_contam_noisolate_covcutoff-off.tar.gz` and was placed in main `lle_spades` directory for easy access.
 
 ```sh
