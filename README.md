@@ -7,6 +7,17 @@ Log to track progress through capture bioinformatics pipeline for the Albatross 
 
 ---
 
+## Links to associated metadata:
+1. raw sequences (NCBI GenBank):
+    * Historical samples: [BioProject PRJNA998845](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA998845/)
+    * Contemporary samples: [BioProject PRJNA999299](https://www.ncbi.nlm.nih.gov/bioproject/PRJNA999299/)
+3. metadata (GEOME):
+    * Historical samples: https://n2t.net/ark:/21547/FMR2
+    * Contemporary samples: https://n2t.net/ark:/21547/FMX2
+4. genome assembly used for mapping & genotype calls (Figshare): [DOI:10.6084/m9.figshare.29991661](https://doi.org/10.6084/m9.figshare.29991661.v1)
+
+---
+
 ## 0. Rename files for dDocent HPC
 
 Raw data in `/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus/raw_fq_capture` (check *Leiognathus leuciscus* channel on Slack). Starting analyses in `/home/e1garcia/shotgun_PIRE/pire_cssl_data_processing/leiognathus_leuciscus`.
